@@ -34,11 +34,7 @@ public class MapController : MonoBehaviour
     // Let the GameController if it is allowed to notify the monster with the player's position.
     public bool CanSignalMonster()
     {
-        if (this.Showing)
-        {
-            return true;
-        }
-        return false;
+        return this.Showing;
     }
 
     void Update()

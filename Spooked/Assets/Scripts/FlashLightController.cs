@@ -21,6 +21,11 @@ public class FlashLightController : MonoBehaviour
         this.Intensity = 1;
     }
 
+    public bool CurrentlyOn()
+    {
+        return this.Enabled;
+    }
+
     public void TurnOn()
     {
         this.Enabled = true;
@@ -34,7 +39,7 @@ public class FlashLightController : MonoBehaviour
     }
 
     // Recharge the flashlight batteries.
-    public void FillBattery(float extraCapacity)
+    public void AddBattery(float extraCapacity)
     {
         this.Battery += extraCapacity;
         if (this.Battery > this.MaxBattery)

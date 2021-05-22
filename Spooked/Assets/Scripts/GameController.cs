@@ -5,18 +5,19 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private FlashLightController FlashLight;
-    private bool FlashLightOn;
     [SerializeField] private MapController VisibleMap;
+    //[SerializeField] private MonsterController Monster;
+    [SerializeField] private CharacterController Player;
     private bool Paused;
     // Time recorded for storing in the leaderboard.
     private float RecordTime;
 
     public GameController() 
     {
-        this.FlashLightOn = false;
         this.Paused = false;
         this.RecordTime = 0f;
     }
+
     private void Start()
     {
         this.FlashLight = this.gameObject.AddComponent<FlashLightController>();
@@ -24,20 +25,28 @@ public class GameController : MonoBehaviour
     }
 
     // Reset everything for another playthrough.
-    private void Reset()
+    // This should always be called upon returning to the main menu.
+    public void Reset()
     {
-
+        this.gameObject.AddComponent<GameController>();
+        Destroy(this);
     }
 
     // Pause the game.
     private void Pause()
     {
-        this.Paused = true;
-        // What should we do:
-        // Change to a new scene?
-        // Or make the pause menu in the same scene but make it visible?
-        
-        // Show the inventory inside the pause menu.
+        if (!this.Paused)
+        {
+            this.Paused = true;
+            // Show the pause menu and the invntory.
+            // Dim the screen a little?
+            // Player should not be able to move or act while paused.
+        }
+        else
+        {
+            this.Paused = false;
+            // Unpause the game and make things brighter. 
+        }
     }
 
     // Send the player's current location to the monster.
@@ -55,15 +64,13 @@ public class GameController : MonoBehaviour
             // Turn the flashlight on/off.
             if (Input.GetButtonDown("Fire1"))
             {
-                if (this.FlashLightOn)
+                if (this.FlashLight.CurrentlyOn())
                 {
                     this.FlashLight.TurnOff();
-                    this.FlashLightOn = false;
                 }
                 else
                 {
                     this.FlashLight.TurnOn();
-                    this.FlashLightOn = true;
                 }
             }
 
@@ -81,7 +88,7 @@ public class GameController : MonoBehaviour
             }
 
             // If the map is out signal the monster.
-            if (!this.Paused && this.VisibleMap.CanSignalMonster())
+            if (this.VisibleMap.CanSignalMonster())
             {
                 this.NotifyMonster();
             }
