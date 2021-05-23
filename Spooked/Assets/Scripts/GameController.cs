@@ -8,6 +8,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private MapController VisibleMap;
     //[SerializeField] private MonsterController Monster;
     [SerializeField] private CharacterController Player;
+
     private bool Paused;
     // Time recorded for storing in the leaderboard.
     private float RecordTime;
@@ -20,7 +21,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
-        this.FlashLight = this.gameObject.AddComponent<FlashLightController>();
+        // this.FlashLight = this.gameObject.AddComponent<FlashLightController>();
         this.VisibleMap = this.gameObject.AddComponent<MapController>();
     }
 
