@@ -204,7 +204,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -1541,7 +1541,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FlashLight: {fileID: 181165736}
   VisibleMap: {fileID: 0}
-  Player: {fileID: 0}
+  Player: {fileID: 520315494}
+  PlayerMove: {fileID: 520315497}
+  FirstPerson: {fileID: 1919580881}
 --- !u!4 &522976315
 Transform:
   m_ObjectHideFlags: 0
