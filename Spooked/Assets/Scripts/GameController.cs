@@ -8,6 +8,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private MapController VisibleMap;
     //[SerializeField] private MonsterController Monster;
     [SerializeField] private CharacterController Player;
+    [SerializeField] private PlayerMovement PlayerMove;
+    [SerializeField] private MouseLook FirstPerson;
 
     private bool Paused;
     // Time recorded for storing in the leaderboard.
@@ -33,19 +35,27 @@ public class GameController : MonoBehaviour
         Destroy(this);
     }
 
-    // Pause the game.
+    // Pause or unpause the game.
     private void Pause()
     {
         if (!this.Paused)
         {
+            Debug.Log("Game Paused");
             this.Paused = true;
+            this.FlashLight.Pause();
+            this.FirstPerson.enabled = false;
+            this.PlayerMove.enabled = false;
             // Show the pause menu and the invntory.
             // Dim the screen a little?
             // Player should not be able to move or act while paused.
         }
         else
         {
+            Debug.Log("Game Resumed");
             this.Paused = false;
+            this.FlashLight.Resume();
+            this.FirstPerson.enabled = true;
+            this.PlayerMove.enabled = true;
             // Unpause the game and make things brighter. 
         }
     }
@@ -58,6 +68,11 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            this.Pause();
+        }
+        
         if (!this.Paused) 
         {
             this.RecordTime += Time.deltaTime;
@@ -88,8 +103,8 @@ public class GameController : MonoBehaviour
                 }
             }
 
-            // If the map is out signal the monster.
-            if (this.VisibleMap.CanSignalMonster())
+            // If the map is out, or the flashlight is on for too long, signal the monster.
+            if (this.VisibleMap.CanSignalMonster() || this.FlashLight.OverTime())
             {
                 this.NotifyMonster();
             }
