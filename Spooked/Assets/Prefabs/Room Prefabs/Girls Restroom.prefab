@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 4872172678947484529}
   - component: {fileID: 3248991746637541357}
   - component: {fileID: 476237613964106937}
+  - component: {fileID: 8024054022544101096}
   - component: {fileID: 6588248116903817654}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Partition_Door_01_Snaps014
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +96,7 @@ Animator:
   m_GameObject: {fileID: 72173358729109158}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c2fb8e49328b1de4ba7bc44a59c4930e, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b5f02d331fefbd4389b3e36fc89e766, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -104,6 +105,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8024054022544101096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 72173358729109158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &6588248116903817654
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -651,7 +664,7 @@ GameObject:
   - component: {fileID: 952847678250411153}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001 (1)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1823,7 +1836,7 @@ GameObject:
   - component: {fileID: 2863387496513283137}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -2904,9 +2917,10 @@ GameObject:
   - component: {fileID: 1617775949253043786}
   - component: {fileID: 4467058415602423070}
   - component: {fileID: 6920883231907936273}
-  m_Layer: 0
+  - component: {fileID: 238572159866821310}
+  m_Layer: 7
   m_Name: Partition_Door_01_Snaps014
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2986,7 +3000,7 @@ Animator:
   m_GameObject: {fileID: 4207957621655721729}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c2fb8e49328b1de4ba7bc44a59c4930e, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b5f02d331fefbd4389b3e36fc89e766, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -3008,6 +3022,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.79499996, y: 1.919983, z: 0.07757918}
   m_Center: {x: 0.39749998, y: 0.9599915, z: -0.026446639}
+--- !u!114 &238572159866821310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4207957621655721729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4490663243788852507
 GameObject:
   m_ObjectHideFlags: 0
@@ -3487,7 +3513,7 @@ GameObject:
   - component: {fileID: 5184983964033594689}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001 (2)
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -4031,10 +4057,11 @@ GameObject:
   - component: {fileID: 1907270500825854433}
   - component: {fileID: 8429664902780087677}
   - component: {fileID: 6877415273004785193}
+  - component: {fileID: 3483409896197631824}
   - component: {fileID: 181476142710616870}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Partition_Door_01_Snaps014
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4114,7 +4141,7 @@ Animator:
   m_GameObject: {fileID: 6407208431207504950}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c2fb8e49328b1de4ba7bc44a59c4930e, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b5f02d331fefbd4389b3e36fc89e766, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -4123,6 +4150,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3483409896197631824
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6407208431207504950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &181476142710616870
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4927,10 +4966,11 @@ GameObject:
   - component: {fileID: 2043849330667340449}
   - component: {fileID: 8275054083318898237}
   - component: {fileID: 6438940795354312041}
+  - component: {fileID: 1759159516088518860}
   - component: {fileID: 337332222441799782}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Partition_Door_01_Snaps014
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5010,7 +5050,7 @@ Animator:
   m_GameObject: {fileID: 6827510182974877558}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: c2fb8e49328b1de4ba7bc44a59c4930e, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b5f02d331fefbd4389b3e36fc89e766, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5019,6 +5059,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1759159516088518860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6827510182974877558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &337332222441799782
 BoxCollider:
   m_ObjectHideFlags: 0

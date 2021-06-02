@@ -1,5 +1,17 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8341083922524645058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1720798905230728090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8011116992626838609
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,8 +360,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: Partition_Door_01_Snaps014
       objectReference: {fileID: 0}
+    - target: {fileID: 5908847871415456862, guid: 6d7e23dbfb7dacf4d9ac57ffd2333314, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5908847871415456862, guid: 6d7e23dbfb7dacf4d9ac57ffd2333314, type: 3}
+      propertyPath: m_TagString
+      value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6168795739213502017, guid: 6d7e23dbfb7dacf4d9ac57ffd2333314, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 1b5f02d331fefbd4389b3e36fc89e766, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7e23dbfb7dacf4d9ac57ffd2333314, type: 3}
+--- !u!1 &1720798905230728090 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5908847871415456862, guid: 6d7e23dbfb7dacf4d9ac57ffd2333314, type: 3}
+  m_PrefabInstance: {fileID: 5035570469493936068}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1102005731707594560 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5380373247248443524, guid: 6d7e23dbfb7dacf4d9ac57ffd2333314, type: 3}
