@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Ground
   - Light
+  - InteractiveObject
+  - Door
+  - DoubleDoor
   layers:
   - Default
   - TransparentFX
@@ -14,7 +17,7 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
+  - Interact
   - 
   - 
   - 
