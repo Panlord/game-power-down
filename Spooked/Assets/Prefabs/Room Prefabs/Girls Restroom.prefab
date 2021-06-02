@@ -323,9 +323,11 @@ GameObject:
   - component: {fileID: 7931527875502716779}
   - component: {fileID: 6622285966102751915}
   - component: {fileID: 2367414788374186263}
-  m_Layer: 0
+  - component: {fileID: 6732274914499100157}
+  - component: {fileID: 6763616520077217144}
+  m_Layer: 7
   m_Name: Door_04_01_Snaps014
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -407,6 +409,37 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.92414606, y: 1.9899981, z: 0.058581583}
   m_Center: {x: 0.456073, y: 0.99499905, z: -0.030437555}
+--- !u!95 &6732274914499100157
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577577559961200400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e61d1a5b2ef45864ba6e8c138e8cf6b7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &6763616520077217144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577577559961200400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &610417625431386212
 GameObject:
   m_ObjectHideFlags: 0
