@@ -9,6 +9,8 @@ TagManager:
   - InteractiveObject
   - Door
   - DoubleDoor
+  - CollectibleItem
+  - ObjectiveItem
   layers:
   - Default
   - TransparentFX
