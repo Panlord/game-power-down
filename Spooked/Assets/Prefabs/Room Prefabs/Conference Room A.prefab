@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3048784686888840698}
   m_Layer: 0
-  m_Name: Conference Room
+  m_Name: Conference Room A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -347,6 +347,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Floor_01_Snaps014 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6367530337809960180, guid: a98399bc0a2bb044e9c7a40b0cd9a81d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a98399bc0a2bb044e9c7a40b0cd9a81d, type: 3}
 --- !u!4 &2972328353665957758 stripped
@@ -408,6 +412,10 @@ PrefabInstance:
     - target: {fileID: 6367530337809960180, guid: a98399bc0a2bb044e9c7a40b0cd9a81d, type: 3}
       propertyPath: m_Name
       value: Floor_01_Snaps014 (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6367530337809960180, guid: a98399bc0a2bb044e9c7a40b0cd9a81d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a98399bc0a2bb044e9c7a40b0cd9a81d, type: 3}
