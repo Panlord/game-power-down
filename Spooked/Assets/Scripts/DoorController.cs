@@ -1,4 +1,5 @@
 // Created by Aaron Pan, based off of SpeedTutor's "OPENING a DOOR in UNITY with a RAYCAST" tutorial on YouTube.
+// Adapted by Peter Lin.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,23 +8,40 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     private Animator DoorAnimator;
+    private InterfaceController GUI;
     private bool DoorOpen = false;
+
     private void Awake()
     {
-        DoorAnimator = gameObject.GetComponent<Animator>();
+        this.DoorAnimator = gameObject.GetComponent<Animator>();
+        this.GUI = GameObject.Find("User Interface").GetComponent<InterfaceController>();
     }
 
-    public void PlayAnimation()
+    public void Prompt()
     {
-        if (!DoorOpen)
+        if (this.DoorOpen)
         {
-            DoorAnimator.Play("DoorOpen", 0, 0.0f);
-            DoorOpen = true;
+            this.GUI.PromptDoorClose();
         }
         else
         {
-            DoorAnimator.Play("DoorClose", 0, 0.0f);
-            DoorOpen = false;
+            this.GUI.PromptDoorOpen();
+        }
+    }
+
+    public void Interact()
+    {
+        if (!this.DoorOpen)
+        {
+            this.DoorAnimator.Play("DoorOpen", 0, 0.0f);
+            this.DoorOpen = true;
+            this.GUI.PromptDoorClose();
+        }
+        else
+        {
+            this.DoorAnimator.Play("DoorClose", 0, 0.0f);
+            this.DoorOpen = false;
+            this.GUI.PromptDoorOpen();
         }
     }
 }
