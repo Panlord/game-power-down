@@ -1165,6 +1165,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 7925580190998176264, guid: 7e029dba051bf764ea5af5403b796c16, type: 3}
+      propertyPath: m_VersionIndex
+      value: 4206
+      objectReference: {fileID: 0}
     - target: {fileID: 8891245656440526998, guid: 7e029dba051bf764ea5af5403b796c16, type: 3}
       propertyPath: m_Name
       value: Door Wall

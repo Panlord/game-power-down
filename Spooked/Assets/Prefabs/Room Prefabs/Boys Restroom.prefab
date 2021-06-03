@@ -351,6 +351,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7474766148900792865}
     m_Modifications:
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_Name
+      value: Restroom_Floor_04_Snaps014 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4261583248672026588, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -398,30 +422,6 @@ PrefabInstance:
     - target: {fileID: 7665439629050782043, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_Name
       value: Roof_Floor_01_Snaps014
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_Name
-      value: Restroom_Floor_04_Snaps014 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e380f534330da04bba824f3c282727f, type: 3}
@@ -499,6 +499,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7474766148900792865}
     m_Modifications:
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -10.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_Name
+      value: Restroom_Floor_04_Snaps014 (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4261583248672026588, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -546,30 +570,6 @@ PrefabInstance:
     - target: {fileID: 7665439629050782043, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_Name
       value: Roof_Floor_01_Snaps014
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -10.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_Name
-      value: Restroom_Floor_04_Snaps014 (3)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e380f534330da04bba824f3c282727f, type: 3}
@@ -1509,6 +1509,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Restroom_Tashcan_01_Snaps014
       objectReference: {fileID: 0}
+    - target: {fileID: 6370247633983013988, guid: 92beb30ec2b7de7439ed5122be569875, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 0d4db0143ecac524a94008995dcf9198, type: 2}
     - target: {fileID: 6878907426168710292, guid: 92beb30ec2b7de7439ed5122be569875, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1615,6 +1619,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8753675679339532441, guid: 80d0bc4d5af6e434390ccfc376eaef59, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 826dba042eca2e34a8101c8518d7004e, type: 2}
+    - target: {fileID: 8753675679339532441, guid: 80d0bc4d5af6e434390ccfc376eaef59, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 826dba042eca2e34a8101c8518d7004e, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 80d0bc4d5af6e434390ccfc376eaef59, type: 3}
 --- !u!4 &2203997816480657869 stripped
@@ -2311,6 +2323,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7474766148900792865}
     m_Modifications:
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 10.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_Name
+      value: Restroom_Floor_04_Snaps014 (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4261583248672026588, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2358,30 +2394,6 @@ PrefabInstance:
     - target: {fileID: 7665439629050782043, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_Name
       value: Roof_Floor_01_Snaps014
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_RootOrder
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 10.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_Name
-      value: Restroom_Floor_04_Snaps014 (2)
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e380f534330da04bba824f3c282727f, type: 3}
@@ -2583,6 +2595,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7474766148900792865}
     m_Modifications:
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -14.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 6.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 4261583248672026588, guid: a0135cb3c5713b14d8ecfcc2627c2c82, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -2631,22 +2659,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Roof_Floor_01_Snaps014
       objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -14.11
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6.65
-      objectReference: {fileID: 0}
-    - target: {fileID: 1056862186225489731, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 6.09
-      objectReference: {fileID: 0}
-    - target: {fileID: 8202451857048553505, guid: 6e380f534330da04bba824f3c282727f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 8
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e380f534330da04bba824f3c282727f, type: 3}
 --- !u!4 &5902166540823737178 stripped
@@ -2661,6 +2673,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4103662108870876999}
     m_Modifications:
+    - target: {fileID: 3306123914913598182, guid: 9c61282685dd10042ae11a4a7858c68b, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 686d31d3fff93a64ea442185a297ad90, type: 2}
+    - target: {fileID: 3306123914913598182, guid: 9c61282685dd10042ae11a4a7858c68b, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 686d31d3fff93a64ea442185a297ad90, type: 2}
     - target: {fileID: 4897635728911215663, guid: 9c61282685dd10042ae11a4a7858c68b, type: 3}
       propertyPath: m_Name
       value: Brush_01_Snaps014
