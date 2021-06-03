@@ -1,4 +1,5 @@
-// Coded by Aaron, following Brackeys' FPS Controller tutorial on YouTube.
+/* Coded by Aaron and Victor following Brackeys' FPS Controller tutorial on YouTube and 
+https://gamedevacademy.org/unity-3d-first-and-third-person-view-tutorial/ and https://sharpcoderblog.com/blog/unity-3d-fps-controller */
 
 using System.Collections;
 using System.Collections.Generic;
@@ -6,13 +7,17 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class MouseLook : MonoBehaviour
 {
-    [SerializeField] public float MouseSensitivity = 100f;
-    [SerializeField] private Transform PlayerBody;
+    [SerializeField] 
+    private float MouseSensitivity = 4.0f;
+    [SerializeField] 
+    private float JoystickSens = 4.0f;
+    [SerializeField] 
+    private Transform PlayerBody;
     Gamepad gamepad;
-
-
-    // Rotation of the player's body in the horizontal direction.
-    float XRotation = 0f;
+    private float minTurnAngle = -90.0f;
+    private float maxTurnAngle = 90.0f;
+    private float XRotation;
+    private float y = 0.0f;
 
     void Start()
     {
@@ -24,28 +29,37 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-        // check if gamepad is connected
-        if(gamepad != null){
-         // When the mouse moves side to side, the camera (and character) move side to side.
-        float moveX = Gamepad.current.rightStick.x.ReadValue() * MouseSensitivity * Time.deltaTime;
-        // Same for when the mouse moves up and down.
-        float moveY = Gamepad.current.rightStick.y.ReadValue() * MouseSensitivity * Time.deltaTime;
-        // Stop the player from being an owl and rotating their head/camera 180+ degrees,
-        // i.e. clamp the camera.
-        this.XRotation -= moveY;
-        this.XRotation = Mathf.Clamp(XRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(XRotation, 0f, 0f);
-        // Rotate the player from side-to-side when moving the camera side-to-side.
-        PlayerBody.Rotate(Vector3.up * moveX);
-        }
-        
-        // same as above but for mouse input
-        float mouseX = Input.GetAxis("Mouse X") * MouseSensitivity * Time.deltaTime;
-        float mouseY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
-        this.XRotation -= mouseY;
-        this.XRotation = Mathf.Clamp(XRotation, -90f, 90f);
-        transform.localRotation = Quaternion.Euler(XRotation, 0f, 0f);
-        PlayerBody.Rotate(Vector3.up * mouseX);
-
+       MoveCamera();
     }
+
+    void MoveCamera ()
+    {
+    if(gamepad != null){
+    
+    // get joystick inputs
+    y =  Gamepad.current.rightStick.x.ReadValue() * JoystickSens * Time.deltaTime;
+    XRotation += Gamepad.current.rightStick.y.ReadValue() * JoystickSens * Time.deltaTime;
+
+    // clamp the vertical rotation
+    XRotation = Mathf.Clamp(XRotation, minTurnAngle, maxTurnAngle);
+    // rotate the camera
+    transform.eulerAngles = new Vector3(-XRotation, transform.eulerAngles.y + y, 0);
+    transform.localRotation = Quaternion.Euler(-XRotation, 0f, 0f);
+    PlayerBody.Rotate(Vector3.up * y);
+    } 
+
+    // get the mouse inputs
+    y = Input.GetAxis("Mouse X") * MouseSensitivity;
+    XRotation += Input.GetAxis("Mouse Y") * MouseSensitivity;
+
+    // clamp the camera
+    XRotation = Mathf.Clamp(XRotation, minTurnAngle, maxTurnAngle);
+
+    // rotate the camera
+    transform.eulerAngles = new Vector3(-XRotation, transform.eulerAngles.y + y, 0);
+    transform.localRotation = Quaternion.Euler(-XRotation, 0f, 0f);
+    PlayerBody.Rotate(Vector3.up * y);
+    
+    }
+
 }
