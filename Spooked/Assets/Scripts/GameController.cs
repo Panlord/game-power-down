@@ -13,15 +13,19 @@ public class GameController : MonoBehaviour
     [SerializeField] private DoorRaycast OpenSingleDoor;
     [SerializeField] private DoubleDoorRaycast OpenDoubleDoor;
 
+    [SerializeField] private LoreManager LoreSystem;
+
     [SerializeField] private GameObject Monster;
 
     private bool Paused;
+    private bool InMenu;
     // Time recorded for storing in the leaderboard.
     private float RecordTime;
 
     public GameController() 
     {
         this.Paused = false;
+        this.InMenu = false;
         this.RecordTime = 0f;
     }
 
@@ -41,6 +45,25 @@ public class GameController : MonoBehaviour
 
         // Timer
         this.RecordTime = 0;
+        
+        // Lore System
+        this.LoreSystem.Reset();
+    }
+
+    private void DisplayPauseMenu() 
+    {
+
+    }
+
+    private void HidePauseMenu()
+    {
+
+    }
+
+    private void GameOver()
+    {
+        this.Pause();
+
     }
 
     // Pause or unpause the game.
@@ -86,9 +109,17 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !this.InMenu)
         {
             this.Pause();
+            if (this.Paused)
+            {
+                this.DisplayPauseMenu();
+            }
+            else
+            {
+                this.HidePauseMenu();
+            }
         }
         
         if (!this.Paused) 
