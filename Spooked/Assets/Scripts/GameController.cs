@@ -17,7 +17,12 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private GameObject Monster;
 
-    private bool Paused;
+    [SerializeField] private MainMenuController MainMenu;
+
+    [SerializeField] private PauseMenuController PauseMenu;
+
+
+    [SerializeField] private bool Paused;
     private bool InMenu;
     // Time recorded for storing in the leaderboard.
     private float RecordTime;
@@ -25,14 +30,14 @@ public class GameController : MonoBehaviour
     public GameController() 
     {
         this.Paused = false;
-        this.InMenu = false;
+        this.InMenu = true;
         this.RecordTime = 0f;
     }
 
     private void Start()
     {
-        // this.FlashLight = this.gameObject.AddComponent<FlashLightController>();
         this.VisibleMap = this.gameObject.AddComponent<MapController>();
+        this.Pause();
     }
 
     // Reset everything for another playthrough.
@@ -48,21 +53,12 @@ public class GameController : MonoBehaviour
         
         // Lore System
         this.LoreSystem.Reset();
-    }
 
-    private void DisplayPauseMenu() 
-    {
-
-    }
-
-    private void HidePauseMenu()
-    {
-
+        this.Pause();
     }
 
     private void GameOver()
     {
-        this.Pause();
 
     }
 
@@ -81,9 +77,6 @@ public class GameController : MonoBehaviour
             this.OpenSingleDoor.enabled = false;
             this.Monster.GetComponent<Animator>().enabled = false;
             this.Monster.GetComponent<MonsterMovement>().enabled = false;
-            // Show the pause menu and the inventory.
-            // Dim the screen a little?
-            // Player should not be able to move or act while paused.
         }
         else
         {
@@ -97,7 +90,6 @@ public class GameController : MonoBehaviour
             this.OpenSingleDoor.enabled = true;
             this.Monster.GetComponent<Animator>().enabled = true;
             this.Monster.GetComponent<MonsterMovement>().enabled = true;
-            // Unpause the game and make things brighter. 
         }
     }
 
@@ -109,28 +101,46 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        //this.gameObject.transform.position = t
+        if (this.MainMenu.IsActivated())
+        {
+            this.Pause();
+            this.InMenu = false;
+            this.MainMenu.Deactivate();
+        }
+
+        if (this.PauseMenu.IsActivated())
+        {
+            this.Pause();
+            this.PauseMenu.Deactivate();
+        }
+
         if (Input.GetKeyDown(KeyCode.Escape) && !this.InMenu)
         {
             this.Pause();
             if (this.Paused)
             {
-                this.DisplayPauseMenu();
+                this.PauseMenu.Show();
             }
             else
             {
-                this.HidePauseMenu();
+                this.PauseMenu.Deactivate();
             }
         }
-        
+
         if (!this.Paused) 
         {
             this.RecordTime += Time.deltaTime;
-
+            Cursor.lockState = CursorLockMode.Locked;
             // If the map is out, or the flashlight is on for too long, signal the monster.
             if (this.VisibleMap.CanSignalMonster() || this.FlashLight.OverTime())
             {
                 this.NotifyMonster();
             }
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.None;
         }
     }
 }

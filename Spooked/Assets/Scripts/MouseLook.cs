@@ -13,12 +13,6 @@ public class MouseLook : MonoBehaviour
     // Rotation of the player's body in the horizontal direction.
     float XRotation = 0f;
 
-    void Start()
-    {
-        // Hide and lock the cursor in the middle of the screen.
-        Cursor.lockState = CursorLockMode.Locked;
-    }
-
     void Update()
     {
         // When the mouse moves side to side, the camera (and character) move side to side.
