@@ -3,21 +3,20 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MainMenuController : MonoBehaviour 
+public class EndMenuController : MonoBehaviour 
 {
-    [SerializeField] private Button StartButton;
+    [SerializeField] private Button MenuButton;
     [SerializeField] private Button ExitButton;
-
     private bool Activated;
 
-    private MainMenuController()
+    private EndMenuController()
     {
         this.Activated = false;
     }
 
     void Start()
     {
-        this.StartButton.onClick.AddListener(Activate);
+        this.MenuButton.onClick.AddListener(Activate);
         this.ExitButton.onClick.AddListener(Application.Quit);
     }
 

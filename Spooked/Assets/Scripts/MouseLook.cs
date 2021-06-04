@@ -13,6 +13,11 @@ public class MouseLook : MonoBehaviour
     // Rotation of the player's body in the horizontal direction.
     float XRotation = 0f;
 
+    public void ResetView()
+    {
+        this.gameObject.transform.rotation = new Quaternion(0, 0, 0, 1);
+    }
+
     void Update()
     {
         // When the mouse moves side to side, the camera (and character) move side to side.

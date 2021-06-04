@@ -19,7 +19,7 @@ public class MapController : MonoBehaviour
         // Display the map here.
     }
 
-    private void Hide()
+    public void Hide()
     {
         this.Showing = false;
         Debug.Log("Map Hidden");
