@@ -158,7 +158,6 @@ public class GameController : MonoBehaviour
 
     private void Trigger()
     {
-        this.HasBook = true;
         this.HallwayLights.SetActive(false);
         this.Monster.SetActive(true);
         this.Monster.GetComponent<Animator>().enabled = true;
@@ -232,6 +231,7 @@ public class GameController : MonoBehaviour
             if (this.OpenDoubleDoor.ExitCheck() == 1)
             {
                 this.OpenDoubleDoor.Reset();
+                this.InMenu = true;
                 this.Pause();
                 this.EndMenu.Show();
                 this.OpenDoubleDoor.Reset();
@@ -252,6 +252,7 @@ public class GameController : MonoBehaviour
             if (this.PlayerModel.transform.position.x == this.Monster.transform.position.x && this.Monster.activeSelf)
             {
                 this.Pause();
+                this.InMenu = true;
                 this.EndMenu.Show();
             }
 
@@ -268,6 +269,7 @@ public class GameController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 this.Trigger();
+                this.HasBook = true;
             }
         }
         else
