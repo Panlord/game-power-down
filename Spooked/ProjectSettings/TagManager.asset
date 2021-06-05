@@ -11,6 +11,9 @@ TagManager:
   - DoubleDoor
   - CollectibleItem
   - ObjectiveItem
+  - Exit
+  - ExitDoor
+  - LockedExit
   layers:
   - Default
   - TransparentFX

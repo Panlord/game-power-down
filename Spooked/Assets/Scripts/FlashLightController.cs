@@ -8,7 +8,7 @@ public class FlashLightController : MonoBehaviour
     private bool Enabled;
     [SerializeField] private Light FireLight;
     [SerializeField] private float DurationOn;
-    private bool Paused;
+    
     // Optional features that can be added. Remove if not needed.
     [SerializeField] private float Battery;
     private float MaxBattery;
@@ -18,7 +18,6 @@ public class FlashLightController : MonoBehaviour
     public FlashLightController()
     {
         this.Enabled = false;
-        this.Paused = false;
         this.Battery = 100;
         this.MaxBattery = 100;
         this.DurationOn = 0;

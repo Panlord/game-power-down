@@ -57,12 +57,12 @@ public class MonsterMovement : MonoBehaviour
 
     public void Halt()
     {
-        this.gameObject.GetComponent<NavMeshAgent>().Stop();
+        this.gameObject.GetComponent<NavMeshAgent>().isStopped = true;
     }
 
     public void Continue()
     {
-        this.gameObject.GetComponent<NavMeshAgent>().Resume();
+        this.gameObject.GetComponent<NavMeshAgent>().isStopped = false;
     }
     void Update()
     {

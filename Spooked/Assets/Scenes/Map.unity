@@ -13441,6 +13441,11 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!1 &332082544 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3822596721923259841, guid: 62bb51ff75b6fec4d9da694beb8d536d, type: 3}
+  m_PrefabInstance: {fileID: 1072312795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &333514291
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29237,6 +29242,11 @@ Transform:
   m_Father: {fileID: 731006279}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &730108941 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3822596721923259841, guid: 62bb51ff75b6fec4d9da694beb8d536d, type: 3}
+  m_PrefabInstance: {fileID: 933093045}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &731006278
 GameObject:
   m_ObjectHideFlags: 0
@@ -44164,6 +44174,11 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 5497523879184130052, guid: 62bb51ff75b6fec4d9da694beb8d536d, type: 3}
   m_PrefabInstance: {fileID: 1072312795}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1073155693 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3822596721923259841, guid: 62bb51ff75b6fec4d9da694beb8d536d, type: 3}
+  m_PrefabInstance: {fileID: 1284317782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1073375298
 PrefabInstance:
@@ -64132,7 +64147,9 @@ MonoBehaviour:
   PauseMenu: {fileID: 1205421344}
   IntroMenu: {fileID: 465957306}
   EndMenu: {fileID: 216012916}
-  HasBook: 0
+  ExitDoorOne: {fileID: 730108941}
+  ExitDoorTwo: {fileID: 332082544}
+  ExitDoorThree: {fileID: 1073155693}
 --- !u!4 &1580472601
 Transform:
   m_ObjectHideFlags: 0

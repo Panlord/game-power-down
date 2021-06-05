@@ -19,10 +19,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private IntroMenuController IntroMenu;
     [SerializeField] private EndMenuController EndMenu;
+    [SerializeField] private GameObject ExitDoorOne;
+    [SerializeField] private GameObject ExitDoorTwo;
+    [SerializeField] private GameObject ExitDoorThree;
+
 
     private bool Paused;
 
-    [SerializeField] private bool HasBook;
+    private bool HasBook;
     private bool InMenu;
     // Time recorded for storing in the leaderboard.
     private float RecordTime;
@@ -38,12 +42,34 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         this.VisibleMap = this.gameObject.AddComponent<MapController>();
+        this.SetWinningDoor();
         this.Pause();
+    }
+
+    private void SetWinningDoor()
+    {
+        List<GameObject> Doors = new List<GameObject>();
+        Doors.Add(this.ExitDoorOne);
+        Doors.Add(this.ExitDoorTwo);
+        Doors.Add(this.ExitDoorThree);
+        var j = Random.Range(0, 3);
+        Doors[j].tag = "ExitDoor";
+        Doors[j].transform.GetChild(0).gameObject.tag = "ExitDoor";
+        Doors[j].transform.GetChild(1).gameObject.tag = "ExitDoor";
+        Doors.Remove(Doors[j]);
+        for (int i = 0; i < 2; i++)
+        {
+            j = Random.Range(0, Doors.Count);
+            Doors[j].tag = "LockedExit";
+            Doors[j].transform.GetChild(0).gameObject.tag = "LockedExit";
+            Doors[j].transform.GetChild(1).gameObject.tag = "LockedExit";
+            Doors.Remove(Doors[j]);
+        }
     }
 
     // Reset everything for another playthrough.
     // This should always be called upon returning to the main menu.
-    public void Reset()
+    private void Reset()
     {
         // FlashLight:
         this.FlashLight.TurnOff();
@@ -52,7 +78,7 @@ public class GameController : MonoBehaviour
         this.VisibleMap.Hide();
 
         // Timer:
-        this.RecordTime = 0;
+        this.RecordTime = 0f;
         
         // Lore System
         //this.LoreSystem.Reset();
@@ -72,6 +98,9 @@ public class GameController : MonoBehaviour
         this.Monster.transform.position = new Vector3(1.535991f, -0.1799999f, -6.159369f);
         this.Monster.GetComponent<Animator>().enabled = false;
         this.Monster.GetComponent<MonsterMovement>().enabled = false;
+
+        // Exits:
+        this.SetWinningDoor();
     }
 
     private void ReturnToMenu()
@@ -140,19 +169,15 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
-        this.gameObject.transform.position = new Vector3(this.PlayerModel.transform.position.x, this.gameObject.transform.position.y, this.gameObject.transform.position.z);
-        // if (this.gameObject.transform.position.x == this.Monster.transform.position.x && this.Monster.activeSelf)
-        // {
-        //     this.Pause();
-        //     this.EndMenu.Show();
-        // }
-
+        // Map Logic.
+        // Was "Start" pressed on the main menu?
         if (this.MainMenu.IsActivated())
         {
             this.MainMenu.Deactivate();
             this.IntroMenu.Show();
         }
 
+        // Was "Go" pressed on the Introduction?
         if (this.IntroMenu.IsActivated())
         {
             this.Pause();
@@ -160,24 +185,28 @@ public class GameController : MonoBehaviour
             this.IntroMenu.Deactivate();
         }
 
+        // Was "Resume" pressed on the Pause menu?
         if (this.PauseMenu.IsActivated())
         {
             this.Pause();
             this.PauseMenu.Deactivate();
         }
 
+        // Was "Quit" pressed on the Pause menu?
         if (this.PauseMenu.IsQuitting())
         {
             this.PauseMenu.Deactivate();
             this.ReturnToMenu();
         }
 
+        // Was "Return to Menu" pressed on the End Menu?
         if (this.EndMenu.IsActivated())
         {
             this.EndMenu.Deactivate();
             this.ReturnToMenu();
         }
 
+        // Pause the game, or unpause if on the Pause Menu.
         if (Input.GetKeyDown(KeyCode.Escape) && !this.InMenu)
         {
             this.Pause();
@@ -191,10 +220,41 @@ public class GameController : MonoBehaviour
             }
         }
 
+        // Have victory conditions been met?
+        if (this.OpenDoubleDoor.ExitCheck() > 0)
+        {
+            if (!this.HasBook)
+            {
+                Debug.Log("You haven't gotten the book yet!");
+                this.OpenDoubleDoor.Reset();
+            }
+
+            if (this.OpenDoubleDoor.ExitCheck() == 1)
+            {
+                this.OpenDoubleDoor.Reset();
+                this.Pause();
+                this.EndMenu.Show();
+                this.OpenDoubleDoor.Reset();
+            }
+            else if (this.OpenDoubleDoor.ExitCheck() == 2)
+            {
+                this.OpenDoubleDoor.Reset();
+                Debug.Log("This exit is locked.");
+            }
+
+        }
+
         if (!this.Paused) 
         {
             this.RecordTime += Time.deltaTime;
             Cursor.lockState = CursorLockMode.Locked;
+
+            if (this.PlayerModel.transform.position.x == this.Monster.transform.position.x && this.Monster.activeSelf)
+            {
+                this.Pause();
+                this.EndMenu.Show();
+            }
+
             // If the map is out, or the flashlight is on for too long, signal the monster.
             if (this.VisibleMap.CanSignalMonster() || this.FlashLight.OverTime())
             {

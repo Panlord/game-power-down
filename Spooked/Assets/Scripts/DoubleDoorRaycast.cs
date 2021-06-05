@@ -21,6 +21,17 @@ public class DoubleDoorRaycast : MonoBehaviour
 
     private const string InteractableTag = "DoubleDoor";
 
+    private int VictoryCondition = 0;
+    public int ExitCheck()
+    {
+        return this.VictoryCondition;
+    }
+
+    public void Reset()
+    {
+        this.VictoryCondition = 0;
+    }
+
     private void Update()
     {
         RaycastHit hit;
@@ -43,6 +54,32 @@ public class DoubleDoorRaycast : MonoBehaviour
                 if (Input.GetKeyDown(OpenDoorKey))
                 {
                     RayCastedObject.PlayAnimation();
+                }
+            }
+            else if (hit.collider.CompareTag("ExitDoor"))
+            {
+                if (!DoOnce)
+                {
+                    CrosshairChange(true);
+                }
+                IsCrosshairActive = true;
+                DoOnce = true;
+                if (Input.GetKeyDown(OpenDoorKey))
+                {
+                    this.VictoryCondition = 1;
+                }
+            }
+            else if (hit.collider.CompareTag("LockedExit"))
+            {
+                if (!DoOnce)
+                {
+                    CrosshairChange(true);
+                }
+                IsCrosshairActive = true;
+                DoOnce = true;
+                if (Input.GetKeyDown(OpenDoorKey))
+                {
+                    this.VictoryCondition = 2;
                 }
             }
         }
