@@ -15,13 +15,14 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject Monster;
     [SerializeField] private GameObject PlayerModel;
     [SerializeField] private GameObject HallwayLights;
+    [SerializeField] private GameObject ExitDoorOne;
+    [SerializeField] private GameObject ExitDoorTwo;
+    [SerializeField] private GameObject ExitDoorThree;
+    [SerializeField] private MonsterCollision MonsterCollider;
     [SerializeField] private MainMenuController MainMenu;
     [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private IntroMenuController IntroMenu;
     [SerializeField] private EndMenuController EndMenu;
-    [SerializeField] private GameObject ExitDoorOne;
-    [SerializeField] private GameObject ExitDoorTwo;
-    [SerializeField] private GameObject ExitDoorThree;
 
 
     private bool Paused;
@@ -241,7 +242,6 @@ public class GameController : MonoBehaviour
                 this.OpenDoubleDoor.Reset();
                 Debug.Log("This exit is locked.");
             }
-
         }
 
         if (!this.Paused) 
@@ -249,9 +249,12 @@ public class GameController : MonoBehaviour
             this.RecordTime += Time.deltaTime;
             Cursor.lockState = CursorLockMode.Locked;
 
-            if (this.PlayerModel.transform.position.x == this.Monster.transform.position.x && this.Monster.activeSelf)
+            this.MonsterCollider.gameObject.transform.position = this.PlayerModel.transform.position;
+
+            if (this.MonsterCollider.Hit())
             {
                 this.Pause();
+                this.MonsterCollider.Reset();
                 this.InMenu = true;
                 this.EndMenu.Show();
             }
