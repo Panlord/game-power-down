@@ -166,6 +166,9 @@ public class GameController : MonoBehaviour
 
         // Misc:
         this.Triggered = false;
+
+        // Timer:
+        TimerController.timer.PauseTime();
     }
 
     // Return to the Main Menu.
@@ -199,7 +202,8 @@ public class GameController : MonoBehaviour
             if (this.Monster.activeSelf)
             {
                 this.Monster.GetComponent<MonsterMovement>().Halt();
-            }   
+            }
+
         }
         else
         {
@@ -219,6 +223,7 @@ public class GameController : MonoBehaviour
                 this.Monster.GetComponent<MonsterMovement>().enabled = true;
                 this.Monster.GetComponent<MonsterMovement>().Continue();
             }
+
         }
     }
 
@@ -271,6 +276,8 @@ public class GameController : MonoBehaviour
             this.Pause();
             this.InMenu = false;
             this.IntroMenu.Deactivate();
+
+            TimerController.timer.BeginTimer();
         }
 
         // Was "Resume" pressed on the Pause menu?
@@ -278,11 +285,15 @@ public class GameController : MonoBehaviour
         {
             this.Pause();
             this.PauseMenu.Deactivate();
+
+            TimerController.timer.ContinueTime();
         }
 
         // Was "Quit" pressed on the Pause menu?
         if (this.PauseMenu.IsQuitting())
         {
+            TimerController.timer.ResetTimer();
+            
             this.PauseMenu.Deactivate();
             this.ReturnToMenu();
         }
@@ -294,6 +305,7 @@ public class GameController : MonoBehaviour
             this.PauseMenu.OutLore();
             this.PauseMenu.Deactivate();
             this.LoreMenu.Show();
+
         }
 
         // Was "Close" pressed when viewing all the lore you have?
@@ -308,8 +320,12 @@ public class GameController : MonoBehaviour
         // Was "Return to Menu" pressed on the End Menu?
         if (this.EndMenu.IsActivated())
         {
+            TimerController.timer.ResetTimer();
+
             this.EndMenu.Deactivate();
             this.ReturnToMenu();
+            
+            
         }
 
         // Was "Close" pressed when viewing a Lore you just got?
@@ -333,10 +349,12 @@ public class GameController : MonoBehaviour
             if (this.Paused)
             {
                 this.PauseMenu.Show();
+                TimerController.timer.PauseTime();
             }
             else
             {
                 this.PauseMenu.Deactivate();
+                TimerController.timer.ContinueTime();
             }
         }
 
