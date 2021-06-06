@@ -63,22 +63,22 @@ public class GameController : MonoBehaviour
     // Randomly choose among the three exits which one will be the right exit.
     private void SetWinningDoor()
     {
-        List<GameObject> Doors = new List<GameObject>();
-        Doors.Add(this.ExitDoorOne);
-        Doors.Add(this.ExitDoorTwo);
-        Doors.Add(this.ExitDoorThree);
+        List<GameObject> randDoors = new List<GameObject>();
+        randDoors.Add(this.ExitDoorOne);
+        randDoors.Add(this.ExitDoorTwo);
+        randDoors.Add(this.ExitDoorThree);
         var j = Random.Range(0, 3);
-        Doors[j].tag = "ExitDoor";
-        Doors[j].transform.GetChild(0).gameObject.tag = "ExitDoor";
-        Doors[j].transform.GetChild(1).gameObject.tag = "ExitDoor";
-        Doors.Remove(Doors[j]);
+        randDoors[j].tag = "ExitDoor";
+        randDoors[j].transform.GetChild(0).gameObject.tag = "ExitDoor";
+        randDoors[j].transform.GetChild(1).gameObject.tag = "ExitDoor";
+        randDoors.Remove(randDoors[j]);
         for (int i = 0; i < 2; i++)
         {
-            j = Random.Range(0, Doors.Count);
-            Doors[j].tag = "LockedExit";
-            Doors[j].transform.GetChild(0).gameObject.tag = "LockedExit";
-            Doors[j].transform.GetChild(1).gameObject.tag = "LockedExit";
-            Doors.Remove(Doors[j]);
+            j = Random.Range(0, randDoors.Count);
+            randDoors[j].tag = "LockedExit";
+            randDoors[j].transform.GetChild(0).gameObject.tag = "LockedExit";
+            randDoors[j].transform.GetChild(1).gameObject.tag = "LockedExit";
+            randDoors.Remove(randDoors[j]);
         }
     }
 
@@ -116,12 +116,18 @@ public class GameController : MonoBehaviour
         foreach (GameObject Door in Doors)
         {
             var door = Door.GetComponent<DoorController>();
-            door.Close();
+            if (door.IsOpen())
+            {
+                door.Close();
+            }
         }
         foreach (GameObject DoubleDoor in DoubleDoors)
         {
             var doubleDoor = DoubleDoor.GetComponent<DoubleDoorController>();
-            doubleDoor.Close();
+            if (doubleDoor.IsOpen())
+            {
+                doubleDoor.Close();
+            }
         }
     }
 
@@ -134,6 +140,7 @@ public class GameController : MonoBehaviour
 
         // Timer:
         this.RecordTime = 0f;
+        TimerController.timer.ResetTimer();
         
         // Lore System
         this.LoreSystem.Reset();
@@ -166,9 +173,6 @@ public class GameController : MonoBehaviour
 
         // Misc:
         this.Triggered = false;
-
-        // Timer:
-        TimerController.timer.PauseTime();
     }
 
     // Return to the Main Menu.
@@ -199,6 +203,7 @@ public class GameController : MonoBehaviour
             this.Monster.GetComponent<Animator>().enabled = false;
             this.Monster.GetComponent<MonsterMovement>().enabled = false;
             this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            TimerController.timer.PauseTime();
             if (this.Monster.activeSelf)
             {
                 this.Monster.GetComponent<MonsterMovement>().Halt();
@@ -215,7 +220,7 @@ public class GameController : MonoBehaviour
             this.OpenDoubleDoor.enabled = true;
             this.OpenSingleDoor.enabled = true;
             this.OpenLore.enabled = true;
-
+            TimerController.timer.ContinueTime();
             if (this.Triggered)
             {
                 this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
@@ -276,7 +281,6 @@ public class GameController : MonoBehaviour
             this.Pause();
             this.InMenu = false;
             this.IntroMenu.Deactivate();
-
             TimerController.timer.BeginTimer();
         }
 
@@ -285,15 +289,11 @@ public class GameController : MonoBehaviour
         {
             this.Pause();
             this.PauseMenu.Deactivate();
-
-            TimerController.timer.ContinueTime();
         }
 
         // Was "Quit" pressed on the Pause menu?
         if (this.PauseMenu.IsQuitting())
         {
-            TimerController.timer.ResetTimer();
-            
             this.PauseMenu.Deactivate();
             this.ReturnToMenu();
         }
@@ -320,12 +320,8 @@ public class GameController : MonoBehaviour
         // Was "Return to Menu" pressed on the End Menu?
         if (this.EndMenu.IsActivated())
         {
-            TimerController.timer.ResetTimer();
-
             this.EndMenu.Deactivate();
             this.ReturnToMenu();
-            
-            
         }
 
         // Was "Close" pressed when viewing a Lore you just got?
@@ -349,12 +345,10 @@ public class GameController : MonoBehaviour
             if (this.Paused)
             {
                 this.PauseMenu.Show();
-                TimerController.timer.PauseTime();
             }
             else
             {
                 this.PauseMenu.Deactivate();
-                TimerController.timer.ContinueTime();
             }
         }
 

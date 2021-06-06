@@ -35,4 +35,9 @@ public class DoubleDoorController : MonoBehaviour
             PlayAnimation();
         }
     }
+
+    public bool IsOpen()
+    {
+        return this.DoubleDoorOpen;
+    }
 }

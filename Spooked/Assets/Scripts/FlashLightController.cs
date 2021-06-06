@@ -8,21 +8,13 @@ public class FlashLightController : MonoBehaviour
     private bool Enabled;
     [SerializeField] private Light FireLight;
     [SerializeField] private float DurationOn;
-    
-    // Optional features that can be added. Remove if not needed.
-    [SerializeField] private float Battery;
-    private float MaxBattery;
-    private float DrainRate;
     private float Intensity;
 
     public FlashLightController()
     {
         this.Enabled = false;
-        this.Battery = 100;
-        this.MaxBattery = 100;
         this.DurationOn = 0;
-        this.DrainRate = 0;
-        this.Intensity = 1;
+        this.Intensity = 0;
     }
 
     void Start()
@@ -32,18 +24,43 @@ public class FlashLightController : MonoBehaviour
 
     public bool OverTime()
     {
-        if (this.DurationOn > 10)
+        if (this.DurationOn > 15)
         {
             return true;
         }
         return false;
     }
 
-    private void TurnOn()
+    private void Toggle()
     {
-        this.Enabled = true;
-        this.FireLight.enabled = true;
-        Debug.Log("Flashlight turned on");
+        this.Intensity++;
+        if (this.Intensity > 3)
+        {
+            this.Intensity = 0;
+        }
+        switch (this.Intensity)
+        {
+            case 0:
+                this.TurnOff();
+                break;
+            case 1:
+                this.FireLight.spotAngle = 20;
+                this.FireLight.intensity = 1;
+                break;
+            case 2:
+                this.FireLight.spotAngle = 40;
+                this.FireLight.intensity = 1;
+                break;
+            case 3:
+                this.FireLight.spotAngle = 80;
+                this.FireLight.intensity = 2;
+                break;
+        }
+        if (this.Intensity > 0)
+        {
+            this.Enabled = true;
+            this.FireLight.enabled = true;
+        }
     }
 
     public void TurnOff()
@@ -51,17 +68,8 @@ public class FlashLightController : MonoBehaviour
         this.Enabled = false;
         this.FireLight.enabled = false;
         this.DurationOn = 0;
+        this.Intensity = 0;
         Debug.Log("Flashlight turned off");
-    }
-
-    // Recharge the flashlight batteries.
-    public void AddBattery(float extraCapacity)
-    {
-        this.Battery += extraCapacity;
-        if (this.Battery > this.MaxBattery)
-        {
-            this.Battery = this.MaxBattery;
-        }
     }
 
     void Update()
@@ -69,28 +77,13 @@ public class FlashLightController : MonoBehaviour
         // Turn the flashlight on/off.
         if (Input.GetButtonDown("Fire1"))
         {
-            if (this.Enabled)
-            {
-                this.TurnOff();
-            }
-            else
-            {
-                this.TurnOn();
-            }
+            this.Toggle();
         }
 
         if (this.Enabled)
         {
-            // Drain the battery
-            this.Battery -= Time.deltaTime * this.DrainRate;
             // Add to time before notifying monster
             this.DurationOn += Time.deltaTime * this.Intensity;
-        }
-        // Running out of batteries
-        if (this.Battery < 0)
-        {
-            this.Battery = 0;
-            this.TurnOff();
         }
     }
 }

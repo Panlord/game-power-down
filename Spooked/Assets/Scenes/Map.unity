@@ -2592,6 +2592,7 @@ MonoBehaviour:
   Controller: {fileID: 78004800}
   RunningSpeed: 11.5
   WalkingSpeed: 7.5
+  timeRan: 0
 --- !u!143 &78004800
 CharacterController:
   m_ObjectHideFlags: 0
@@ -66889,10 +66890,10 @@ MonoBehaviour:
     Nah, that\u2019s not true. You had me. I\u2019ve seen the unique way you think,
     the way you act, and how you have your own ways of getting around life\u2019s
     problems. I\u2019ve always admired that about you. You never run away [Shift]
-    from your problems. \r\n\r\nMake sure you take a breather [Esc] once in a while,
-    and don\u2019t be afraid to check out any doors, books, or devices [E] hanging
-    about.\r\n\r\nI\u2019m sorry, I can\u2019t tell you much else. My boss is looking
-    for me.\r"
+    from your problems. \rDon't push yourself too hard or you'll get exhausted.\n\r\nMake
+    sure you take a breather [Esc] once in a while, and don\u2019t be afraid to check
+    out any doors, books, or devices [E] hanging about.\r\n\r\nI\u2019m sorry, I
+    can\u2019t tell you much else. My boss is looking for me.\r"
 --- !u!222 &1553062076
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -87970,7 +87971,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FireLight: {fileID: 1139946409}
   DurationOn: 0
-  Battery: 100
 --- !u!1001 &2031884587
 PrefabInstance:
   m_ObjectHideFlags: 0

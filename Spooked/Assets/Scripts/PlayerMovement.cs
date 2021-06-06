@@ -12,10 +12,12 @@ public class PlayerMovement : MonoBehaviour
     private float RunningSpeed = 11.5f;
     [SerializeField]
     private float WalkingSpeed = 7.5f;
+    private float HalfSpeed = 3.25f;
     private Vector3 Velocity;
     private float Gravity = 20.0f;
     Vector3 move = Vector3.zero;
-
+    [SerializeField] private float timeRan = 0f;
+    private bool Exhausted = false;
 
 
     void Start()
@@ -27,12 +29,37 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        bool isRunning = Input.GetButton("Fire3");
+        bool isRunning = false;
+        if (timeRan >= 3)
+        {
+            Exhausted = true;
+        }
+        
+        if (timeRan <= 0)
+        {
+            timeRan = 0;
+            Exhausted = false;
+        }
+
+        if (Input.GetButton("Fire3") && !Exhausted)
+        {
+            isRunning = true;
+        }
+
+        if (timeRan < 3 && !isRunning || Exhausted)
+        {
+            timeRan -= Time.deltaTime;
+        }
+        else if (!Exhausted && isRunning)
+        {
+            timeRan += Time.deltaTime;
+        }
+
         // Move the player based on what buttons were pressed.
         // W and S add 1 and -1 to the Vertical respectively.
         // A and D add -1 and 1 to the Horizontal respectively.
-        float x = Input.GetAxis("Horizontal") * (isRunning ? RunningSpeed : WalkingSpeed);
-        float z = Input.GetAxis("Vertical") * (isRunning ? RunningSpeed : WalkingSpeed);
+        float x = Input.GetAxis("Horizontal") * (Exhausted ? HalfSpeed : isRunning ? RunningSpeed : WalkingSpeed);
+        float z = Input.GetAxis("Vertical") * (Exhausted ? HalfSpeed : isRunning ? RunningSpeed : WalkingSpeed);
 
         
         float movingY = move.y;
