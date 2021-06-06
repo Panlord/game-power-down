@@ -23,7 +23,7 @@ public class MouseLook : MonoBehaviour
     {
         gamepad = Gamepad.current;
         // Hide and lock the cursor in the middle of the screen.
-        Cursor.lockState = CursorLockMode.None;
+        // Cursor.lockState = CursorLockMode.None;
     }
 
      public void ResetView()

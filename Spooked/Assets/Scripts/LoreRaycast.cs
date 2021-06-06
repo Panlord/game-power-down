@@ -10,7 +10,6 @@ public class LoreRaycast : MonoBehaviour
     [SerializeField] private int RayLength = 5;
     [SerializeField] private LayerMask LayerMaskInteract;
     [SerializeField] private string ExcludeLayerName = null;
-
     private GameObject RayCastedObject;
 
     [SerializeField] private KeyCode LoreKey = KeyCode.E;

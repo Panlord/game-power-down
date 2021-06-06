@@ -5,7 +5,6 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     [SerializeField] private FlashLightController FlashLight;
-    [SerializeField] private MapController VisibleMap;
     [SerializeField] private CharacterController Player;
     [SerializeField] private PlayerMovement PlayerMove;
     [SerializeField] private MouseLook FirstPerson;
@@ -52,10 +51,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Lights = GameObject.FindGameObjectsWithTag("Light");
-        this.VisibleMap = this.gameObject.AddComponent<MapController>();
         this.SetWinningDoor();
         this.Pause();
-        Cursor.lockState = CursorLockMode.None;
     }
 
     // Randomly choose among the three exits which one will be the right exit.
@@ -96,9 +93,6 @@ public class GameController : MonoBehaviour
     {
         // FlashLight:
         this.FlashLight.TurnOff();
-
-        // Map:
-        this.VisibleMap.Hide();
 
         // Timer:
         this.RecordTime = 0f;
@@ -153,7 +147,6 @@ public class GameController : MonoBehaviour
             Debug.Log("Game Paused");
             this.Paused = true;
             this.FlashLight.enabled = false;
-            this.VisibleMap.enabled = false;
             this.FirstPerson.enabled = false;
             this.PlayerMove.enabled = false;
             this.OpenDoubleDoor.enabled = false;
@@ -172,7 +165,6 @@ public class GameController : MonoBehaviour
             Debug.Log("Game Resumed");
             this.Paused = false;
             this.FlashLight.enabled = true;
-            this.VisibleMap.enabled = true;
             this.FirstPerson.enabled = true;
             this.PlayerMove.enabled = true;
             this.OpenDoubleDoor.enabled = true;
@@ -323,7 +315,7 @@ public class GameController : MonoBehaviour
                 this.OpenDoubleDoor.Reset();
                 this.InMenu = true;
                 this.Pause();
-                this.EndMenu.Show();
+                this.EndMenu.Show(true, this.RecordTime);
                 this.OpenDoubleDoor.Reset();
             }
             
@@ -368,11 +360,11 @@ public class GameController : MonoBehaviour
                 this.Pause();
                 this.MonsterCollider.Reset();
                 this.InMenu = true;
-                this.EndMenu.Show();
+                this.EndMenu.Show(false, this.RecordTime);
             }
 
             // If the map is out, or the flashlight is on for too long, signal the monster.
-            if (this.VisibleMap.CanSignalMonster() || this.FlashLight.OverTime())
+            if (this.FlashLight.OverTime())
             {
                 this.Monster.GetComponent<MonsterMovement>().GainKnowledge();
             }
