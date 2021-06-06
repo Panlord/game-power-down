@@ -2498,13 +2498,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 78004800}
-  Speed: 12
-  Gravity: -9.81
-  GroundCheck: {fileID: 1130092617}
-  GroundDistance: 0.4
-  GroundMask:
-    serializedVersion: 2
-    m_Bits: 0
+  RunningSpeed: 11.5
+  WalkingSpeed: 7.5
 --- !u!143 &78004800
 CharacterController:
   m_ObjectHideFlags: 0
