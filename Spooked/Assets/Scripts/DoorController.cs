@@ -8,6 +8,7 @@ public class DoorController : MonoBehaviour
 {
     private Animator DoorAnimator;
     private bool DoorOpen = false;
+
     private void Awake()
     {
         DoorAnimator = gameObject.GetComponent<Animator>();
@@ -24,6 +25,14 @@ public class DoorController : MonoBehaviour
         {
             DoorAnimator.Play("DoorClose", 0, 0.0f);
             DoorOpen = false;
+        }
+    }
+
+    public void Close()
+    {
+        if (DoorOpen)
+        {
+            PlayAnimation();
         }
     }
 }

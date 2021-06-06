@@ -10,6 +10,10 @@ public class GameController : MonoBehaviour
     [SerializeField] private MouseLook FirstPerson;
     [SerializeField] private DoorRaycast OpenSingleDoor;
     [SerializeField] private DoubleDoorRaycast OpenDoubleDoor;
+    [SerializeField] private GameObject Door;
+    [SerializeField] private GameObject[] Doors;
+    [SerializeField] private GameObject DoubleDoor;
+    [SerializeField] private GameObject[] DoubleDoors;
     [SerializeField] private LoreRaycast OpenLore;
     [SerializeField] private LoreManager LoreSystem;
     [SerializeField] private GameObject Monster;
@@ -49,6 +53,8 @@ public class GameController : MonoBehaviour
     private void Start()
     {
         Lights = GameObject.FindGameObjectsWithTag("Light");
+        Doors = GameObject.FindGameObjectsWithTag("Door");
+        DoubleDoors = GameObject.FindGameObjectsWithTag("DoubleDoor");
         this.SetWinningDoor();
         this.SetSpawn();
         this.Pause();
@@ -104,6 +110,21 @@ public class GameController : MonoBehaviour
         this.TheBook.SetActive(true);
     }
 
+    // Close all doors.
+    private void CloseAllDoors()
+    {
+        foreach (GameObject Door in Doors)
+        {
+            var door = Door.GetComponent<DoorController>();
+            door.Close();
+        }
+        foreach (GameObject DoubleDoor in DoubleDoors)
+        {
+            var doubleDoor = DoubleDoor.GetComponent<DoubleDoorController>();
+            doubleDoor.Close();
+        }
+    }
+
     // Reset everything for another playthrough.
     // This should always be called upon returning to the main menu.
     private void Reset()
@@ -130,6 +151,9 @@ public class GameController : MonoBehaviour
         
         // Turn back on the lights.
         LightsOn();
+
+        // Close all the doors.
+        CloseAllDoors();
 
         // Monster:
         this.Monster.SetActive(false);

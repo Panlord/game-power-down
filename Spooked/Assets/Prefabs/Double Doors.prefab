@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4680448711920618115}
   m_Layer: 7
   m_Name: Double Doors
-  m_TagString: DoubleDoor
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -8,6 +8,7 @@ public class DoubleDoorController : MonoBehaviour
 {
     private Animator DoubleDoorAnimator;
     private bool DoubleDoorOpen = false;
+
     private void Awake()
     {
         DoubleDoorAnimator = gameObject.GetComponent<Animator>();
@@ -24,6 +25,14 @@ public class DoubleDoorController : MonoBehaviour
         {
             DoubleDoorAnimator.Play("DoubleDoorClose", 0, 0.0f);
             DoubleDoorOpen = false;
+        }
+    }
+
+    public void Close()
+    {
+        if (DoubleDoorOpen)
+        {
+            PlayAnimation();
         }
     }
 }
