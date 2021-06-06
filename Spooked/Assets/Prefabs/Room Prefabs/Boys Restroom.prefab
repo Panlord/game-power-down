@@ -2075,6 +2075,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7474766149052775658}
     m_Modifications:
+    - target: {fileID: 1307253054721633701, guid: 5842a7a2cf364134eb45f2936f98d04c, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 18f1006dd8d48d3458fded06872a92ed, type: 2}
     - target: {fileID: 4737973720123482142, guid: 5842a7a2cf364134eb45f2936f98d04c, type: 3}
       propertyPath: m_Name
       value: Door_04_01_Snaps014
