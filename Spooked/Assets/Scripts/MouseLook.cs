@@ -28,7 +28,7 @@ public class MouseLook : MonoBehaviour
 
      public void ResetView()
     {
-        this.gameObject.transform.rotation = new Quaternion(0, 0, 0, 1);
+        this.gameObject.transform.rotation = Quaternion.identity;
     }
 
     void Update()

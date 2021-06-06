@@ -31,9 +31,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private LoreMenuController LoreMenu;
 
     private bool Paused;
-
     private bool HasBook;
-    
     private bool Triggered;
     private bool InMenu;
     // Time recorded for storing in the leaderboard.
@@ -52,6 +50,7 @@ public class GameController : MonoBehaviour
     {
         Lights = GameObject.FindGameObjectsWithTag("Light");
         this.SetWinningDoor();
+        this.SetSpawn();
         this.Pause();
     }
 
@@ -74,6 +73,24 @@ public class GameController : MonoBehaviour
             Doors[j].transform.GetChild(0).gameObject.tag = "LockedExit";
             Doors[j].transform.GetChild(1).gameObject.tag = "LockedExit";
             Doors.Remove(Doors[j]);
+        }
+    }
+
+    // Randomly spawn the player in one of three locations.
+    private void SetSpawn()
+    {
+        var startLocation = Random.Range(0, 3);
+        switch (startLocation) 
+        {
+            case 0:
+                this.PlayerModel.transform.position = new Vector3(-30.30545f, 0.6226647f, 12.64777f);
+                break;
+            case 1:
+                this.PlayerModel.transform.position = new Vector3(-22.12322f, 0.5800078f, -5.897281f);
+                break;
+            case 2:
+                this.PlayerModel.transform.position = new Vector3(25.33517f, 0.5800077f, -33.95593f);
+                break;
         }
     }
 
@@ -102,7 +119,7 @@ public class GameController : MonoBehaviour
         this.RespawnAll();
 
         // Player Position:
-        this.PlayerModel.transform.position = new Vector3(-6.515f, 0.59f, -4.85f);
+        this.SetSpawn();
 
         // Mouse Direction:
         this.FirstPerson.ResetView();

@@ -8,8 +8,8 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private GameObject monster;
     [SerializeField] private GameObject player;
     private float counter = 0f;
-    private float time = 5f;
-    private float range = 20f;
+    private float time = 4f;
+    private float range = 12.5f;
 
     public Transform target;
     public NavMeshAgent enemy;
@@ -27,6 +27,7 @@ public class MonsterMovement : MonoBehaviour
                                 "Small Office Room D (3)", "Boys Restroom", "Boys Restroom (1)", "Girls Restroom", "Girls Restroom (1)", "Small Office Room D",
                                 "Computer Room", "Computer Room (1)", "Computer Room (2)", "Computer Room (3)", "Computer Room (4)"};
     
+    // Warps the monster to a random position.
     public void WarpRandom()
     {
         int roomOrFloor = Random.Range(1,3); 
@@ -46,13 +47,11 @@ public class MonsterMovement : MonoBehaviour
     public void GainKnowledge()
     {
         this.Omniscient = true;
-        this.gameObject.GetComponent<NavMeshAgent>().speed = 6f;
     }
 
     public void Dumbdown()
     {
         this.Omniscient = false;
-        this.gameObject.GetComponent<NavMeshAgent>().speed = 3.5f;
     }
 
     public void Halt()
@@ -66,24 +65,21 @@ public class MonsterMovement : MonoBehaviour
     }
     void Update()
     {
-        
-        enemy.SetDestination(target.position);
-
-        if(counter>=time)
+        // If the monster is near the player or the monster knows the player, chase the player.
+        if(Vector3.Distance(player.transform.position, monster.transform.position)<=range || this.Omniscient)
         {
-
-            if(Vector3.Distance(player.transform.position, monster.transform.position)<=range || this.Omniscient)
-            {
-                //Debug.Log("monster nearby");
-                enemy.SetDestination(target.position);
-            }
-            else
-            {
-                this.WarpRandom();
-                counter = 0;
-            }
+            //Debug.Log("monster nearby");
+            enemy.SetDestination(target.position);
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 8f;
         }
-
+        // If enough time has passed and the monster doesn't see the player, warp.
+        else if (counter >= time)
+        {
+            this.WarpRandom();
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 4f;
+            counter = 0;
+        }
+        // Otherwise pass the time.
         else
         {
             counter+=Time.deltaTime;
