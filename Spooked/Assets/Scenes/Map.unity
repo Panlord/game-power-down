@@ -9355,7 +9355,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-130618
+  m_Name: pb_Mesh-45522
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -16182,7 +16182,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275355056514198, guid: 79a341f0ed938f14599ea1ecb9abac2e, type: 3}
       propertyPath: m_TagString
-      value: Light
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4618513169714114, guid: 79a341f0ed938f14599ea1ecb9abac2e, type: 3}
       propertyPath: m_RootOrder
@@ -21715,7 +21715,7 @@ PrefabInstance:
       objectReference: {fileID: 230812576}
     - target: {fileID: 5736235681603236593, guid: 06b187ed355c3c0438c1da6121201dc4, type: 3}
       propertyPath: m_VersionIndex
-      value: 4572
+      value: 4581
       objectReference: {fileID: 0}
     - target: {fileID: 7485958543669481961, guid: 06b187ed355c3c0438c1da6121201dc4, type: 3}
       propertyPath: m_RootOrder
@@ -60288,7 +60288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1275355056514198, guid: 79a341f0ed938f14599ea1ecb9abac2e, type: 3}
       propertyPath: m_TagString
-      value: Light
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4618513169714114, guid: 79a341f0ed938f14599ea1ecb9abac2e, type: 3}
       propertyPath: m_RootOrder
@@ -65995,6 +65995,8 @@ MonoBehaviour:
   Monster: {fileID: 2064124682}
   PlayerModel: {fileID: 78004798}
   HallwayLights: {fileID: 1689955520}
+  Light: {fileID: 0}
+  Lights: []
   ExitDoorOne: {fileID: 730108941}
   ExitDoorTwo: {fileID: 332082544}
   ExitDoorThree: {fileID: 1073155693}
@@ -90284,7 +90286,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh-149312
+  m_Name: pb_Mesh-64208
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -91880,7 +91882,7 @@ PrefabInstance:
       objectReference: {fileID: 2137895188}
     - target: {fileID: 5736235681603236593, guid: 06b187ed355c3c0438c1da6121201dc4, type: 3}
       propertyPath: m_VersionIndex
-      value: 4569
+      value: 4578
       objectReference: {fileID: 0}
     - target: {fileID: 7485958543669481961, guid: 06b187ed355c3c0438c1da6121201dc4, type: 3}
       propertyPath: m_RootOrder

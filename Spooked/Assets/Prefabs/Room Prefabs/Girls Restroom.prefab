@@ -664,7 +664,7 @@ GameObject:
   - component: {fileID: 952847678250411153}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001 (1)
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -1837,7 +1837,7 @@ GameObject:
   - component: {fileID: 2863387496513283137}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -3514,7 +3514,7 @@ GameObject:
   - component: {fileID: 5184983964033594689}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001 (2)
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
