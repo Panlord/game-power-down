@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 208436590745000382}
   m_Layer: 0
   m_Name: CeilingLights_02_snaps001
-  m_TagString: Light
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 8
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 2091081386421140487}
   m_Layer: 0
   m_Name: Spot Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

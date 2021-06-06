@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject Monster;
     [SerializeField] private GameObject PlayerModel;
     [SerializeField] private GameObject HallwayLights;
+    [SerializeField] private GameObject Light;
+    [SerializeField] private GameObject[] Lights;
     [SerializeField] private GameObject ExitDoorOne;
     [SerializeField] private GameObject ExitDoorTwo;
     [SerializeField] private GameObject ExitDoorThree;
@@ -49,6 +51,7 @@ public class GameController : MonoBehaviour
 
     private void Start()
     {
+        Lights = GameObject.FindGameObjectsWithTag("Light");
         this.VisibleMap = this.gameObject.AddComponent<MapController>();
         this.SetWinningDoor();
         this.Pause();
@@ -113,6 +116,9 @@ public class GameController : MonoBehaviour
         this.HallwayLights.SetActive(true);
         this.HasBook = false;
         
+        // Turn back on the lights.
+        LightsOn();
+
         // Monster:
         this.Monster.SetActive(false);
         this.Monster.transform.position = new Vector3(1.535991f, -0.1799999f, -6.159369f);
@@ -182,10 +188,31 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // Turn off ALL the lights.
+    private void LightsOut()
+    {
+        foreach (GameObject Light in Lights)
+        {
+            var light = Light.GetComponent<Light>();
+            light.enabled = false;
+        }
+    }
+
+    // Turn on ALL the lights.
+    private void LightsOn()
+    {
+        foreach (GameObject Light in Lights)
+        {
+            var light = Light.GetComponent<Light>();
+            light.enabled = true;
+        }
+    }
+
     // Shut off the lights and summon the monster.
     private void Trigger()
     {
         this.HallwayLights.SetActive(false);
+        LightsOut();
         this.Monster.SetActive(true);
         this.Monster.GetComponent<Animator>().enabled = true;
         this.Monster.GetComponent<MonsterMovement>().enabled = true;
