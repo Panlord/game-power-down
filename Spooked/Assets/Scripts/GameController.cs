@@ -55,6 +55,7 @@ public class GameController : MonoBehaviour
         this.VisibleMap = this.gameObject.AddComponent<MapController>();
         this.SetWinningDoor();
         this.Pause();
+        Cursor.lockState = CursorLockMode.None;
     }
 
     // Randomly choose among the three exits which one will be the right exit.

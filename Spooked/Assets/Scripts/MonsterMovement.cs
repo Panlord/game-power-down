@@ -46,7 +46,7 @@ public class MonsterMovement : MonoBehaviour
     public void GainKnowledge()
     {
         this.Omniscient = true;
-        this.gameObject.GetComponent<NavMeshAgent>().speed = 4.5f;
+        this.gameObject.GetComponent<NavMeshAgent>().speed = 6f;
     }
 
     public void Dumbdown()
@@ -67,7 +67,7 @@ public class MonsterMovement : MonoBehaviour
     void Update()
     {
         
-        //enemy.SetDestination(target.position);
+        enemy.SetDestination(target.position);
 
         if(counter>=time)
         {
