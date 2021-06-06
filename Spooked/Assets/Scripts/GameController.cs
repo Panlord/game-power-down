@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private MouseLook FirstPerson;
     [SerializeField] private DoorRaycast OpenSingleDoor;
     [SerializeField] private DoubleDoorRaycast OpenDoubleDoor;
+    [SerializeField] private LoreRaycast OpenLore;
     [SerializeField] private LoreManager LoreSystem;
     [SerializeField] private GameObject Monster;
     [SerializeField] private GameObject PlayerModel;
@@ -18,19 +19,24 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject ExitDoorOne;
     [SerializeField] private GameObject ExitDoorTwo;
     [SerializeField] private GameObject ExitDoorThree;
+    [SerializeField] private GameObject InteractableObjects;
+    [SerializeField] private GameObject TheBook;
     [SerializeField] private MonsterCollision MonsterCollider;
     [SerializeField] private MainMenuController MainMenu;
     [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private IntroMenuController IntroMenu;
     [SerializeField] private EndMenuController EndMenu;
-
+    [SerializeField] private LoreNotification ShowLore;
+    [SerializeField] private LoreMenuController LoreMenu;
 
     private bool Paused;
 
     private bool HasBook;
+    
+    private bool Triggered;
     private bool InMenu;
     // Time recorded for storing in the leaderboard.
-    private float RecordTime;
+    [SerializeField] private float RecordTime;
 
     public GameController() 
     {
@@ -38,6 +44,7 @@ public class GameController : MonoBehaviour
         this.InMenu = true;
         this.RecordTime = 0f;
         this.HasBook = false;
+        this.Triggered = false;
     }
 
     private void Start()
@@ -47,6 +54,7 @@ public class GameController : MonoBehaviour
         this.Pause();
     }
 
+    // Randomly choose among the three exits which one will be the right exit.
     private void SetWinningDoor()
     {
         List<GameObject> Doors = new List<GameObject>();
@@ -68,6 +76,16 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // Make all Lore Pieces and the book spawn again.
+    private void RespawnAll()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            this.InteractableObjects.transform.GetChild(i).gameObject.SetActive(true);
+        }
+        this.TheBook.SetActive(true);
+    }
+
     // Reset everything for another playthrough.
     // This should always be called upon returning to the main menu.
     private void Reset()
@@ -82,7 +100,8 @@ public class GameController : MonoBehaviour
         this.RecordTime = 0f;
         
         // Lore System
-        //this.LoreSystem.Reset();
+        this.LoreSystem.Reset();
+        this.RespawnAll();
 
         // Player Position:
         this.PlayerModel.transform.position = new Vector3(-6.515f, 0.59f, -4.85f);
@@ -102,8 +121,12 @@ public class GameController : MonoBehaviour
 
         // Exits:
         this.SetWinningDoor();
+
+        // Misc:
+        this.Triggered = false;
     }
 
+    // Return to the Main Menu.
     private void ReturnToMenu()
     {
         this.MainMenu.Show();
@@ -128,6 +151,7 @@ public class GameController : MonoBehaviour
             this.PlayerMove.enabled = false;
             this.OpenDoubleDoor.enabled = false;
             this.OpenSingleDoor.enabled = false;
+            this.OpenLore.enabled = false;
             this.Monster.GetComponent<Animator>().enabled = false;
             this.Monster.GetComponent<MonsterMovement>().enabled = false;
             this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -146,8 +170,9 @@ public class GameController : MonoBehaviour
             this.PlayerMove.enabled = true;
             this.OpenDoubleDoor.enabled = true;
             this.OpenSingleDoor.enabled = true;
+            this.OpenLore.enabled = true;
 
-            if (this.HasBook)
+            if (this.Triggered)
             {
                 this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 this.Monster.GetComponent<Animator>().enabled = true;
@@ -157,6 +182,7 @@ public class GameController : MonoBehaviour
         }
     }
 
+    // Shut off the lights and summon the monster.
     private void Trigger()
     {
         this.HallwayLights.SetActive(false);
@@ -164,6 +190,7 @@ public class GameController : MonoBehaviour
         this.Monster.GetComponent<Animator>().enabled = true;
         this.Monster.GetComponent<MonsterMovement>().enabled = true;
         this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+        this.Triggered = true;
         this.Monster.GetComponent<MonsterMovement>().WarpRandom();
     }
 
@@ -199,11 +226,43 @@ public class GameController : MonoBehaviour
             this.ReturnToMenu();
         }
 
+        // Was "Inventory" pressed on the Pause menu?
+        if (this.PauseMenu.IsLore())
+        {
+            this.InMenu = true;
+            this.PauseMenu.OutLore();
+            this.PauseMenu.Deactivate();
+            this.LoreMenu.Show();
+        }
+
+        // Was "Close" pressed when viewing all the lore you have?
+        if (this.LoreMenu.IsActivated())
+        {
+            this.InMenu = false;
+            this.LoreMenu.Deactivate();
+            this.PauseMenu.Show();
+        }
+
+
         // Was "Return to Menu" pressed on the End Menu?
         if (this.EndMenu.IsActivated())
         {
             this.EndMenu.Deactivate();
             this.ReturnToMenu();
+        }
+
+        // Was "Close" pressed when viewing a Lore you just got?
+        if (this.ShowLore.IsActivated())
+        {
+            // Unpause the game and remove the lore from the screen.
+            this.ShowLore.Deactivate();
+            this.Pause();
+            this.InMenu = false;
+            // If that lore piece was cursed (Monster POV), shut off lights and spawn monster.
+            if (this.LoreSystem.ReadLore()[this.LoreSystem.ReadLore().Count - 1].IsCursed() && !this.Triggered)
+            {
+                this.Trigger();
+            }
         }
 
         // Pause the game, or unpause if on the Pause Menu.
@@ -220,15 +279,17 @@ public class GameController : MonoBehaviour
             }
         }
 
-        // Have victory conditions been met?
+        // The user interacted with one of the exits.
         if (this.OpenDoubleDoor.ExitCheck() > 0)
         {
+            // If they don't have the book.
             if (!this.HasBook)
             {
                 Debug.Log("You haven't gotten the book yet!");
                 this.OpenDoubleDoor.Reset();
             }
 
+            // If the user has the book and found the right exit.
             if (this.OpenDoubleDoor.ExitCheck() == 1)
             {
                 this.OpenDoubleDoor.Reset();
@@ -237,11 +298,34 @@ public class GameController : MonoBehaviour
                 this.EndMenu.Show();
                 this.OpenDoubleDoor.Reset();
             }
+            
+            // If that's the wrong exit (it's locked).
             else if (this.OpenDoubleDoor.ExitCheck() == 2)
             {
                 this.OpenDoubleDoor.Reset();
                 Debug.Log("This exit is locked.");
             }
+        }
+
+        // If the player interacted with a lore piece.
+        if (this.OpenLore.GotLore())
+        {
+            this.OpenLore.ResetLore();
+            this.Pause();
+            this.InMenu = true;
+            this.LoreSystem.GenerateLore();
+            var obtainedLore = this.LoreSystem.ReadLore()[this.LoreSystem.ReadLore().Count - 1];
+            this.ShowLore.SetText(obtainedLore.Read());
+            this.ShowLore.Show();
+        }
+        else if (this.OpenLore.GotBook())
+        {
+            if (!this.Triggered)
+            {
+                this.Trigger();
+            }
+            this.HasBook = true;
+            this.OpenLore.ResetBook();
         }
 
         if (!this.Paused) 
@@ -269,10 +353,10 @@ public class GameController : MonoBehaviour
                 this.Monster.GetComponent<MonsterMovement>().Dumbdown();
             }
 
-            if (Input.GetKeyDown(KeyCode.F))
+            // If the user is taking too long to find the book, shut off the lights and summon the monster.
+            if (this.RecordTime >= 60 && !this.Triggered)
             {
                 this.Trigger();
-                this.HasBook = true;
             }
         }
         else
