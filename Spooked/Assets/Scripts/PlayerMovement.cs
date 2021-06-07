@@ -30,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         bool isRunning = false;
-        if (timeRan >= 3)
+        if (timeRan >= 1.5f)
         {
             Exhausted = true;
         }

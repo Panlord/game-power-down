@@ -9,7 +9,7 @@ public class MonsterMovement : MonoBehaviour
     [SerializeField] private GameObject player;
     private float counter = 0f;
     private float time = 4f;
-    private float range = 12.5f;
+    private float range = 10f;
 
     public Transform target;
     public NavMeshAgent enemy;
@@ -70,13 +70,13 @@ public class MonsterMovement : MonoBehaviour
         {
             //Debug.Log("monster nearby");
             enemy.SetDestination(target.position);
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 8f;
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 10f;
         }
         // If enough time has passed and the monster doesn't see the player, warp.
         else if (counter >= time)
         {
             this.WarpRandom();
-            this.gameObject.GetComponent<NavMeshAgent>().speed = 4f;
+            this.gameObject.GetComponent<NavMeshAgent>().speed = 5f;
             counter = 0;
         }
         // Otherwise pass the time.
