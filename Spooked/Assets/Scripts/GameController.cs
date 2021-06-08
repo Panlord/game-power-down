@@ -436,6 +436,7 @@ public class GameController : MonoBehaviour
             if (this.MonsterCollider.Hit())
             {
                 this.JumpScare.SetActive(true);
+                this.JumpScare.GetComponent<AudioSource>().Play();
                 this.Pause();
                 this.CanScare = true;
                 this.InMenu = true;
