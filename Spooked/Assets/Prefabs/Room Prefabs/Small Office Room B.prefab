@@ -2748,6 +2748,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
+  close: {fileID: 8300000, guid: 2725c6c8c340cf340baef2bc56ac40ef, type: 3}
 --- !u!1 &6572688799008288851
 GameObject:
   m_ObjectHideFlags: 0
