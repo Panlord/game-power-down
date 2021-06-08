@@ -6,12 +6,10 @@ public class LoreManager : MonoBehaviour
 {
     private List<LoreItem> BaseList;
     private List<LoreItem> PossibleEntries;
-    private List<LoreItem> LoreInventory;
 
     public LoreManager()
     {
         this.BaseList = new List<LoreItem>();
-        this.LoreInventory = new List<LoreItem>();
 
         this.BaseList.Add(new LoreItem("I got chosen! This is a dream come true! An assistant job under a world-renowned professor in my field!\n\nI’ve seen his work and its quality is out of this world. I already have a huge amount of respect for him.\n\nI’m really, really looking forward to the first day!", "Journal 01", false));
         this.BaseList.Add(new LoreItem("I met professor for the first time today. He was really charismatic, just like how everyone expected him to be. Though, besides that sociable exterior, I could tell he was kind of distant and withdrawn.\n\nOur research topic is going to be on the development of a cure for what is currently considered to be an “incurable disease.” Professor claims that such technology would revolutionize medicine.\n\nI don’t think any of us have ever been more excited.", "Journal 02", false));
@@ -39,27 +37,23 @@ public class LoreManager : MonoBehaviour
 
         this.PossibleEntries = new List<LoreItem>(this.BaseList);
     }
+
     public void Reset()
     {
         this.PossibleEntries.Clear();
-        this.LoreInventory.Clear();
         this.PossibleEntries = new List<LoreItem>(this.BaseList);
-        Debug.Log(PossibleEntries.Count);
+        Debug.Log("Generated lore pieces: " + PossibleEntries.Count);
     } 
 
-    // Generate a lore piece and store into the inventory.
-    public void GenerateLore()
+    // Generate and return a random lore piece.
+    public LoreItem GenerateLore()
     {
-        var Index = Random.Range(0, this.PossibleEntries.Count);
-        var collectedItem = this.PossibleEntries[Index];
+        var index = Random.Range(0, this.PossibleEntries.Count);
+        var collectedItem = this.PossibleEntries[index];
 
-        LoreInventory.Add(collectedItem);
-        PossibleEntries.Remove(collectedItem);
-    }
+        this.PossibleEntries.Remove(collectedItem);
 
-    public List<LoreItem> ReadLore()
-    {
-        return this.LoreInventory;
+        return collectedItem;
     }
 }
 
@@ -91,5 +85,3 @@ public class LoreItem
         return this.Cursed;
     }
 }
-
-

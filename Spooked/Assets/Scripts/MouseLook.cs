@@ -21,7 +21,7 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        gamepad = Gamepad.current;
+        this.gamepad = Gamepad.current;
         // Hide and lock the cursor in the middle of the screen.
         // Cursor.lockState = CursorLockMode.None;
     }
@@ -40,26 +40,26 @@ public class MouseLook : MonoBehaviour
     {
     if(gamepad != null){
     
-    // get joystick inputs
+    // Get joystick inputs.
     y =  Gamepad.current.rightStick.x.ReadValue() * JoystickSens * Time.deltaTime;
     XRotation += Gamepad.current.rightStick.y.ReadValue() * JoystickSens * Time.deltaTime;
 
-    // clamp the vertical rotation
+    // C.lamp the vertical rotation.
     XRotation = Mathf.Clamp(XRotation, minTurnAngle, maxTurnAngle);
-    // rotate the camera
+    // Rotate the camera.
     transform.eulerAngles = new Vector3(-XRotation, transform.eulerAngles.y + y, 0);
     transform.localRotation = Quaternion.Euler(-XRotation, 0f, 0f);
     PlayerBody.Rotate(Vector3.up * y);
     } 
 
-    // get the mouse inputs
+    // Get the mouse inputs.
     y = Input.GetAxis("Mouse X") * MouseSensitivity;
     XRotation += Input.GetAxis("Mouse Y") * MouseSensitivity;
 
-    // clamp the camera
+    // Clamp the camera.
     XRotation = Mathf.Clamp(XRotation, minTurnAngle, maxTurnAngle);
 
-    // rotate the camera
+    // Rotate the camera.
     transform.eulerAngles = new Vector3(-XRotation, transform.eulerAngles.y + y, 0);
     transform.localRotation = Quaternion.Euler(-XRotation, 0f, 0f);
     PlayerBody.Rotate(Vector3.up * y);

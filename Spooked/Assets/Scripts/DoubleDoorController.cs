@@ -1,4 +1,5 @@
 // Created by Aaron Pan, based off of SpeedTutor's "OPENING a DOOR in UNITY with a RAYCAST" tutorial on YouTube.
+// Adapted by Peter Lin.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,48 +8,75 @@ using UnityEngine;
 public class DoubleDoorController : MonoBehaviour
 {
     private Animator DoubleDoorAnimator;
-    private bool DoubleDoorOpen = false;
+    private InterfaceController GUI;
+    private KeyCode InteractKey = KeyCode.E;
     private AudioSource Audio;
-    [SerializeField]
-    public AudioClip open;
-    [SerializeField]
-    private AudioClip close;
+    [SerializeField] public AudioClip OpenSound;
+    [SerializeField] private AudioClip CloseSound;
+    private bool DoubleDoorOpen = false;
 
     private void Awake()
     {
-        DoubleDoorAnimator = gameObject.GetComponent<Animator>();
-        Audio = GetComponent<AudioSource>();
+        this.DoubleDoorAnimator = gameObject.GetComponent<Animator>();
+        this.GUI = GameObject.Find("User Interface").GetComponent<InterfaceController>();
+        this.Audio = this.gameObject.GetComponent<AudioSource>();
     }
 
-    public void PlayAnimation()
+    public void Process()
     {
-        if (!DoubleDoorOpen)
+        this.Prompt();
+
+        if (Input.GetKeyDown(InteractKey))
         {
-            DoubleDoorAnimator.Play("DoubleDoorOpen", 0, 0.0f);
-            DoubleDoorOpen = true;
-            if (Audio != null)
+            this.Interact();
+        }
+    }
+
+    public void Prompt()
+    {
+        if (this.DoubleDoorOpen)
+        {
+            this.GUI.PromptDoorClose();
+        }
+        else
+        {
+            this.GUI.PromptDoorOpen();
+        }
+    }
+
+    public void Interact()
+    {
+        if (!this.DoubleDoorOpen)
+        {
+            this.DoubleDoorAnimator.Play("DoubleDoorOpen", 0, 0.0f);
+            this.DoubleDoorOpen = true;
+            this.GUI.PromptDoorClose();
+
+            if (this.Audio != null)
             {
-                Audio.clip = open;
-                Audio.Play();
+                this.Audio.clip = this.OpenSound;
+                this.Audio.Play();
             }
         }
         else
         {
-            DoubleDoorAnimator.Play("DoubleDoorClose", 0, 0.0f);
-            DoubleDoorOpen = false;
-            if (Audio != null)
+            this.DoubleDoorAnimator.Play("DoubleDoorClose", 0, 0.0f);
+            this.DoubleDoorOpen = false;
+            this.GUI.PromptDoorOpen();
+
+            if (this.Audio != null)
             {
-                Audio.clip = close;
-                Audio.Play();
+                this.Audio.clip = this.CloseSound;
+                this.Audio.Play();
             }
         }
     }
 
     public void Close()
     {
-        if (DoubleDoorOpen)
+        if (this.DoubleDoorOpen)
         {
-            PlayAnimation();
+            this.Interact();
         }
     }
 

@@ -1,4 +1,5 @@
 // Created by Aaron Pan, based off of SpeedTutor's "OPENING a DOOR in UNITY with a RAYCAST" tutorial on YouTube.
+// Adapted by Peter Lin.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,56 +8,75 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     private Animator DoorAnimator;
+    private InterfaceController GUI;
+    private KeyCode InteractKey = KeyCode.E;
     private AudioSource Audio;
-    public AudioClip open;
-    public AudioClip close;
+    [SerializeField] public AudioClip OpenSound;
+    [SerializeField] public AudioClip CloseSound;
     private bool DoorOpen = false;
 
     private void Awake()
     {
-        DoorAnimator = gameObject.GetComponent<Animator>();
+        this.DoorAnimator = gameObject.GetComponent<Animator>();
+        this.GUI = GameObject.Find("User Interface").GetComponent<InterfaceController>();
+        this.Audio = this.gameObject.GetComponent<AudioSource>();
     }
 
-    private void Start()
+    public void Process()
     {
+        this.Prompt();
 
-        Audio = GetComponent<AudioSource>();
-        
-       
-    }
-
-    public void PlayAnimation()
-    {
-        if (!DoorOpen)
+        if (Input.GetKeyDown(InteractKey))
         {
-            DoorAnimator.Play("DoorOpen", 0, 0.0f);
-            DoorOpen = true;
+            this.Interact();
+        }
+    }
 
-            if (Audio != null)
-            {
-                Audio.clip = open;
-                Audio.Play();
-            }
-
+    private void Prompt()
+    {
+        if (this.DoorOpen)
+        {
+            this.GUI.PromptDoorClose();
         }
         else
         {
-            DoorAnimator.Play("DoorClose", 0, 0.0f);
-            DoorOpen = false;
+            this.GUI.PromptDoorOpen();
+        }
+    }
 
-            if (Audio != null)
+    private void Interact()
+    {
+        if (!this.DoorOpen)
+        {
+            this.DoorAnimator.Play("DoorOpen", 0, 0.0f);
+            this.DoorOpen = true;
+            this.GUI.PromptDoorClose();
+
+            if (this.Audio != null)
             {
-                Audio.clip = close;
-                Audio.Play();
+                this.Audio.clip = this.OpenSound;
+                this.Audio.Play();
+            }
+        }
+        else
+        {
+            this.DoorAnimator.Play("DoorClose", 0, 0.0f);
+            this.DoorOpen = false;
+            this.GUI.PromptDoorOpen();
+
+            if (this.Audio != null)
+            {
+                this.Audio.clip = this.CloseSound;
+                this.Audio.Play();
             }
         }
     }
 
     public void Close()
     {
-        if (DoorOpen)
+        if (this.DoorOpen)
         {
-            PlayAnimation();
+            this.Interact();
         }
     }
 
