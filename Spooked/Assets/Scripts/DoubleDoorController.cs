@@ -1,4 +1,5 @@
 // Created by Aaron Pan, based off of SpeedTutor's "OPENING a DOOR in UNITY with a RAYCAST" tutorial on YouTube.
+// Adapted by Peter Lin.
 
 using System.Collections;
 using System.Collections.Generic;
@@ -7,6 +8,8 @@ using UnityEngine;
 public class DoubleDoorController : MonoBehaviour
 {
     private Animator DoubleDoorAnimator;
+    private InterfaceController GUI;
+    private KeyCode InteractKey = KeyCode.E;
     private bool DoubleDoorOpen = false;
     private AudioSource Audio;
     [SerializeField]
@@ -18,14 +21,38 @@ public class DoubleDoorController : MonoBehaviour
     {
         DoubleDoorAnimator = gameObject.GetComponent<Animator>();
         Audio = GetComponent<AudioSource>();
+        this.GUI = GameObject.Find("User Interface").GetComponent<InterfaceController>();
     }
 
-    public void PlayAnimation()
+    public void Process()
     {
-        if (!DoubleDoorOpen)
+        this.Prompt();
+
+        if (Input.GetKeyDown(InteractKey))
+        {
+            this.Interact();
+        }
+    }
+
+    public void Prompt()
+    {
+        if (this.DoubleDoorOpen)
+        {
+            this.GUI.PromptDoorClose();
+        }
+        else
+        {
+            this.GUI.PromptDoorOpen();
+        }
+    }
+
+    public void Interact()
+    {
+        if (!this.DoubleDoorOpen)
         {
             DoubleDoorAnimator.Play("DoubleDoorOpen", 0, 0.0f);
             DoubleDoorOpen = true;
+            this.GUI.PromptDoorClose();
             if (Audio != null)
             {
                 Audio.clip = open;
@@ -36,6 +63,7 @@ public class DoubleDoorController : MonoBehaviour
         {
             DoubleDoorAnimator.Play("DoubleDoorClose", 0, 0.0f);
             DoubleDoorOpen = false;
+            this.GUI.PromptDoorOpen();
             if (Audio != null)
             {
                 Audio.clip = close;

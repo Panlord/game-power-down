@@ -2,26 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class LoreNotification : MonoBehaviour 
 {
-    [SerializeField] private Button BackButton;
-    [SerializeField] private Text LoreText;
+    [SerializeField] private Button CloseButton;
+    [SerializeField] private Image Page;
+    [SerializeField] private TextMeshProUGUI LoreText;
+    [SerializeField] private Sprite CursedPage;
+    [SerializeField] private Sprite NormalPage;
     private bool Activated;
 
-    private LoreNotification()
+    public LoreNotification()
     {
         this.Activated = false;
     }
 
     void Start()
     {
-        this.BackButton.onClick.AddListener(Activate);
+        this.CloseButton.onClick.AddListener(Activate);
     }
 
-    public void SetText(string incomingText)
+    public void Set(LoreItem item)
     {
-        this.LoreText.text = incomingText;
+        this.LoreText.text = item.Read();
+        if (item.IsCursed())
+        {
+            this.Page.sprite = this.CursedPage;
+        }
+        else
+        {
+            this.Page.sprite = this.NormalPage;
+        }
     }
 
     public bool IsActivated()
@@ -36,8 +48,8 @@ public class LoreNotification : MonoBehaviour
 
     public void Deactivate()
     {
-        this.Activated = false;
         this.gameObject.SetActive(false);
+        this.Activated = false;
     }
 
     public void Show()
