@@ -32,7 +32,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
 
-## Animation and Visuals
+## Animation and Visuals (Aaron Pan)
 
 **List your assets including their sources and licenses.**
 
@@ -68,9 +68,14 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 **Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
 
-## Press Kit and Trailer
+## Press Kit and Trailer (Aaron Pan)
 
-**Include links to your presskit materials and trailer.**
+The press kit for our **game** can be found [here](https://panlord.github.io/game-power-down/EscapeFromKemper/index.html).  
+The press kit for our **team** can be found [here](https://panlord.github.io/game-power-down/).  
+
+The press kits were generated using Pixelnest Studio's [presskit.html](https://github.com/pixelnest/presskit.html), which is a complete re-implementation of [presskit()](http://dopresskit.com/) (basically, the press kit files are generated as static htmls rather than using php).  
+
+The trailer for our game can be found [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ). **INSERT THE URL TO THE TRAILER HERE**  
 
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
 
