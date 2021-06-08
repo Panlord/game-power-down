@@ -34,9 +34,26 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## Animation and Visuals (Aaron Pan)
 
-**List your assets including their sources and licenses.**
+#### Assets and Visuals ####
+For our game we wanted a map similar to UC Davis's Kemper Hall. Thus, I took notes regarding layout and color while walking through the hallways of Kemper and obtained Kemper Hall's floor plans from the College of Engineering Intranet (though I could only get the ones for the third floor and basement). From the gathered data, I created a map from scratch using structural building blocks from Unity's free SNAPS Prototype School and Modern Office Interior assets. Then I browsed the Unity asset store to find various assets to populate the map to give a more university hall feel. After obtaining and importing the free assets, I manually created several variations of conference rooms, office rooms, bathrooms, and computer rooms by dragging and dropping the asset store assets. Some of the textures used were obtained from the asset store as well, although many were created by myself using Microsoft Paint. The textures I created can be found [here](https://github.com/Panlord/game-power-down/tree/master/Spooked/Assets/Materials/Textures). The texture I have of Professor McCoy is from a screenshot I snipped during lecture (find it in-game ;)). All used assets that I did not create were obtained from the Unity asset store and are listed below:  
 
-**Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
+- [Snaps Prototype | Office](https://assetstore.unity.com/packages/3d/environments/snaps-prototype-office-137490) - Asset Store Originals
+- [Snaps Prototype | School](https://assetstore.unity.com/packages/3d/environments/urban/snaps-prototype-school-154693) - Asset Store Originals
+- [Snack Machines](https://assetstore.unity.com/packages/3d/props/interior/snack-machines-3517) - VIS Games
+- [Low Poly Office Props - LITE](https://assetstore.unity.com/packages/3d/environments/low-poly-office-props-lite-131438) - RRFreelance / PiXelBurner
+- [Zombie](https://assetstore.unity.com/packages/3d/characters/humanoids/zombie-30232) - Pxltiger
+- [Flashlight](https://assetstore.unity.com/packages/3d/props/electronics/flashlight-18972) - RRFreelance / PiXelBurner
+- [Door Free Pack Aferar](https://assetstore.unity.com/packages/3d/props/interior/door-free-pack-aferar-148411) - Andrey Ferar
+- [QA Books](https://assetstore.unity.com/packages/3d/props/interior/qa-books-115415) - QAtmo
+
+Animations for the zombie came with the asset. I animated and implemented all of the doors by following [this YouTube tutorial](https://www.youtube.com/watch?v=K9jnIPnsQ_w) by SpeedTutor.  
+
+#### Intersections with game feel, graphic design, and world-building ####
+**Game Feel**: I based the map off of my observations and the floor plans of Kemper Hall and arranged the props in each room based off of my memory of visiting professors in their office hours to make the player feel like they are in an actual university hall. Furthermore, I darkened any textures added to give the scene a more spooky look and feel.  
+
+**Graphic Design**: Many of the textures I made for the posters littered around the hallways were based off of the fliers I remember seeing littered throughout UCD's halls, so I guess my graphic designs of those posters are inspired by the work of the people who made those fliers. One of the [characters](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Materials/Textures/GunrockAd.png) on some of the posters is based off of UCD's Gunrock. Another [character](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Materials/Textures/Karameru.png) on another poster is inspired by the legendary [カラメル](https://www.youtube.com/channel/UCpGk56cJDZcVqIxZatX7nbQ). Also, the [texture](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Materials/Textures/KemperFloorTexture.png) I made for the floor is based off of Kemper Hall's [floor tile patterns](https://theaggie.org/wp-content/uploads/2017/05/kemper_ca_Jero_Real.jpg).  
+
+**World-building**: After reading Erik's work on the narrative and lore design, I threw in 20 collectable items and one objective item, all of which are either interactable books, notes, laptops, or cellphones. Each book I put down for the collectable item has a texture I thought would be fitting for the narrative, and the texture for the objective item was done by Sarah.
 
 ## Input
 
