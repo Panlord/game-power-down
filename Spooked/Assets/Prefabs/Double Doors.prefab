@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fbe87ffa7e18846a7ef45f944a8f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
+  close: {fileID: 8300000, guid: 2725c6c8c340cf340baef2bc56ac40ef, type: 3}
 --- !u!95 &4006442291346739311
 Animator:
   serializedVersion: 3
@@ -94,6 +96,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fbe87ffa7e18846a7ef45f944a8f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
+  close: {fileID: 8300000, guid: 2725c6c8c340cf340baef2bc56ac40ef, type: 3}
 --- !u!1001 &1119564251250990327
 PrefabInstance:
   m_ObjectHideFlags: 0
