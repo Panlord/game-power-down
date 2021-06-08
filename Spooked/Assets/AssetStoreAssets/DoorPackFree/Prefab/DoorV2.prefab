@@ -127,8 +127,8 @@ GameObject:
   - component: {fileID: 3731490023621599568}
   - component: {fileID: 3768667079195302522}
   - component: {fileID: 4396391667786282131}
-  - component: {fileID: 291538061715601778}
   - component: {fileID: 4148989247355134154}
+  - component: {fileID: 7131296303502873086}
   m_Layer: 7
   m_Name: 01_low
   m_TagString: Door
@@ -232,20 +232,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.10887215, y: 0.8030787, z: 1.9387606}
   m_Center: {x: 0.017979566, y: -0.39169106, z: 0.97562057}
---- !u!114 &291538061715601778
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8599225754459074761}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  open: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
-  close: {fileID: 8300000, guid: 2725c6c8c340cf340baef2bc56ac40ef, type: 3}
 --- !u!82 &4148989247355134154
 AudioSource:
   m_ObjectHideFlags: 0
@@ -342,3 +328,17 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7131296303502873086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8599225754459074761}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94143ab6f2b737042b3c933be6c3393d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenSound: {fileID: 8300000, guid: adfb477aa2d8f44f1a8f3ffc61b6ccd5, type: 3}
+  CloseSound: {fileID: 8300000, guid: 2725c6c8c340cf340baef2bc56ac40ef, type: 3}

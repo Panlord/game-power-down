@@ -199,6 +199,7 @@ public class GameController : MonoBehaviour
 
         // Misc:
         this.MonsterTriggered = false;
+        this.GUI.EndPrompt();
     }
 
     // Return to the Main Menu.
@@ -222,6 +223,7 @@ public class GameController : MonoBehaviour
         if (!this.Paused)
         {
             Debug.Log("Game Paused");
+            this.GUI.EndPrompt();
             this.TimerControl.PauseTime();
             this.Monster.GetComponent<Animator>().enabled = false;
             this.Monster.GetComponent<MonsterMovement>().enabled = false;
