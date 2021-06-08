@@ -178,7 +178,7 @@ public class GameController : MonoBehaviour
         this.FirstPerson.ResetView();
 
         // Hallway Lights and Book Possession:
-        this.HallwayLights.SetActive(true);
+        //this.HallwayLights.SetActive(true);
         this.HasBook = false;
 
         // Close all the doors.
@@ -260,7 +260,7 @@ public class GameController : MonoBehaviour
     {
         this.CloseAllDoors();
         this.LightsOut();
-        this.HallwayLights.SetActive(false);
+        //this.HallwayLights.SetActive(false);
         
         this.Monster.SetActive(true);
         this.Monster.GetComponent<Animator>().enabled = true;
@@ -284,7 +284,7 @@ public class GameController : MonoBehaviour
             this.MainCamera.gameObject.SetActive(true);
             this.MainMenu.Deactivate();
             this.IntroMenu.Show();
-            this.HallwayLights.SetActive(true);
+            //this.HallwayLights.SetActive(true);
         }
 
         // Was "Go" pressed on the Introduction?
