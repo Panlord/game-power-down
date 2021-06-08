@@ -63,6 +63,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86fbe87ffa7e18846a7ef45f944a8f87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  open: {fileID: 0}
+  close: {fileID: 0}
 --- !u!1001 &3264465891522884785
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -80,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1747714523874675056, guid: acceb7f0ac453eb409a352421f7a5d74, type: 3}
       propertyPath: m_TagString
-      value: DoubleDoor
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 1955543302744451362, guid: acceb7f0ac453eb409a352421f7a5d74, type: 3}
       propertyPath: m_LocalRotation.w
