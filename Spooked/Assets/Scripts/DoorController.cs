@@ -7,11 +7,22 @@ using UnityEngine;
 public class DoorController : MonoBehaviour
 {
     private Animator DoorAnimator;
+    private AudioSource audio;
+    public AudioClip open;
+    public AudioClip close;
     private bool DoorOpen = false;
 
     private void Awake()
     {
         DoorAnimator = gameObject.GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+
+        audio = GetComponent<AudioSource>();
+        
+       
     }
 
     public void PlayAnimation()
@@ -20,11 +31,24 @@ public class DoorController : MonoBehaviour
         {
             DoorAnimator.Play("DoorOpen", 0, 0.0f);
             DoorOpen = true;
+
+            if (audio != null)
+            {
+                audio.clip = open;
+                audio.Play();
+            }
+
         }
         else
         {
             DoorAnimator.Play("DoorClose", 0, 0.0f);
             DoorOpen = false;
+
+            if (audio != null)
+            {
+                audio.clip = close;
+                audio.Play();
+            }
         }
     }
 
