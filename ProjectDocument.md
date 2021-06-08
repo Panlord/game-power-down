@@ -95,7 +95,7 @@ The press kits were generated using Pixelnest Studio's [presskit.html](https://g
 The trailer for our game can be found [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ). **INSERT THE URL TO THE TRAILER HERE**  
 
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
-
+I browsed through a bunch of horror game trailers and took notes of what people did in them.
 
 
 ## Game Feel
