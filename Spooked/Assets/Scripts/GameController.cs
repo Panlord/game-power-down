@@ -111,7 +111,6 @@ public class GameController : MonoBehaviour
         this.FirstPerson.ResetView();
 
         // Hallway Lights and Book Possession:
-        this.HallwayLights.SetActive(true);
         this.HasBook = false;
         
         // Lights:
@@ -201,7 +200,6 @@ public class GameController : MonoBehaviour
     // Shut off the lights and summon the monster.
     private void TriggerMonster()
     {
-        this.HallwayLights.SetActive(false);
         this.LightsOut();
         this.Monster.SetActive(true);
         this.Monster.GetComponent<Animator>().enabled = true;
@@ -221,7 +219,6 @@ public class GameController : MonoBehaviour
             this.MainMenuCamera.gameObject.SetActive(false);
             this.MainCamera.gameObject.SetActive(true);
             this.IntroMenu.Show();
-            this.HallwayLights.SetActive(true);
         }
 
         // Was "Go" pressed on the Introduction?
@@ -276,6 +273,12 @@ public class GameController : MonoBehaviour
                 this.Pause();
                 this.PauseMenu.Show();
             }
+        }
+
+        // Freeze the game (pause but dont show the menu).
+        if (Input.GetKeyDown(KeyCode.R) && !this.InMenu)
+        {
+            this.Pause();
         }
 
         // Open / close inventory menu.
