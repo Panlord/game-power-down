@@ -8,6 +8,7 @@ public class FlashLightController : MonoBehaviour
     private bool Enabled;
     [SerializeField] private Light FireLight;
     [SerializeField] private float DurationOn;
+    private AudioSource audio;
     private float Intensity;
 
     public FlashLightController()
@@ -20,6 +21,7 @@ public class FlashLightController : MonoBehaviour
     void Start()
     {
         this.FireLight.enabled = false;
+        audio = GetComponent<AudioSource>();
     }
 
     public bool OverTime()
@@ -78,6 +80,7 @@ public class FlashLightController : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             this.Toggle();
+            audio.Play();
         }
 
         if (this.Enabled)
