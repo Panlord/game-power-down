@@ -4,51 +4,47 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
+    [SerializeField] private Camera MainCamera;
+    [SerializeField] private Camera MainMenuCamera;
     [SerializeField] private FlashLightController FlashLight;
-    [SerializeField] private CharacterController Player;
     [SerializeField] private PlayerMovement PlayerMove;
     [SerializeField] private MouseLook FirstPerson;
-    [SerializeField] private DoorRaycast OpenSingleDoor;
-    [SerializeField] private DoubleDoorRaycast OpenDoubleDoor;
-    [SerializeField] private LoreRaycast OpenLore;
-    [SerializeField] private LoreManager LoreSystem;
+    [SerializeField] private Inventory PlayerInventory;
+    [SerializeField] private InteractiveItemManager ItemController;
     [SerializeField] private GameObject Monster;
     [SerializeField] private GameObject PlayerModel;
     [SerializeField] private GameObject HallwayLights;
-    [SerializeField] private GameObject Light;
-    [SerializeField] private GameObject[] Lights;
-    [SerializeField] private GameObject ExitDoorOne;
-    [SerializeField] private GameObject ExitDoorTwo;
-    [SerializeField] private GameObject ExitDoorThree;
+
+    private GameObject[] Lights;
     [SerializeField] private GameObject InteractableObjects;
-    [SerializeField] private GameObject TheBook;
+    [SerializeField] private GameObject Book;
     [SerializeField] private MonsterCollision MonsterCollider;
     [SerializeField] private MainMenuController MainMenu;
-    [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private IntroMenuController IntroMenu;
+    [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private EndMenuController EndMenu;
     [SerializeField] private LoreNotification ShowLore;
-    [SerializeField] private LoreMenuController LoreMenu;
+    [SerializeField] private InventoryMenuController InventoryMenu;
 
     private bool Paused;
     private bool HasBook;
-    private bool Triggered;
+    private bool MonsterTriggered;
     private bool InMenu;
     // Time recorded for storing in the leaderboard.
-    [SerializeField] private float RecordTime;
+    private float RecordTime;
 
     public GameController() 
     {
         this.Paused = false;
         this.InMenu = true;
-        this.RecordTime = 0f;
+        this.RecordTime = 0.0f;
         this.HasBook = false;
-        this.Triggered = false;
+        this.MonsterTriggered = false;
     }
 
     private void Start()
     {
-        Lights = GameObject.FindGameObjectsWithTag("Light");
+        this.Lights = GameObject.FindGameObjectsWithTag("Light");
         this.SetWinningDoor();
         this.SetSpawn();
         this.Pause();
@@ -57,29 +53,19 @@ public class GameController : MonoBehaviour
     // Randomly choose among the three exits which one will be the right exit.
     private void SetWinningDoor()
     {
-        List<GameObject> Doors = new List<GameObject>();
-        Doors.Add(this.ExitDoorOne);
-        Doors.Add(this.ExitDoorTwo);
-        Doors.Add(this.ExitDoorThree);
-        var j = Random.Range(0, 3);
-        Doors[j].tag = "ExitDoor";
-        Doors[j].transform.GetChild(0).gameObject.tag = "ExitDoor";
-        Doors[j].transform.GetChild(1).gameObject.tag = "ExitDoor";
-        Doors.Remove(Doors[j]);
-        for (int i = 0; i < 2; i++)
-        {
-            j = Random.Range(0, Doors.Count);
-            Doors[j].tag = "LockedExit";
-            Doors[j].transform.GetChild(0).gameObject.tag = "LockedExit";
-            Doors[j].transform.GetChild(1).gameObject.tag = "LockedExit";
-            Doors.Remove(Doors[j]);
-        }
+        var exitDoors = GameObject.FindGameObjectsWithTag("LockedExit");
+
+        int exitIndex = Random.Range(0, exitDoors.Length);
+        var exit = exitDoors[exitIndex].transform.parent.gameObject;
+        exit.tag = "ExitDoor";
+
+        Debug.Log("Exit door:" + exit.transform.parent.name);
     }
 
     // Randomly spawn the player in one of three locations.
     private void SetSpawn()
     {
-        var startLocation = Random.Range(0, 3);
+        int startLocation = Random.Range(0, 3);
         switch (startLocation) 
         {
             case 0:
@@ -101,7 +87,7 @@ public class GameController : MonoBehaviour
         {
             this.InteractableObjects.transform.GetChild(i).gameObject.SetActive(true);
         }
-        this.TheBook.SetActive(true);
+        this.Book.SetActive(true);
     }
 
     // Reset everything for another playthrough.
@@ -112,10 +98,10 @@ public class GameController : MonoBehaviour
         this.FlashLight.TurnOff();
 
         // Timer:
-        this.RecordTime = 0f;
+        this.RecordTime = 0.0f;
         
-        // Lore System
-        this.LoreSystem.Reset();
+        // Inventory:
+        this.PlayerInventory.Reset();
         this.RespawnAll();
 
         // Player Position:
@@ -128,8 +114,8 @@ public class GameController : MonoBehaviour
         this.HallwayLights.SetActive(true);
         this.HasBook = false;
         
-        // Turn back on the lights.
-        LightsOn();
+        // Lights:
+        this.LightsOn();
 
         // Monster:
         this.Monster.SetActive(false);
@@ -138,16 +124,19 @@ public class GameController : MonoBehaviour
         this.Monster.GetComponent<MonsterMovement>().enabled = false;
 
         // Exits:
+        GameObject.FindGameObjectsWithTag("ExitDoor")[0].tag = "Untagged";
         this.SetWinningDoor();
 
         // Misc:
-        this.Triggered = false;
+        this.MonsterTriggered = false;
     }
 
     // Return to the Main Menu.
     private void ReturnToMenu()
     {
         this.MainMenu.Show();
+        this.MainMenuCamera.gameObject.SetActive(true);
+        this.MainCamera.gameObject.SetActive(false);
         this.Reset();
         if (!this.Paused)
         {
@@ -159,16 +148,10 @@ public class GameController : MonoBehaviour
     // Pause or unpause the game.
     private void Pause()
     {
+        // Pause game and monster.
         if (!this.Paused)
         {
-            Debug.Log("Game Paused");
-            this.Paused = true;
-            this.FlashLight.enabled = false;
-            this.FirstPerson.enabled = false;
-            this.PlayerMove.enabled = false;
-            this.OpenDoubleDoor.enabled = false;
-            this.OpenSingleDoor.enabled = false;
-            this.OpenLore.enabled = false;
+            Debug.Log("Pause game");
             this.Monster.GetComponent<Animator>().enabled = false;
             this.Monster.GetComponent<MonsterMovement>().enabled = false;
             this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
@@ -177,18 +160,11 @@ public class GameController : MonoBehaviour
                 this.Monster.GetComponent<MonsterMovement>().Halt();
             }   
         }
-        else
+        // Unpause game and monster.
+        else 
         {
-            Debug.Log("Game Resumed");
-            this.Paused = false;
-            this.FlashLight.enabled = true;
-            this.FirstPerson.enabled = true;
-            this.PlayerMove.enabled = true;
-            this.OpenDoubleDoor.enabled = true;
-            this.OpenSingleDoor.enabled = true;
-            this.OpenLore.enabled = true;
-
-            if (this.Triggered)
+            Debug.Log("Resume game");
+            if (this.MonsterTriggered)
             {
                 this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 this.Monster.GetComponent<Animator>().enabled = true;
@@ -196,38 +172,42 @@ public class GameController : MonoBehaviour
                 this.Monster.GetComponent<MonsterMovement>().Continue();
             }
         }
+
+        this.FlashLight.enabled = this.Paused;
+        this.FirstPerson.enabled = this.Paused;
+        this.PlayerMove.enabled = this.Paused;
+        this.ItemController.enabled = this.Paused;
+        this.Paused = !this.Paused;
     }
 
     // Turn off ALL the lights.
     private void LightsOut()
     {
-        foreach (GameObject Light in Lights)
+        foreach (GameObject light in Lights)
         {
-            var light = Light.GetComponent<Light>();
-            light.enabled = false;
+            light.GetComponent<Light>().enabled = false;
         }
     }
 
     // Turn on ALL the lights.
     private void LightsOn()
     {
-        foreach (GameObject Light in Lights)
+        foreach (GameObject light in Lights)
         {
-            var light = Light.GetComponent<Light>();
-            light.enabled = true;
+            light.GetComponent<Light>().enabled = true;
         }
     }
 
     // Shut off the lights and summon the monster.
-    private void Trigger()
+    private void TriggerMonster()
     {
         this.HallwayLights.SetActive(false);
-        LightsOut();
+        this.LightsOut();
         this.Monster.SetActive(true);
         this.Monster.GetComponent<Animator>().enabled = true;
         this.Monster.GetComponent<MonsterMovement>().enabled = true;
         this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        this.Triggered = true;
+        this.MonsterTriggered = true;
         this.Monster.GetComponent<MonsterMovement>().WarpRandom();
     }
 
@@ -238,7 +218,10 @@ public class GameController : MonoBehaviour
         if (this.MainMenu.IsActivated())
         {
             this.MainMenu.Deactivate();
+            this.MainMenuCamera.gameObject.SetActive(false);
+            this.MainCamera.gameObject.SetActive(true);
             this.IntroMenu.Show();
+            this.HallwayLights.SetActive(true);
         }
 
         // Was "Go" pressed on the Introduction?
@@ -263,24 +246,6 @@ public class GameController : MonoBehaviour
             this.ReturnToMenu();
         }
 
-        // Was "Inventory" pressed on the Pause menu?
-        if (this.PauseMenu.IsLore())
-        {
-            this.InMenu = true;
-            this.PauseMenu.OutLore();
-            this.PauseMenu.Deactivate();
-            this.LoreMenu.Show();
-        }
-
-        // Was "Close" pressed when viewing all the lore you have?
-        if (this.LoreMenu.IsActivated())
-        {
-            this.InMenu = false;
-            this.LoreMenu.Deactivate();
-            this.PauseMenu.Show();
-        }
-
-
         // Was "Return to Menu" pressed on the End Menu?
         if (this.EndMenu.IsActivated())
         {
@@ -291,78 +256,90 @@ public class GameController : MonoBehaviour
         // Was "Close" pressed when viewing a Lore you just got?
         if (this.ShowLore.IsActivated())
         {
+            this.Pause();
             // Unpause the game and remove the lore from the screen.
             this.ShowLore.Deactivate();
-            this.Pause();
-            this.InMenu = false;
             // If that lore piece was cursed (Monster POV), shut off lights and spawn monster.
-            if (this.LoreSystem.ReadLore()[this.LoreSystem.ReadLore().Count - 1].IsCursed() && !this.Triggered)
+            var inventory = this.PlayerInventory.GetInventory();
+            if (inventory[inventory.Count - 1].IsCursed() && !this.MonsterTriggered)
             {
-                this.Trigger();
+                Debug.Log("trigger mosnter via curse");
+                this.TriggerMonster();
             }
         }
 
-        // Pause the game, or unpause if on the Pause Menu.
+        // Pause the game.
         if (Input.GetKeyDown(KeyCode.Escape) && !this.InMenu)
+        {
+            if (!this.Paused)
+            {   
+                this.Pause();
+                this.PauseMenu.Show();
+            }
+        }
+
+        // Open / close inventory menu.
+        if (Input.GetKeyDown(KeyCode.I) && !this.InMenu)
         {
             this.Pause();
             if (this.Paused)
             {
-                this.PauseMenu.Show();
+                this.InventoryMenu.Show();
             }
             else
             {
-                this.PauseMenu.Deactivate();
+                this.InventoryMenu.Deactivate();
             }
         }
 
         // The user interacted with one of the exits.
-        if (this.OpenDoubleDoor.ExitCheck() > 0)
+        var exitDoors = GameObject.FindGameObjectsWithTag("LockedExit");
+        foreach (GameObject door in exitDoors)
         {
-            // If they don't have the book.
-            if (!this.HasBook)
-            {
-                Debug.Log("You haven't gotten the book yet!");
-                this.OpenDoubleDoor.Reset();
-            }
+            var doorControl = door.GetComponent<ExitDoorController>();
+            var exitCheck = doorControl.ExitCheck(this.HasBook);
 
-            // If the user has the book and found the right exit.
-            if (this.OpenDoubleDoor.ExitCheck() == 1)
+            switch (exitCheck)
             {
-                this.OpenDoubleDoor.Reset();
-                this.InMenu = true;
-                this.Pause();
-                this.EndMenu.Show(true, this.RecordTime);
-                this.OpenDoubleDoor.Reset();
-            }
-            
-            // If that's the wrong exit (it's locked).
-            else if (this.OpenDoubleDoor.ExitCheck() == 2)
-            {
-                this.OpenDoubleDoor.Reset();
-                Debug.Log("This exit is locked.");
+                // If they don't have the book.
+                case 0:
+                    Debug.Log("You haven't gotten the book yet!");
+                    // GUI prompt get book first.
+                    break;
+                // If that's the wrong exit (it's locked).
+                case 1:
+                    Debug.Log("This exit is locked.");
+                    // GUI prompt exit is locked.
+                    break;
+                // If the user has the book and found the right exit.
+                case 2:
+                    this.InMenu = true;
+                    this.Pause();
+                    this.EndMenu.Show(true, this.RecordTime);
+                    break;
+                default:
+                    break;
             }
         }
-
+        
         // If the player interacted with a lore piece.
-        if (this.OpenLore.GotLore())
+        if (this.PlayerInventory.GotLore())
         {
-            this.OpenLore.ResetLore();
+            this.PlayerInventory.ResetLore();
             this.Pause();
-            this.InMenu = true;
-            this.LoreSystem.GenerateLore();
-            var obtainedLore = this.LoreSystem.ReadLore()[this.LoreSystem.ReadLore().Count - 1];
-            this.ShowLore.SetText(obtainedLore.Read());
+            var inventory = this.PlayerInventory.GetInventory();
+            var obtainedLore = inventory[inventory.Count - 1];
+            this.ShowLore.Set(obtainedLore);
             this.ShowLore.Show();
         }
-        else if (this.OpenLore.GotBook())
+        else if (this.PlayerInventory.GotBook())
         {
-            if (!this.Triggered)
+            if (!this.MonsterTriggered)
             {
-                this.Trigger();
+                this.TriggerMonster();
             }
             this.HasBook = true;
-            this.OpenLore.ResetBook();
+            this.PlayerInventory.ResetBook();
         }
 
         if (!this.Paused) 
@@ -391,9 +368,9 @@ public class GameController : MonoBehaviour
             }
 
             // If the user is taking too long to find the book, shut off the lights and summon the monster.
-            if (this.RecordTime >= 60 && !this.Triggered)
+            if (this.RecordTime >= 60 && !this.MonsterTriggered)
             {
-                this.Trigger();
+                this.TriggerMonster();
             }
         }
         else

@@ -19,13 +19,6 @@ public class MouseLook : MonoBehaviour
     private float XRotation;
     private float y = 0.0f;
 
-    void Start()
-    {
-        gamepad = Gamepad.current;
-        // Hide and lock the cursor in the middle of the screen.
-        // Cursor.lockState = CursorLockMode.None;
-    }
-
      public void ResetView()
     {
         this.gameObject.transform.rotation = Quaternion.identity;
