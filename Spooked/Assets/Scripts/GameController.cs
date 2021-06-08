@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,6 +27,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject ExitDoorThree;
     [SerializeField] private GameObject InteractableObjects;
     [SerializeField] private GameObject TheBook;
+    [SerializeField] private GameObject JumpScare;
     [SerializeField] private MonsterCollision MonsterCollider;
     [SerializeField] private MainMenuController MainMenu;
     [SerializeField] private PauseMenuController PauseMenu;
@@ -38,13 +40,18 @@ public class GameController : MonoBehaviour
     private bool HasBook;
     private bool Triggered;
     private bool InMenu;
+    private bool CanScare;
+
     // Time recorded for storing in the leaderboard.
-    [SerializeField] private float RecordTime;
+    private float RecordTime;
+    private float ScareDuration;
+
 
     public GameController() 
     {
         this.Paused = false;
         this.InMenu = true;
+        this.ScareDuration = 0f;
         this.RecordTime = 0f;
         this.HasBook = false;
         this.Triggered = false;
@@ -262,7 +269,12 @@ public class GameController : MonoBehaviour
         this.Monster.GetComponent<MonsterMovement>().enabled = true;
         this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         this.Triggered = true;
+        this.CloseAllDoors();
         this.Monster.GetComponent<MonsterMovement>().WarpRandom();
+    }
+    private void ActivateScare()
+    {
+        this.EndMenu.Show(false, this.RecordTime);
     }
 
     void Update()
@@ -401,6 +413,19 @@ public class GameController : MonoBehaviour
             this.OpenLore.ResetBook();
         }
 
+        if (this.CanScare)
+        {
+            this.JumpScare.SetActive(true);
+            this.ScareDuration += Time.deltaTime;
+            if (ScareDuration >= 5)
+            {
+                this.JumpScare.SetActive(false);
+                this.CanScare = false;
+                this.ScareDuration = 0;
+                this.EndMenu.Show(false, this.RecordTime);
+            }            
+        } 
+
         if (!this.Paused) 
         {
             this.RecordTime += Time.deltaTime;
@@ -410,10 +435,11 @@ public class GameController : MonoBehaviour
 
             if (this.MonsterCollider.Hit())
             {
+                this.JumpScare.SetActive(true);
                 this.Pause();
-                this.MonsterCollider.Reset();
+                this.CanScare = true;
                 this.InMenu = true;
-                this.EndMenu.Show(false, this.RecordTime);
+                this.MonsterCollider.Reset();
             }
 
             // If the map is out, or the flashlight is on for too long, signal the monster.
