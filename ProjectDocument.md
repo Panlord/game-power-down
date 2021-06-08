@@ -46,14 +46,14 @@ For our game we wanted a map similar to UC Davis's Kemper Hall. Thus, I took not
 - [Door Free Pack Aferar](https://assetstore.unity.com/packages/3d/props/interior/door-free-pack-aferar-148411) - Andrey Ferar
 - [QA Books](https://assetstore.unity.com/packages/3d/props/interior/qa-books-115415) - QAtmo
 
-Animations for the zombie came with the asset. I animated and implemented all of the doors by following [this YouTube tutorial](https://www.youtube.com/watch?v=K9jnIPnsQ_w) by SpeedTutor.  
+Animations for the zombie came with the asset, though Erik created the jumpscare image and implemented the jumpscare mechanics. I animated and implemented all of the doors by following [this YouTube tutorial](https://www.youtube.com/watch?v=K9jnIPnsQ_w) by SpeedTutor, and while Sarah helped with creating a texture to decorate the objective book item, it ultimately was not used.  
 
 ### Intersections with game feel, graphic design, and world-building ###
-**Game Feel**: I based the map off of my observations and the floor plans of Kemper Hall and arranged the props in each room based off of my memory of visiting professors in their office hours to make the player feel like they are in an actual university hall. Furthermore, I darkened textures and littered a bunch of ceiling lights that give a little bit of light to give the scene a more spooky look and feel (though the directional light has been left on as per the team's preference).  
+**Game Feel**: I based the map off of my observations and the floor plans of Kemper Hall and arranged the props in each room based off of my memory of visiting professors in their office hours to make the player feel like they are in an actual university hall. Furthermore, I darkened textures and littered a bunch of ceiling lights that give a little bit of light to give the scene a more spooky look and feel. I also gave the exit signs a bit of a glow (because exit signs glow in the dark, right?).  
 
 **Graphic Design**: Many of the textures I made for the posters littered around the hallways were based off of the fliers I remember seeing littered throughout UCD's halls, so I guess my graphic designs of those posters are inspired by the work of the people who made those fliers. One of the [characters](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Materials/Textures/GunrockAd.png) on some of the posters is based off of UCD's Gunrock. Another [character](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Materials/Textures/Karameru.png) on another poster is inspired by the legendary [カラメル](https://www.youtube.com/channel/UCpGk56cJDZcVqIxZatX7nbQ). Also, the [texture](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Materials/Textures/KemperFloorTexture.png) I made for the floor is based off of Kemper Hall's [floor tile patterns](https://theaggie.org/wp-content/uploads/2017/05/kemper_ca_Jero_Real.jpg).  
 
-**World-building**: After reading Erik's work on the narrative and lore design, I threw in 20 collectable items and one objective item, all of which are either interactable books, notes, laptops, or cellphones. Each book I put down for the collectable item has a texture I thought would be fitting for the narrative, and the texture for the objective item was done by Sarah.
+**World-building**: After reading Erik's work on the narrative and lore design, I threw in 20 collectable items and one objective item, all of which are either interactable books, notes, laptops, or cellphones. Each book I put down for the collectable item has a texture I thought would be fitting for the narrative.
 
 ## Input
 
@@ -92,10 +92,10 @@ The press kit for our **team** can be found [here](https://panlord.github.io/gam
 
 The press kits were generated using Pixelnest Studio's [presskit.html](https://github.com/pixelnest/presskit.html), which is a complete re-implementation of [presskit()](http://dopresskit.com/) (basically, the press kit files are generated as static htmls rather than using php).  
 
-The trailer for our game can be found [here](https://www.youtube.com/watch?v=dQw4w9WgXcQ). **INSERT THE URL TO THE TRAILER HERE**  
+The trailer for our game can be found [here](https://www.youtube.com/watch?v=eUepg_Dtnwc). 
 
-**Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
-I browsed through a bunch of horror game trailers and took notes of what people did in them.
+**Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**  
+I browsed through a bunch of horror game trailers and took notes of what people did in them. Those notes can be found [here](https://docs.google.com/document/d/1pdPiYV6ynshz_D6uh5Mk_mkcWD4GaDzEIM1u53sjhTM/edit?usp=sharing). **DONT FORGET TO ADD MORE DETAIL, AARON!!!!**
 
 
 ## Game Feel
