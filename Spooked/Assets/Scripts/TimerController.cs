@@ -3,65 +3,56 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class TimerController : MonoBehaviour
 {
-    // followed this tutorial and implemented a couple extra functions: 
-    // https://www.youtube.com/watch?v=qc7J0iei3BU
+    // Followed this tutorial and implemented a couple extra functions: 
+    // https://www.youtube.com/watch?v=qc7J0iei3BU.
 
-    public static TimerController timer;
-    public Text timeCounter;
-    private TimeSpan timePlaying;
-    private bool timerGoing;
-    private float elapsedTime;
+    private TextMeshProUGUI TimeCounter;
+    private TimeSpan TimePlaying;
+    private bool TimerGoing;
+    private float ElapsedTime;
 
     private void Awake()
     {
-        timer = this;
-    }
-
-    private void Start()
-    {
-        timeCounter.text = "";
-        timerGoing = false;
+        this.TimeCounter = this.gameObject.GetComponent<TextMeshProUGUI>();
+        this.TimeCounter.text = "";
+        this.TimerGoing = false;
     }
 
     public void BeginTimer()
     {
-        timerGoing = true;
-        elapsedTime = 0f;
-    
-        StartCoroutine(UpdateTimer());
+        this.TimerGoing = true;
+        this.ElapsedTime = 0f;
+
     }
 
     public void PauseTime()
     {
-        timerGoing = false;
+        this.TimerGoing = false;
     }
 
     public void ContinueTime()
     {
-        timerGoing = true;
-        StartCoroutine(UpdateTimer());
+        this.TimerGoing = true;
     }
 
     public void ResetTimer()
     {
-        timeCounter.text = "";
-        timerGoing = false;
+        this.TimeCounter.text = "";
+        this.TimerGoing = false;
     }
 
-    private IEnumerator UpdateTimer()
+    void Update()
     {
-        while(timerGoing)
+        if (this.TimerGoing)
         {
-            elapsedTime +=Time.deltaTime;
-            timePlaying = TimeSpan.FromSeconds(elapsedTime);
-            string timePlayingStr = timePlaying.ToString("mm':'ss'.'ff");
-            timeCounter.text = timePlayingStr;
-
-            yield return null;
+            this.ElapsedTime += Time.deltaTime;
+            this.TimePlaying = TimeSpan.FromSeconds(this.ElapsedTime);
+            var timePlayingStr = this.TimePlaying.ToString("mm':'ss'.'ff");
+            this.TimeCounter.text = timePlayingStr;
         }
     }
-
 }

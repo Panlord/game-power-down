@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class EndMenuController : MonoBehaviour 
 {
     [SerializeField] private Button MenuButton;
     [SerializeField] private Button ExitButton;
-    [SerializeField] private Text ResultText;
+    [SerializeField] private TextMeshProUGUI ResultText;
 
     [SerializeField] private bool Activated;
 
