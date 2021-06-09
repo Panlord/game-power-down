@@ -12,10 +12,12 @@ public class LoreNotification : MonoBehaviour
     [SerializeField] private Sprite CursedPage;
     [SerializeField] private Sprite NormalPage;
     private bool Activated;
+    private bool Open;
 
     public LoreNotification()
     {
         this.Activated = false;
+        this.Open = false;
     }
 
     void Start()
@@ -52,11 +54,18 @@ public class LoreNotification : MonoBehaviour
     {
         this.gameObject.SetActive(false);
         this.Activated = false;
+        this.Open = false;
     }
 
     public void Show()
     {
         this.gameObject.SetActive(true);
+        this.Open = true;
+    }
+
+    public bool IsOpen()
+    {
+        return this.Open;
     }
 
      void Update()

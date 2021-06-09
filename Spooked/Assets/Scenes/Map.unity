@@ -21133,7 +21133,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &465957305
 RectTransform:
   m_ObjectHideFlags: 0
@@ -21153,7 +21153,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &465957306
@@ -34004,7 +34004,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 450, y: -350}
+  m_AnchoredPosition: {x: 450, y: -425}
   m_SizeDelta: {x: 200, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &752361142
@@ -72096,7 +72096,6 @@ MonoBehaviour:
   IntroMenu: {fileID: 465957306}
   InventoryMenu: {fileID: 83841139}
   ItemController: {fileID: 1546602974}
-  LoreSystem: {fileID: 1580472602}
   MainMenu: {fileID: 206895113}
   PauseMenu: {fileID: 1205421344}
   ShowLore: {fileID: 2065142853}
@@ -73367,23 +73366,26 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Hello. It has been a while. I hope you have been doing well. \r\n\r\nI
-    am sorry to put this task onto you, but you are the only one who can do it. \r\n\r\nWithin
-    this facility is an extremely important sketchbook. I need you to get it. The
-    lives of many hang in the balance.\r\n\r\nHopefully the lights are still working.
-    I still recommend bringing a flashlight <color=#BE5050>[Left Click]</color>.
-    That tool will be vital in helping you navigate the building. However, try not
-    to overuse it. You do not want to bring too much attention to yourself. Well,
-    this building should be abandoned. Hopefully nothing is around.\r\n\r\nKnowing
+  m_text: "Hello. It has been a while. I hope you have been doing well. I am sorry
+    to put this task onto you, but you are the only one who can do it. \r\n\r\nWithin
+    this facility is an extremely important sketchbook that you must procure. The
+    lives of many hang in the balance. It is deep red in color and easily stands
+    out. Once you find it, make your way towards the exit, though some may be locked.
+    \r\n\r\nHopefully the lights are working. I still recommend bringing a flashlight
+    <color=#BE5050>[Left Click]</color>. That tool will be vital in helping you navigate
+    the building. However, try not to overuse it. You do not want to bring too much
+    attention to yourself. Well, this building should be abandoned.\r\n\r\nKnowing
     you though, you wouldn\u2019t be scared of anything. After all, you\u2019ve been
     a loner your entire life. Nah, that\u2019s not true. You had me. I\u2019ve seen
     the unique way you think, the way you act, and how you have your own ways of
     getting around life\u2019s problems. I\u2019ve always admired that about you.
     You never run away <color=#BE5050>[Shift]</color> from your problems. Don't push
-    yourself too hard or you'll get exhausted.\n\r\nMake sure you take a breather
+    yourself too hard or you'll get exhausted.\r\n\r\nMake sure you take a breather
     <color=#BE5050>[Esc]</color> once in a while, and don\u2019t be afraid to check
-    out any doors, books, or devices <color=#BE5050>[E]</color> hanging about.\r\n\r\nI\u2019m
-    sorry, I can\u2019t tell you much else. My boss is looking for me.\r"
+    out any doors, books, or devices <color=#BE5050>[E]</color> hanging about. I
+    don\u2019t have much time. All I hope is that you can understand where I\u2019m
+    coming from in those notes <color=#BE5050>[I]</color>.\r\n\r\nI\u2019m sorry,
+    I can\u2019t tell you much else. My boss is looking for me."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e401ffe7001a1d34f9e9053c81b7304d, type: 2}
   m_sharedMaterial: {fileID: 6440141078610518604, guid: e401ffe7001a1d34f9e9053c81b7304d, type: 2}

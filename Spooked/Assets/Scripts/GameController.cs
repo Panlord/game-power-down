@@ -38,17 +38,16 @@ public class GameController : MonoBehaviour
     [SerializeField] private IntroMenuController IntroMenu;
     [SerializeField] private InventoryMenuController InventoryMenu;
     [SerializeField] private InteractiveItemManager ItemController;
-    [SerializeField] private LoreManager LoreSystem;
     [SerializeField] private MainMenuController MainMenu;
     [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private LoreNotification ShowLore;
     [SerializeField] private TimerController TimerControl;
-    [SerializeField] private float SafetyPeriod = 60f;
+    [SerializeField] private float SafetyPeriod = 120.0f;
 
     // Game state logic variables.
     private bool CanScare;
     private bool HasBook;
-    private bool InMenu;
+    private bool InMainMenu;
     private bool MonsterTriggered;
     private bool Paused;
 
@@ -58,7 +57,7 @@ public class GameController : MonoBehaviour
 
     public GameController() 
     {
-        this.InMenu = true;
+        this.InMainMenu = true;
         this.HasBook = false;
         this.Paused = false;
         this.MonsterTriggered = false;
@@ -232,7 +231,7 @@ public class GameController : MonoBehaviour
         {
             this.Pause();
         }
-        this.InMenu = true;
+        this.InMainMenu = true;
     }
 
     // Pause or unpause the game.
@@ -274,6 +273,18 @@ public class GameController : MonoBehaviour
         this.Paused = !this.Paused;
     }
 
+    // 
+    private void CheckCursedLore()
+    {
+        // If most recent lore piece was cursed (Monster POV), shut off lights and spawn monster.
+        var inventory = this.PlayerInventory.GetInventory();
+        if (inventory[inventory.Count - 1].IsCursed() && !this.MonsterTriggered)
+        {
+            Debug.Log("Trigger mosnter via curse");
+            this.TriggerMonster();
+        }
+    }
+
     // Shut off the lights and summon the monster.
     private void TriggerMonster()
     {
@@ -306,7 +317,7 @@ public class GameController : MonoBehaviour
         if (this.IntroMenu.IsActivated())
         {
             this.Pause();
-            this.InMenu = false;
+            this.InMainMenu = false;
             this.IntroMenu.Deactivate();
             this.TimerControl.BeginTimer();
         }
@@ -338,17 +349,11 @@ public class GameController : MonoBehaviour
             // Unpause the game and remove the lore from the screen.
             this.Pause();
             this.ShowLore.Deactivate();
-            // If that lore piece was cursed (Monster POV), shut off lights and spawn monster.
-            var inventory = this.PlayerInventory.GetInventory();
-            if (inventory[inventory.Count - 1].IsCursed() && !this.MonsterTriggered)
-            {
-                Debug.Log("trigger mosnter via curse");
-                this.TriggerMonster();
-            }
+            this.CheckCursedLore();
         }
 
         // Pause the game.
-        if (Input.GetButtonDown("Cancel") && !this.InMenu)
+        if (Input.GetButtonDown("Cancel") && !this.InMainMenu)
         {
             if (!this.Paused)
             {   
@@ -356,10 +361,22 @@ public class GameController : MonoBehaviour
                 this.Pause();
                 this.PauseMenu.Show();
             }
+            else
+            {
+                // Close all open menus.
+                this.Pause();
+                this.InventoryMenu.Deactivate();
+                this.PauseMenu.Deactivate();
+                if (this.ShowLore.IsOpen())
+                {
+                    this.ShowLore.Deactivate();
+                    this.CheckCursedLore();
+                }
+            }
         }
 
         // Open / close inventory menu.
-        if (Input.GetButtonDown("Inventory") && !this.InMenu)
+        if (Input.GetButtonDown("Inventory") && !this.InMainMenu)
         {
             this.Pause();
             if (this.Paused)
@@ -394,7 +411,7 @@ public class GameController : MonoBehaviour
                     break;
                 // If the user has the book and found the right exit.
                 case 2:
-                    this.InMenu = true;
+                    this.InMainMenu = true;
                     this.Pause();
                     this.EndMenu.Show(true, this.RecordTime);
                     break;
@@ -455,7 +472,7 @@ public class GameController : MonoBehaviour
                 this.JumpScare.GetComponent<AudioSource>().Play();
                 this.Pause();
                 this.CanScare = true;
-                this.InMenu = true;
+                this.InMainMenu = true;
                 this.MonsterCollider.Reset();
             }
 
