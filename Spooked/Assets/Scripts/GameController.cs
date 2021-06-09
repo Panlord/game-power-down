@@ -46,11 +46,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private float SafetyPeriod = 120.0f;
 
     // Game state logic variables.
-    private bool CanScare;
-    private bool HasBook;
-    private bool InMainMenu;
-    private bool MonsterTriggered;
-    private bool Paused;
+    [SerializeField] private bool CanScare;
+    [SerializeField] private bool HasBook;
+    [SerializeField] private bool InMainMenu;
+    [SerializeField] private bool MonsterTriggered;
+    [SerializeField] private bool Paused;
 
     // Time recorded for storing in the leaderboard.
     private float RecordTime;

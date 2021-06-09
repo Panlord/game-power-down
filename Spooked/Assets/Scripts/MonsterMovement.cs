@@ -16,6 +16,14 @@ public class MonsterMovement : MonoBehaviour
 
     private bool Omniscient = false;
 
+    // audio related
+    private AudioSource Audio;
+    public AudioClip scream;
+    public AudioClip growl;
+    private float Timer;
+    private float TimeBetweenAudio = 10.0f;
+    private bool HasScreamed = false;
+
     private string[] rooms = {"Conference Room A", "Conference Room A (1)", "Conference Room A (2)", "Conference Room A (3)",
                                 "Conference Room A (4)", "Conference Room A (5)", "Conference Room B", "Conference Room B (1)", 
                                 "Conference Room B (2)", "Small Office Room A", "Small Office Room A (1)", "Small Office Room A (2)",
@@ -27,6 +35,10 @@ public class MonsterMovement : MonoBehaviour
                                 "Small Office Room D (3)", "Boys Restroom", "Boys Restroom (1)", "Girls Restroom", "Girls Restroom (1)", "Small Office Room D",
                                 "Computer Room", "Computer Room (1)", "Computer Room (2)", "Computer Room (3)", "Computer Room (4)"};
     
+    void Start()
+    {
+        Audio = GetComponent<AudioSource>();
+    }
     // Warps the monster to a random position.
     public void WarpRandom()
     {
@@ -65,12 +77,17 @@ public class MonsterMovement : MonoBehaviour
     }
     void Update()
     {
+        this.Timer += Time.deltaTime;
         // If the monster is near the player or the monster knows the player, chase the player.
         if(Vector3.Distance(player.transform.position, monster.transform.position)<=range || this.Omniscient)
         {
             //Debug.Log("monster nearby");
             enemy.SetDestination(player.transform.position);
             this.gameObject.GetComponent<NavMeshAgent>().speed = 10f;
+            Audio.clip = growl;
+            Audio.pitch = Random.Range(0.9f, 1.0f);
+            Audio.PlayOneShot(growl, 0.3f);
+            
         }
         // If enough time has passed and the monster doesn't see the player, warp.
         else if (counter >= time)
@@ -78,6 +95,22 @@ public class MonsterMovement : MonoBehaviour
             this.WarpRandom();
             this.gameObject.GetComponent<NavMeshAgent>().speed = 5f;
             counter = 0;
+
+            if (HasScreamed == false)
+            {
+                Audio.clip = scream;
+                Audio.pitch = Random.Range(0.8f, 1.0f);
+                Audio.PlayOneShot(scream, 0.4f);
+                HasScreamed = true;
+            }
+            
+            if (Timer > TimeBetweenAudio)
+            {
+                Audio.clip = scream;
+                Audio.pitch = Random.Range(0.8f, 1.0f);
+                Audio.PlayOneShot(scream, 0.4f);
+                this.Timer = 0.0f;
+            }
         }
         // Otherwise pass the time.
         else
