@@ -6,9 +6,8 @@
 
 ## Gameplay Explanation ##
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
 
-When the game start, the player can press "start" to start the game. When it's pressed, the player can read about the lore and key mappings then click "go" to start the actual gameplay.
+The player can press "start" to start the game. When it's pressed, the player can read about the lore and key mappings then click "go" to start the actual gameplay.
 
 The player is expected to walk around the map using the standard movement keys (arrows, WASD, ...) and use the mouse to rotate. Player will go from one room to another looking for the "red book". To enter rooms and pick up the book you press "E". While looking for the book, the player may come across other lore items which he can also pick and read about; those items are also picked by pressing "E".
 To access the inventory or pause the game, player can press ESC, which also pauses the timer (you are trying to beat the game as fast as possible so the timer is there to show you how long you spend each round)
@@ -36,7 +35,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 **Describe your user interface and how it relates to gameplay. This can be done via the template.**
 
-## Movement/Physics (Sarah and Aaron)
+## Movement/Physics (Sarah Almuqri and Aaron Pan)
 
 The player moves in the standard physics model, he can interact with doors and objects to pick them up but he cannot go through stuff.
 The camera is in first person so to move the player we use the mouse to rotate the camera and arrows to move it around.
