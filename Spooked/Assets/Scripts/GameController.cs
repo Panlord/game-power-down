@@ -1,3 +1,5 @@
+// Author: Erik.
+// Base was completed by Erik. Some methods added by Aaron. Optimized by Peter.
 using System.Threading;
 using System.Collections;
 using System.Collections.Generic;
@@ -286,10 +288,6 @@ public class GameController : MonoBehaviour
         this.MonsterTriggered = true;
         this.Monster.GetComponent<MonsterMovement>().WarpRandom();
     }
-    private void ActivateScare()
-    {
-        this.EndMenu.Show(false, this.RecordTime);
-    }
 
     void Update()
     {
@@ -408,6 +406,7 @@ public class GameController : MonoBehaviour
         // If the player interacted with a lore piece.
         if (this.PlayerInventory.GotLore())
         {
+            // Add the lore piece to the inventory and display it on the screen.
             this.PlayerInventory.ResetLore();
             this.Pause();
             var inventory = this.PlayerInventory.GetInventory();
@@ -417,6 +416,7 @@ public class GameController : MonoBehaviour
         }
         else if (this.PlayerInventory.GotBook())
         {
+            // Trigger the monster, and allow the player to use exits.
             if (!this.MonsterTriggered)
             {
                 this.TriggerMonster();
@@ -425,10 +425,12 @@ public class GameController : MonoBehaviour
             this.PlayerInventory.ResetBook();
         }
 
+        // If the jumpscare is active.
         if (this.CanScare)
         {
             this.JumpScare.SetActive(true);
             this.ScareDuration += Time.deltaTime;
+            // Close the jumpscare after 5 seconds and show the end screen.
             if (ScareDuration >= 5)
             {
                 this.JumpScare.SetActive(false);
@@ -445,8 +447,10 @@ public class GameController : MonoBehaviour
 
             this.MonsterCollider.gameObject.transform.position = this.PlayerModel.transform.position;
 
+            // If the player gets hit by the monster.
             if (this.MonsterCollider.Hit())
             {
+                // Freeze the screen and make the jump scare active.
                 this.JumpScare.SetActive(true);
                 this.JumpScare.GetComponent<AudioSource>().Play();
                 this.Pause();

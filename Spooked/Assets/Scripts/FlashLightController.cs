@@ -1,10 +1,10 @@
+// Author: Erik.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class FlashLightController : MonoBehaviour 
 {
-    // Is the flashlight turned on?
     private bool Enabled;
     [SerializeField] private Light FireLight;
     [SerializeField] private float DurationOn;
@@ -24,6 +24,7 @@ public class FlashLightController : MonoBehaviour
         Audio = GetComponent<AudioSource>();
     }
 
+    // If the flashlight is on for too long, notify GameController to make the monster omniscient.
     public bool OverTime()
     {
         if (this.DurationOn > 15)
@@ -33,6 +34,8 @@ public class FlashLightController : MonoBehaviour
         return false;
     }
 
+    // Cycles the flashlight through different levels of brightness.
+    // Higher levels reach OverTime faster.
     private void Toggle()
     {
         this.Intensity++;

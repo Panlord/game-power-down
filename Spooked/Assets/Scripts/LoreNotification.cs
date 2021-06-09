@@ -23,9 +23,11 @@ public class LoreNotification : MonoBehaviour
         this.CloseButton.onClick.AddListener(Activate);
     }
 
+    // Displays text on the lore screen upon picking up a lore piece.
     public void Set(LoreItem item)
     {
         this.LoreText.text = item.Read();
+        // If the text is cursed, show a bloody page instead of a regular one.
         if (item.IsCursed())
         {
             this.Page.sprite = this.CursedPage;

@@ -1,3 +1,5 @@
+// Authors: Erik, Peter.
+// Menu functionality + GameController support - Erik. Scrolling Menu - Peter.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
