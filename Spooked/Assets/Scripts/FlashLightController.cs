@@ -16,12 +16,14 @@ public class FlashLightController : MonoBehaviour
     [SerializeField] private float DurationOn;
     private AudioSource Audio;
     private float Intensity;
+    private bool Off;
 
     public FlashLightController()
     {
         this.Enabled = false;
         this.DurationOn = 0;
         this.Intensity = 0;
+        this.Off = true;
     }
 
     void Start()
@@ -52,21 +54,25 @@ public class FlashLightController : MonoBehaviour
         switch (this.Intensity)
         {
             case 0:
+                this.Off = true;;
                 this.TurnOff();
                 break;
             case 1:
-                this.FireLight.spotAngle = 20;
-                this.FireLight.intensity = 1;
+                this.Off = false;
+                this.FireLight.range = 60;
+                this.FireLight.spotAngle = 40;
                 this.LowBright.GetComponent<Image>().color = Color.white;
                 break;
             case 2:
-                this.FireLight.spotAngle = 40;
-                this.FireLight.intensity = 1;
+                this.Off = false;
+                this.FireLight.range = 80;
+                this.FireLight.spotAngle = 60;
                 this.MedBright.GetComponent<Image>().color = Color.white;
                 break;
             case 3:
+                this.Off = false;
+                this.FireLight.range = 100;
                 this.FireLight.spotAngle = 80;
-                this.FireLight.intensity = 2;
                 this.MaxBright.GetComponent<Image>().color = Color.white;
                 break;
         }
@@ -86,7 +92,12 @@ public class FlashLightController : MonoBehaviour
         this.LowBright.GetComponent<Image>().color = Color.black;
         this.MedBright.GetComponent<Image>().color = Color.black;
         this.MaxBright.GetComponent<Image>().color = Color.black;
-        Debug.Log("Flashlight turned off");
+        Debug.Log("Flashlight turned Off");
+    }
+
+    public bool IsOff()
+    {
+        return this.Off;
     }
 
     void Update()

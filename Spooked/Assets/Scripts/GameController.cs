@@ -33,6 +33,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject JumpScare;
     
     // Menu / UI references.
+    [SerializeField] private GameObject Darkness;
     [SerializeField] private EndMenuController EndMenu;
     [SerializeField] private InterfaceController GUI;
     [SerializeField] private IntroMenuController IntroMenu;
@@ -111,25 +112,11 @@ public class GameController : MonoBehaviour
     // Make all Lore Pieces and the book spawn again.
     private void RespawnAll()
     {
-        var randIndex = Random.Range(0, 21);
-        var bookObjects = GameObject.FindGameObjectsWithTag("CollectibleItem");
-
         for (int i = 0; i < 20; i++)
         {
             this.InteractableObjects.transform.GetChild(i).gameObject.SetActive(true);
         }
         this.Book.SetActive(true);
-
-        if (randIndex < 20)
-        {
-            var randObject = bookObjects[randIndex];
-            Debug.Log(randObject.name);
-            var randPos = randObject.transform.position;
-            randObject.transform.position = this.Book.transform.position;
-            this.Book.transform.position = randPos;
-            Debug.Log(randObject.transform.position);
-            Debug.Log(this.Book.transform.position);
-        }
     }
 
     // Close all doors.
@@ -176,6 +163,9 @@ public class GameController : MonoBehaviour
     // This should always be called upon returning to the main menu.
     private void Reset()
     {
+        // Darkness:
+        this.Darkness.SetActive(false);
+
         // FlashLight:
         this.FlashLight.TurnOff();
 
@@ -288,6 +278,7 @@ public class GameController : MonoBehaviour
     // Shut off the lights and summon the monster.
     private void TriggerMonster()
     {
+        this.Darkness.SetActive(true);
         this.CloseAllDoors();
         this.LightsOut();
         this.HallwayLights.SetActive(false);
@@ -369,7 +360,8 @@ public class GameController : MonoBehaviour
                 if (this.InventoryMenu.IsOpen())
                 {   
                     this.InventoryMenu.Deactivate();
-                    this.FlashLight.gameObject.transform.Find("Brightness Setting").gameObject.SetActive(true);
+                    var bright = this.FlashLight.gameObject.transform.Find("Brightness Setting");
+                    bright.gameObject.SetActive(true);
                 }
                 if (this.ShowLore.IsOpen())
                 {
@@ -387,12 +379,29 @@ public class GameController : MonoBehaviour
             {
                 this.GUI.EndPrompt();
                 this.InventoryMenu.Show();
-                this.FlashLight.gameObject.transform.Find("Brightness Setting").gameObject.SetActive(false);
+                var bright = this.FlashLight.gameObject.transform.Find("Brightness Setting");
+                bright.gameObject.SetActive(false);
             }
             else
             {
                 this.InventoryMenu.Deactivate();
-                this.FlashLight.gameObject.transform.Find("Brightness Setting").gameObject.SetActive(true);
+                var bright = this.FlashLight.gameObject.transform.Find("Brightness Setting");
+                bright.gameObject.SetActive(true);
+            }
+        }
+
+        
+        if (this.MonsterTriggered)
+        {
+            // Disable monster is flashlight if off.
+            if (this.FlashLight.IsOff())
+            {   
+                this.Monster.SetActive(false);
+            }
+            // Re-enable if flashlight is turned back on.
+            else if (!this.Monster.gameObject.activeSelf && !this.FlashLight.IsOff())
+            {
+                this.Monster.SetActive(true);
             }
         }
 
@@ -419,6 +428,7 @@ public class GameController : MonoBehaviour
                 case 2:
                     this.InMainMenu = true;
                     this.Pause();
+                    this.FlashLight.TurnOff();
                     this.EndMenu.Show(true, this.RecordTime);
                     break;
                 default:
@@ -459,6 +469,7 @@ public class GameController : MonoBehaviour
                 this.JumpScare.SetActive(false);
                 this.CanScare = false;
                 this.ScareDuration = 0;
+                this.FlashLight.TurnOff();
                 this.EndMenu.Show(false, this.RecordTime);
             }            
         } 
