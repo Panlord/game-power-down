@@ -19,4 +19,4 @@ You can use one of the doors with the exit sign to leave the building, but keep 
 If the monster catches you, game over, you lose.
 If you manage to leave Kemper with the book, that's a victory.
 
-P.S. feel free to check out https://github.com/Panlord/game-power-down/blob/1b3465915faa508cbaa17917b9b3615a8ec56066/ProjectDocument.md for more information about the game.
+P.S. feel free to check out ProjectDocument.md for more information about the game.
