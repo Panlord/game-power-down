@@ -6,6 +6,8 @@ public class Footsteps : MonoBehaviour
 {
     CharacterController Player;
     private AudioSource Audio;
+    private double TimeElapsed = 0f;
+    [SerializeField] private double FootstepFrequency;
 
     void Start () 
     {
@@ -16,12 +18,28 @@ public class Footsteps : MonoBehaviour
 
         void Update () 
         {   
+            this.TimeElapsed += Time.deltaTime;
             // check if player is on ground and moving 
-            if (Player.isGrounded == true && (Player.velocity.magnitude > 3f) && Audio.isPlaying == false)
+            if ((Player.isGrounded == true) && (Player.velocity.magnitude > 3f) && (Audio.isPlaying == false))
             {  
-            Audio.volume = Random.Range(0.3f, 0.45f);
-            Audio.pitch = Random.Range(0.8f, 1.1f);
-            Audio.Play();
+                if (TimeElapsed > FootstepFrequency)
+                {
+                    Audio.volume = Random.Range(0.3f, 0.45f);
+                    Audio.pitch = Random.Range(0.8f, 1.1f);
+                    Audio.Play();
+                    this.TimeElapsed = 0f;
+                }
+                if (Player.velocity.magnitude > 7f)
+                {
+                    if (TimeElapsed > (FootstepFrequency / 2))
+                    {
+                        Audio.volume = Random.Range(0.3f, 0.45f);
+                        Audio.pitch = Random.Range(0.8f, 1.1f);
+                        Audio.Play();
+                        this.TimeElapsed = 0f;
+                    }
+                }
+                
             }
         }
 }

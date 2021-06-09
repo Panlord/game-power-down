@@ -2961,9 +2961,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 78004800}
-  RunningSpeed: 11.5
+  RunningSpeed: 8
   WalkingSpeed: 3
   timeRan: 0
+  TiredClip: {fileID: 8300000, guid: dd625f7923546df42ab52ca89e41b57c, type: 3}
 --- !u!143 &78004800
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3108,6 +3109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b96f9a6b95239542b4c2b30ccf6d722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  FootstepFrequency: 0.75
 --- !u!1 &83841137
 GameObject:
   m_ObjectHideFlags: 0
