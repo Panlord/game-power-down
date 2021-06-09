@@ -8,6 +8,14 @@
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
 
+When the game start, the player can press "start" to start the game. When it's pressed, the player can read about the lore and key mappings then click "go" to start the actual gameplay.
+
+The player is expected to walk around the map using the standard movement keys (arrows, WASD, ...) and use the mouse to rotate. Player will go from one room to another looking for the "red book". To enter rooms and pick up the book you press "E". While looking for the book, the player may come across other lore items which he can also pick and read about; those items are also picked by pressing "E".
+To access the inventory or pause the game, player can press ESC, which also pauses the timer (you are trying to beat the game as fast as possible so the timer is there to show you how long you spend each round)
+After the player picks the objective book, he can try to escabe by looking for the double door with the Exit sign. There are multiple exits but only one works.
+After picking up the book, all the lights turn off, but you can use the flashlight by clicking the left click to turn it on and adjust its brightness.
+Picking up the object tregers the monster to spawn, so you will try to leave the map as fast as possible before the monster catches you.
+If you are caught by the monster, the game ends and you lose. The only way to win is to pick up the book and leave without being caught.
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
@@ -28,7 +36,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 **Describe your user interface and how it relates to gameplay. This can be done via the template.**
 
-## Movement/Physics
+## Movement/Physics (Sarah and Aaron)
 
 The player moves in the standard physics model, he can interact with doors and objects to pick them up but he cannot go through stuff.
 The camera is in first person so to move the player we use the mouse to rotate the camera and arrows to move it around.
@@ -195,11 +203,10 @@ I browsed through a bunch of horror game trailers and took notes of what people 
 As for the screenshots, I made sure to include many of the things I listed in the trailer. To reiterate, I chose them based on what I would imagine a prospective player would want to see before downloading the game-- the menu, several screenshots of various locations throughout the map, several collectable items, some lore pieces, the inventory, and a partially visible still of the monster in action (only partially visible with its face covered so the player is in for a surprise when they get attacked!).  
 
 
-## Game Feel
-
-**Document what you added to and how you tweaked your game to improve its game feel.**
+## Game Feel (Everyone)
 
 - We added a start menu then a bit of lore at the beggening of the game to get the player excited (or scared) to start. When the player reads the lore and hits "go" the game starts.
 - We also added a stopwatch that starts counting when the player hits "go", the player can see the stopwatch on the top left of the screen.
 - When the players comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continues playin. The stopwatch is paused when the player is on the lore screen.
 - The player can also pause the game at anytime by hitting ESC, the stopwatch is paused when the game is.
+- There are lore items scattered around the map so the player can attempt to understand the story while playing the game.
