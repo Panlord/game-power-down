@@ -20,7 +20,7 @@ public class Footsteps : MonoBehaviour
         {   
             this.TimeElapsed += Time.deltaTime;
             // check if player is on ground and moving 
-            if ((Player.isGrounded == true) && (Player.velocity.magnitude > 3f) && (Audio.isPlaying == false))
+            if ((Player.isGrounded == true) && (Player.velocity.magnitude > 2f) && (Audio.isPlaying == false))
             {  
                 if (TimeElapsed > FootstepFrequency)
                 {

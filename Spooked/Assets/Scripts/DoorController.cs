@@ -9,7 +9,6 @@ public class DoorController : MonoBehaviour
 {
     private Animator DoorAnimator;
     private InterfaceController GUI;
-    private KeyCode InteractKey = KeyCode.E;
     private AudioSource Audio;
     [SerializeField] public AudioClip OpenSound;
     [SerializeField] public AudioClip CloseSound;
@@ -26,7 +25,7 @@ public class DoorController : MonoBehaviour
     {
         this.Prompt();
 
-        if (Input.GetKeyDown(InteractKey))
+        if (Input.GetButtonDown("Use"))
         {
             this.Interact();
         }

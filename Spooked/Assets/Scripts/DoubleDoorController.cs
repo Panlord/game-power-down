@@ -9,7 +9,6 @@ public class DoubleDoorController : MonoBehaviour
 {
     private Animator DoubleDoorAnimator;
     private InterfaceController GUI;
-    private KeyCode InteractKey = KeyCode.E;
     private AudioSource Audio;
     [SerializeField] public AudioClip OpenSound;
     [SerializeField] private AudioClip CloseSound;
@@ -26,7 +25,7 @@ public class DoubleDoorController : MonoBehaviour
     {
         this.Prompt();
 
-        if (Input.GetKeyDown(InteractKey))
+        if (Input.GetButtonDown("Use"))
         {
             this.Interact();
         }
