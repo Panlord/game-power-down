@@ -35,7 +35,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 **Describe your user interface and how it relates to gameplay. This can be done via the template.**
 
-## Movement/Physics (Sarah and Aaron)
+## Movement/Physics (Sarah Almuqri and Aaron Pan)
 
 The player moves in the standard physics model, he can interact with doors and objects to pick them up but he cannot go through stuff.
 The camera is in first person so to move the player we use the mouse to rotate the camera and arrows to move it around.
