@@ -77,23 +77,33 @@ The [GameController](https://github.com/Panlord/game-power-down/blob/master/Spoo
 
 3) Participate in mass setup and [resets]() of other assets and scripts. For example, [closing]() all the doors, [picking]() which exit is not locked, and [shutting]() off all the lights. All of these interactions involve calling public methods of attached scripts.
 
-It draws heavy inspiration from the Observer design pattern in its real-time communication with other scripts, albeit it does not directly code like one. It also harkens back to command pattern very lightly in the concept of one central unit calling methods of other subordinate game features, and objects performing different duties depending on certain conditions.
+It draws heavy inspiration from the Observer design pattern in its real-time communication with other scripts. It also harkens back to command pattern very lightly in objects performing different duties depending on their "command," or in this case, the state of the game.
 
 *Menu Logic*: 
 
 The menus of this game are as follows:
 
-- `MainMenu`: The first menu of the game. Leads into the `IntroMenu`. Can be returned to from the `PauseMenu` or `EndMenu` by calling [ReturntoMenu]().
+- `MainMenu`: The first menu of the game. Leads into the `IntroMenu`. Can be returned to from the `PauseMenu` or `EndMenu` by calling [ReturntoMenu](). [script]()
 
-- `IntroMenu`: A menu that shows an initial story blurb and hints about some button functionality. The user enters the game from a button on this menu.
+- `IntroMenu`: A menu that shows an initial story blurb and hints about some button functionality. The user enters the game from a button on this menu. [script]()
 
-- `PauseMenu`: A menu that shows when the user pauses the game with `Esc`.
+- `PauseMenu`: A menu that shows when the user pauses the game with `Esc`. [script]()
 
-- `LoreNotification`: A menu that shows when the user collects a lore piece.
+- `LoreNotification`: A menu that shows when the user collects a lore piece. [script]()
 
-- `InventoryMenu`: A menu accessible with `I`. Allows the user to read any lore pieces they have collected.
+- `InventoryMenu`: A menu accessible with `I`. Allows the user to read any lore pieces they have collected. [script]()
 
-(Image of Menu transitions here)
+All menus share the `Activate`, `Deactivate`, `Show`, and `IsActivated` methods:
+
+- `Activate()`: called when a specific button is pressed via Event Listeners. Sets `Activated` to `true`. `PauseMenu` has an extra `Quit` method. 
+
+- `IsActivated()`: A call method for `GameController`. If `true`, GameController responds by making the appropriate menu/state transition. It then `Deactivate`s the calling menu.
+
+- `Deactivate()`: Sets `Activated` to `false` and hides the menu.
+
+- `Show()`: Called by `GameController` to make menus visible when performing menu/state transitions.
+
+The `Activate`/`Deactivate` and `IsActivated()` relationship between the menu controllers and the `GameController` is part of the "call and response" structure of this game's logic, and echoes back to the Observer pattern, to which `GameController` notices that the state of a connected menu controller has changed. In this case, it notices that a menu button has been pressed, and makes the proper menu transition.
 
 *Game States*: The state of the game is controlled using a series of booleansthat control what the GameController can and cannot do. The game states are as follows:
 
@@ -115,7 +125,7 @@ The menus of this game are as follows:
 
     It is possible for the monster to be triggered despite the player not having the book.
 
-(Image of Game State Transitions here)
+(Menu and State transition diagram here.)
 
 Game states are somewhat of a callback to Command Pattern. 
 
