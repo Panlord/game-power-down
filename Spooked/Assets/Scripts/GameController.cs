@@ -45,11 +45,11 @@ public class GameController : MonoBehaviour
     [SerializeField] private float SafetyPeriod = 120.0f;
 
     // Game state logic variables.
-    private bool CanScare;
-    private bool HasBook;
-    private bool InMainMenu;
-    private bool MonsterTriggered;
-    private bool Paused;
+    [SerializeField] private bool CanScare;
+    [SerializeField] private bool HasBook;
+    [SerializeField] private bool InMainMenu;
+    [SerializeField] private bool MonsterTriggered;
+    [SerializeField] private bool Paused;
 
     // Time recorded for storing in the leaderboard.
     private float RecordTime;
@@ -120,16 +120,16 @@ public class GameController : MonoBehaviour
         }
         this.Book.SetActive(true);
 
-        if (randIndex < 20)
-        {
-            var randObject = bookObjects[randIndex];
-            Debug.Log(randObject.name);
-            var randPos = randObject.transform.position;
-            randObject.transform.position = this.Book.transform.position;
-            this.Book.transform.position = randPos;
-            Debug.Log(randObject.transform.position);
-            Debug.Log(this.Book.transform.position);
-        }
+        // if (randIndex < 20)
+        // {
+        //     var randObject = bookObjects[randIndex];
+        //     Debug.Log(randObject.name);
+        //     var randPos = randObject.transform.position;
+        //     randObject.transform.position = this.Book.transform.position;
+        //     this.Book.transform.position = randPos;
+        //     Debug.Log(randObject.transform.position);
+        //     Debug.Log(this.Book.transform.position);
+        // }
     }
 
     // Close all doors.
