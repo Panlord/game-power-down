@@ -41,6 +41,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private PauseMenuController PauseMenu;
     [SerializeField] private LoreNotification ShowLore;
     [SerializeField] private TimerController TimerControl;
+    [SerializeField] private float SafetyPeriod = 60f;
 
     // Game state logic variables.
     private bool CanScare;
@@ -449,7 +450,7 @@ public class GameController : MonoBehaviour
             }
 
             // If the user is taking too long to find the book, shut off the lights and summon the monster.
-            if (this.RecordTime >= 60 && !this.MonsterTriggered)
+            if (this.RecordTime >= SafetyPeriod && !this.MonsterTriggered)
             {
                 this.TriggerMonster();
             }
