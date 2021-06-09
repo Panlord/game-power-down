@@ -8,7 +8,7 @@
 - Sarah Almuqri
  
 ## Professor: ##
-Josh McCoy
+- Josh McCoy
 
 ## Description ##
 
