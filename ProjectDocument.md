@@ -88,7 +88,25 @@ Animations for the zombie came with the asset, though Erik created the jumpscare
 
 ## Narrative Design
 
-**Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
+The original draft of the narrative is [here](https://docs.google.com/document/d/1R4GfQhAeZIhtjAVn3RB6_rSJpHV9qXOw5RC4De3xET0/edit?usp=sharing). Note that parts here and there might be different from the final product. It is a story of human perserverance and human nature at the brink of despair. The initial premise is that you are the friend of an assistant of a world-renowned professor. You are tasked with obtaining a particular sketchbook from his facility. They player gets this premise, their objective, and hints at controls in an [introduction screen](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/Intro.PNG) (Note, story text here is tenative).
+
+There are many ways in which the player experiences in this narrative in-game.
+
+*Assets and Displays*: The story of this game is scattered among 20 [ books, laptops, and devices](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/book2.PNG) in the facility as in-game interactable assets. Interacting with them will display [a screen](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/ViewingLore.PNG) showing bits and pieces of the story(Peter did a phenomenal job with the UI here). The player is also invited to open a [menu](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreMenu.PNG) to read all of the lore pieces thet have currently collected. This allows them to get a feeling for the world that they are in. The "sketchbook" the player is supposed to obtain is different from all the other books in that it is [both open and a solid deep red color](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/book.PNG) to make it stand out. 
+
+*A Lore Class!?*: As the narrative designer, I was also tasked with implementing the lore system into the code. This was done using a [Lore Manager](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/LoreManager.cs) and a [Lore Notification](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/LoreNotification.cs) script. The two scripts contain three classes in total:
+
+- `LoreItem`: A simple class representing a lore piece. Has a name, lore text, and a boolean denoting whether or not its cursed. Has getters for all three of these variables.
+
+- `LoreManager`: Contains a base list of all possible `LoreItem`s. It returns random `LoreItem`s for use in the player's inventory and the `LoreNotification`. It uses a separate list copied from the base list such that no lore piece is obtained twice in any one game instance.
+
+- `LoreNotification`: Handles displaying lore pieces upon picking them up. `Set()` takes a `LoreItem` and loads its text for display. The class contains menu logic that works in tandem with `GameController` to decide when it is appropriate to open and close this notification (*See: Game Logic*).
+
+I also created [dummy lore menu](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreInventoryBeta.PNG), [display](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreDisplayBeta.PNG), and lore item raycast [scripts](https://github.com/Panlord/game-power-down/commit/52ae93d80c9794557238fd68873f5b071d21e699) as proofs of concept. Peter later took these scripts and cosolidated and optimized them into the menus you see in the *Assets and Displays* section.
+
+*Gameplay and Atmosphere*: Aside from adding to the user experience, the lore system has little effect on the gameplay objective (getting the sketchbook). However, one touch is that "cursed" lore entries (cOnTaInS tExT fOrMaTtEd lIkE tHiS) will automatically shut off the lights and make the monster active. Along with the fact that [cursed entries have traces of blood on them](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/CursedLore.PNG), this is supposed to make the player feel that something is definitely amiss and that they should move fast, if able.
+
+Finally, the [monster](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/zombo4.png) that chases you within this facility is none other than the story's professor, who had become that way due to self-experimentation. The [jump scare](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Zombie/JumpScare.jpg)  shows a true display of horror and malice that was once something the player might have had sympathy for from reading his descent into madness. 
 
 ## Press Kit and Trailer (Aaron Pan)
 
