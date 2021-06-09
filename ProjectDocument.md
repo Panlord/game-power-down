@@ -221,3 +221,4 @@ As for the screenshots, I made sure to include many of the things I listed in th
 - When the players comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continues playin. The stopwatch is paused when the player is on the lore screen.
 - The player can also pause the game at anytime by hitting ESC, the stopwatch is paused when the game is.
 - There are lore items scattered around the map so the player can attempt to understand the story while playing the game.
+- Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors we decided not to
