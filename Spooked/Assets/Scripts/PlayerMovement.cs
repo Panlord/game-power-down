@@ -18,13 +18,15 @@ public class PlayerMovement : MonoBehaviour
     Vector3 move = Vector3.zero;
     [SerializeField] private float timeRan = 0f;
     private bool Exhausted = false;
-
+    public AudioClip TiredClip;
+    AudioSource Audio;
 
     void Start()
     {
         // Lock cursor
         // Cursor.lockState = CursorLockMode.Locked;
         // Cursor.visible = false;
+        Audio = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -33,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
         if (timeRan >= 1.5f)
         {
             Exhausted = true;
+            Audio.PlayOneShot(TiredClip, 0.35f);
         }
         
         if (timeRan <= 0)
