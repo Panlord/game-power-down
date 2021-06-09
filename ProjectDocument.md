@@ -75,7 +75,6 @@ Animations for the zombie came with the asset, though Erik created the [jumpscar
 
 **Add an entry for each platform or input style your project supports.**
 
-## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
 
 The [GameController](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/GameController.cs) is the big brains of *Escape From Kemper*. It is connected to almost every script in the project and several GameObjects in the scene. Among its many jobs include:
@@ -112,17 +111,17 @@ All menus share the `Activate`, `Deactivate`, `Show`, and `IsActivated` methods:
 
 - `Show()`: Called by `GameController` to make menus visible when performing menu/state transitions.
 
-The `Activate`/`Deactivate` and `IsActivated()` relationship between the menu controllers and the `GameController` is part of the "call and response" structure of this game's logic, and echoes back to the Observer pattern, to which `GameController` notices that the state of a connected menu controller has changed. In this case, it notices that a menu button has been pressed, and makes the proper menu transition.
+The `Activate`/`Deactivate` and `IsActivated()` relationship between the menu controllers and the `GameController` is part of the "call and response" structure of this game's logic, and echoes back to the Observer pattern, to which `GameController` notices that the state of a connected menu controller has changed. In this case, it notices that a menu button has been [activated](), and makes the proper menu transition.
 
 *Game States*: The state of the game is controlled using a series of booleansthat control what the GameController can and cannot do. The game states are as follows:
 
-- `Paused`: The game is paused. The user cannot perform any in-game functions. Called `true` alone when the user presses [Esc]() mid-game.
+- `Paused`: The game is paused. The user cannot perform any in-game functions. Called `true` alone when the user presses [Esc]() mid-game, and when `true` alone, the user can also exit the pause menu with `Esc`
 
-- `InMenu`: Prevents the player from manually using [Esc]() to call `Pause()`. `Paused` + `InMenu` = Player is in a menu excluding the pause menu. Often `true` along with `Paused = true` in cases where we want to force-pause the game. 
+- `InMainMenu`: Prevents the player from manually using `Esc` to call [Pause()](). `Paused` + `InMainMenu` = Player is in `MainMenu`, `IntroMenu`, or `EndMenu`. Often `true` along with `Paused = true` in cases where we want to force pause the game with no option to use `Esc`. 
 
-- `CanScare`: `CanScare` + `Paused` + `InMenu` = Game Over State. Upon [touching the monster](), this bool and `Paused` and `InMenu` all hit `true`. `CanScare` stays [active for 5 seconds ]()to allow the player to take the jump scare in full effect, then it is rendered `false`, leaving `Paused + InMenu` as the player transitions to an ending menu.
+- `CanScare`: `CanScare` + `Paused` + `InMainMenu` = Game Over State. Upon [touching the monster](), this bool and `Paused` and `InMainMenu` all hit `true`. `CanScare` stays [active for 5 seconds ]()to allow the player to take the jump scare in full effect, then it is rendered `false`, leaving `Paused + InMainMenu` as the player transitions to an ending menu.
 
-- `!Paused + !InMenu  + !CanScare`: All of the above state variables are `false`. The player is actively playing the game as `GameController` awaits a response.
+- `!Paused + !InMainMenu  + !CanScare`: All of the above state variables are `false`. The player is actively playing the game as `GameController` awaits a response.
 
 - `HasBook`: The player has picked up the objective book. Allows the player to use exits. Allows `GameController` to properly respond to [signals received]() by ExitDoors.
 
@@ -134,21 +133,32 @@ The `Activate`/`Deactivate` and `IsActivated()` relationship between the menu co
 
     It is possible for the monster to be triggered despite the player not having the book.
 
-(Menu and State transition diagram here.)
+Game states are somewhat of a callback to Command Pattern, albeit with a lack of command files. Rather, the central `GameController` is what orders everything what to do depending on the current state of the game.
 
-Game states are somewhat of a callback to Command Pattern. 
+![Game Flow](https://raw.githubusercontent.com/Panlord/game-power-down/master/Pics%20and%20Diagrams/MenuStateFlow.PNG)
 
-*Calls and Responses:* The defining feature of `GameController` is that both the control flow of the game and the actions of othe scripts follow a "call and response" system. If the . Here is a list of many different kinds of interactions:
+![Victory Conditions](https://raw.githubusercontent.com/Panlord/game-power-down/master/Pics%20and%20Diagrams/MenuStateFlow2.PNG)
 
-- 
+*Calls and Responses:* The defining feature of `GameController` is that both the control flow of the game and the actions of other scripts follow a "call and response" system. Here is a list of of some of the different kinds of interactions:
 
--
+- Menus: `GameController` recognizes button presses in menus by checking if a menu's `IsActivated` return true. If it does, it figures out which menu sent it, which button was pressed, and then applies the appropriate menu transitions.
 
--
+- Exit Doors: `ExitDoorController` returns [a value]() depending on if it was interacted with and the current state of the game. It usually returns `-1` if the player has not interacted with it. When `GameController` recognizes that an `ExitDoorController` returned a [different value](), it applies logic depending on:
+    1) The returned value is 0, indicating the player doesn't have the sketchbook.
+    2) The returned value is 1, indicating the player does have the book, but the exit is locked.
+    3) The returned value is 2, indicating the player has the book and found the right exit. `GameController` declares victory and transitions the game state.
 
--
+- Lore Pieces: When the player interacts with a lore piece, the [player's inventory]() indicates that it has obtained either a lore item or the objective book using `GotLore` and `GotBook`, respectively. Upon the `GameController` recognizing this change, it makes the following [adjustments]():
+    1) If `GotLore` triggered, show the lore notification.
+    2) If `GotBook` triggered, set the `HasBook` state to `true` and `TriggerMonster` if it hasn't already.
+
+- FlashLight and Monster: The `FlashLightController` has an internal counter that counts up as long as its on. Higher flashlight settings makes the count go up faster. When that is over 15, the `FlashLightController`'s [OverTime()]() method starts returning true. The `GameController` recognizes this, and [signals]() to the monster to become `omniscient`. In `MonsterMovement`, if the monster is `omniscient`, it will [chase the player]() regardless of where the monster is and if it can see the player.
 
 This logic of real-time "call and response" is based on the Observer pattern, albeit using public methods of other scripts instead of delegates. Essentially, similar to how Pikmini recognize that their color has changed and alter their appearance accordingly, `GameController` recognizes that a boolean value of a connected script has changed, and alters the game state or state of other objects accordingly. 
+
+![On Too Long](https://raw.githubusercontent.com/Panlord/game-power-down/master/Pics%20and%20Diagrams/OnTooLong.PNG)
+
+![Exit Doors](https://raw.githubusercontent.com/Panlord/game-power-down/master/Pics%20and%20Diagrams/FindExit.PNG)
 
 # Sub-Roles
 
