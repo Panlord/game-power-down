@@ -247,7 +247,7 @@ public class GameController : MonoBehaviour
         {
             Debug.Log("Game Resumed");
             this.TimerControl.ContinueTime();
-            if (this.MonsterTriggered)
+            if (this.MonsterTriggered && this.Monster.activeSelf)
             {
                 this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 this.Monster.GetComponent<Animator>().enabled = true;
@@ -402,6 +402,10 @@ public class GameController : MonoBehaviour
             else if (!this.Monster.gameObject.activeSelf && !this.FlashLight.IsOff())
             {
                 this.Monster.SetActive(true);
+                this.Monster.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                this.Monster.GetComponent<Animator>().enabled = true;
+                this.Monster.GetComponent<MonsterMovement>().enabled = true;
+                this.Monster.GetComponent<MonsterMovement>().Continue();
             }
         }
 
