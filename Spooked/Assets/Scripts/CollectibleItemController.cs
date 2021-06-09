@@ -9,7 +9,7 @@ public class CollectibleItemController : MonoBehaviour
 {
     private InterfaceController GUI;
     private Inventory PlayerInventory;
-    private KeyCode InteractKey = KeyCode.E;
+
     // Add Inventory class.
 
     private void Awake()
@@ -22,7 +22,7 @@ public class CollectibleItemController : MonoBehaviour
     {
         this.Prompt();
 
-        if (Input.GetKeyDown(InteractKey))
+        if (Input.GetButtonDown("Use"))
         {
             this.Interact();
         }
