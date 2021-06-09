@@ -38,4 +38,12 @@ public class IntroMenuController : MonoBehaviour
     {
         this.gameObject.SetActive(true);
     }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Use"))
+        {
+            Activate();
+        }
+    }
 }

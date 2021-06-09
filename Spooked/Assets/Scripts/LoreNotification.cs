@@ -58,4 +58,12 @@ public class LoreNotification : MonoBehaviour
     {
         this.gameObject.SetActive(true);
     }
+
+     void Update()
+    {
+        if (Input.GetButtonDown("Use"))
+        {
+            Activate();
+        }
+    }
 }

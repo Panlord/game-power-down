@@ -40,6 +40,11 @@ public class MainMenuController : MonoBehaviour
             this.TimeMove = 0.0f;
         }
         this.MainMenuCamera.transform.localPosition += new Vector3(this.CameraSpeed * Time.deltaTime, 0, 0);
+
+        if (Input.GetButtonDown("Use"))
+        {
+            Activate();
+        }
     }
 
     public void ResetPosition()
@@ -67,4 +72,6 @@ public class MainMenuController : MonoBehaviour
     {
         this.gameObject.SetActive(true);
     }
+
+    
 }
