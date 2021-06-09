@@ -1,3 +1,5 @@
+// Author: Erik.
+// Optimized by Peter.
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
