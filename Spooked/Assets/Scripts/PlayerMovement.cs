@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         if (timeRan >= 1.5f)
         {
             Exhausted = true;
-            Audio.PlayOneShot(TiredClip, 0.35f);
+            Audio.PlayOneShot(TiredClip, 0.55f);
         }
         
         if (timeRan <= 0)
@@ -77,6 +77,5 @@ public class PlayerMovement : MonoBehaviour
         }
 
         Controller.Move(move * Time.deltaTime);       
-
     }
 }

@@ -16,6 +16,7 @@ public class InventoryMenuController : MonoBehaviour
     private int MaxItemsOnScreen;
     private int ActiveItem;
     private int ListOffset;
+    private bool Open;
 
     public void Awake()
     {
@@ -23,6 +24,7 @@ public class InventoryMenuController : MonoBehaviour
         this.MaxItemsOnScreen = 8;
         this.ActiveItem = 0;
         this.ListOffset = 0;
+        this.Open = false;
     }
 
     public void OnEnable()
@@ -117,10 +119,17 @@ public class InventoryMenuController : MonoBehaviour
     public void Show()
     {
         this.gameObject.SetActive(true);
+        this.Open = true;
     }
 
     public void Deactivate()
     {
         this.gameObject.SetActive(false);
+        this.Open = false;
+    }
+
+    public bool IsOpen()
+    {
+        return this.Open;
     }
 }

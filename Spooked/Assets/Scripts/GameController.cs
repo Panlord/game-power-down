@@ -269,14 +269,14 @@ public class GameController : MonoBehaviour
         this.FlashLight.enabled = this.Paused;
         this.FirstPerson.enabled = this.Paused;
         this.PlayerMove.enabled = this.Paused;
+        this.Player.gameObject.GetComponent<Footsteps>().enabled = this.Paused;
         this.ItemController.enabled = this.Paused;
         this.Paused = !this.Paused;
     }
 
-    // 
+    // If most recent lore piece was cursed (Monster POV), shut off lights and spawn monster.
     private void CheckCursedLore()
     {
-        // If most recent lore piece was cursed (Monster POV), shut off lights and spawn monster.
         var inventory = this.PlayerInventory.GetInventory();
         if (inventory[inventory.Count - 1].IsCursed() && !this.MonsterTriggered)
         {
@@ -365,8 +365,12 @@ public class GameController : MonoBehaviour
             {
                 // Close all open menus.
                 this.Pause();
-                this.InventoryMenu.Deactivate();
                 this.PauseMenu.Deactivate();
+                if (this.InventoryMenu.IsOpen())
+                {   
+                    this.InventoryMenu.Deactivate();
+                    this.FlashLight.gameObject.transform.Find("Brightness Setting").gameObject.SetActive(true);
+                }
                 if (this.ShowLore.IsOpen())
                 {
                     this.ShowLore.Deactivate();
@@ -383,10 +387,12 @@ public class GameController : MonoBehaviour
             {
                 this.GUI.EndPrompt();
                 this.InventoryMenu.Show();
+                this.FlashLight.gameObject.transform.Find("Brightness Setting").gameObject.SetActive(false);
             }
             else
             {
                 this.InventoryMenu.Deactivate();
+                this.FlashLight.gameObject.transform.Find("Brightness Setting").gameObject.SetActive(true);
             }
         }
 
