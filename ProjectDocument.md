@@ -66,15 +66,78 @@ Animations for the zombie came with the asset, though Erik created the jumpscare
 
 **Add an entry for each platform or input style your project supports.**
 
-## Game Logic
+## Game Logic (Erik Trinh)
+Ah yes... the most daunting main role of them all...
 
-**Document what game states and game data you managed and what design patterns you used to complete your task.**
+The [GameController](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/GameController.cs) is the big brains of *Escape From Kemper*. It is connected to almost every script in the project and several GameObjects in the scene. Among its many jobs include:
+
+1) Foster the current state of the game, whether it be paused, unpaused, in a menu, in the middle of a cutscene, etc. Receive signals from other scripts to transition the game state. 
+
+2) Perform a series of checks on attached scripts. Scripts send 'signals' in the form of public bool methods called in `GameController`'s `Update` method. If `GameController` notices a change (a positive 'signal') in a script, it applies the appropriate action. This "call and response" also controls the menuing of the game.
+
+3) Participate in mass setup and [resets]() of other assets and scripts. For example, [closing]() all the doors, [picking]() which exit is not locked, and [shutting]() off all the lights. All of these interactions involve calling public methods of attached scripts.
+
+It draws heavy inspiration from the Observer design pattern in its real-time communication with other scripts, albeit it does not directly code like one. It also harkens back to command pattern very lightly in the concept of one central unit calling methods of other subordinate game features, and objects performing different duties depending on certain conditions.
+
+*Menu Logic*: 
+
+The menus of this game are as follows:
+
+- `MainMenu`: The first menu of the game. Leads into the `IntroMenu`. Can be returned to from the `PauseMenu` or `EndMenu` by calling [ReturntoMenu]().
+
+- `IntroMenu`: A menu that shows an initial story blurb and hints about some button functionality. The user enters the game from a button on this menu.
+
+- `PauseMenu`: A menu that shows when the user pauses the game with `Esc`.
+
+- `LoreNotification`: A menu that shows when the user collects a lore piece.
+
+- `InventoryMenu`: A menu accessible with `I`. Allows the user to read any lore pieces they have collected.
+
+(Image of Menu transitions here)
+
+*Game States*: The state of the game is controlled using a series of booleansthat control what the GameController can and cannot do. The game states are as follows:
+
+- `Paused`: The game is paused. The user cannot perform any in-game functions. Called `true` alone when the user presses [Esc]() mid-game.
+
+- `InMenu`: Prevents the player from manually using [Esc]() to call `Pause()`. `Paused` + `InMenu` = Player is in a menu excluding the pause menu. Often `true` along with `Paused = true` in cases where we want to force-pause the game. 
+
+- `CanScare`: `CanScare` + `Paused` + `InMenu` = Game Over State. Upon [touching the monster](), this bool and `Paused` and `InMenu` all hit `true`. `CanScare` stays [active for 5 seconds ]()to allow the player to take the jump scare in full effect, then it is rendered `false`, leaving `Paused + InMenu` as the player transitions to an ending menu.
+
+- `!Paused + !InMenu  + !CanScare`: All of the above state variables are `false`. The player is actively playing the game as `GameController` awaits a response.
+
+- `HasBook`: The player has picked up the objective book. Allows the player to use exits. Allows `GameController` to properly respond to [signals received]() by ExitDoors.
+
+- `MonsterTriggered`: The lights are off and the monster is active. Set `true` once per game instance in [TriggerMonster]() in one of three ways.
+
+    1) The player has picked up the book.
+    2) The player reads a cursed lore piece.
+    3) 120 seconds have passed.
+
+    It is possible for the monster to be triggered despite the player not having the book.
+
+(Image of Game State Transitions here)
+
+Game states are somewhat of a callback to Command Pattern. 
+
+*Calls and Responses:* The defining feature of `GameController` is that both the control flow of the game and the actions of othe scripts follow a "call and response" system. If the . Here is a list of many different kinds of interactions:
+
+- 
+
+-
+
+-
+
+-
+
+This logic of real-time "call and response" is based on the Observer pattern, albeit using public methods of other scripts instead of delegates. Essentially, similar to how Pikmini recognize that their color has changed and alter their appearance accordingly, `GameController` recognizes that a boolean value of a connected script has changed, and alters the game state or state of other objects accordingly. 
 
 # Sub-Roles
 
 ## Audio
 
 **List your assets including their sources and licenses.**
+
+The CURSED sound effect that plays during the jump scare is a distorted, edited version of [this clip](https://soundbible.com/2085-Annoying-Speaker-Pulsing.html). The original sound effect is under public domain.
 
 **Describe the implementation of your audio system.**
 
