@@ -30,7 +30,12 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## Movement/Physics
 
-**Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
+The player moves in the standard physics model, he can interact with doors and objects to pick them up but he cannot go through stuff.
+The camera is in first person so to move the player we use the mouse to rotate the camera and arrows to move it around.
+
+The monster spawns after the player picks a certain object and start following the player. The monster can go through walls and rotates his body to be looking at the player at all times. Monster changes his position randomly every few seconds to find the player, once he is within certain distance of the player, the monster can start following him. If the player gets out of range (the set distance the monster can follow the player in) the monster goes back to randomly spawning around the map.
+If the monster and the player's hitboxes collide, the game ends and the monster catches the player.
+
 
 ## Animation and Visuals (Aaron Pan)
 
@@ -102,3 +107,8 @@ As for the screenshots, I made sure to include many of the things I listed in th
 ## Game Feel
 
 **Document what you added to and how you tweaked your game to improve its game feel.**
+
+- We added a start menu then a bit of lore at the beggening of the game to get the player excited (or scared) to start. When the player reads the lore and hits "go" the game starts.
+- We also added a stopwatch that starts counting when the player hits "go", the player can see the stopwatch on the top left of the screen.
+- When the players comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continues playin. The stopwatch is paused when the player is on the lore screen.
+- The player can also pause the game at anytime by hitting ESC, the stopwatch is paused when the game is.
