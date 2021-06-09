@@ -54,4 +54,17 @@ public class PauseMenuController : MonoBehaviour
     {
         this.gameObject.SetActive(true);
     }
+
+    void Update()
+    {
+        if (Input.GetButtonDown("Use"))
+        {
+            Activate();
+        }
+
+        if (Input.GetButtonDown("Quit"))
+        {
+            Quit();
+        }
+    }
 }

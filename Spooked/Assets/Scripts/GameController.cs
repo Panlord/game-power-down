@@ -348,7 +348,7 @@ public class GameController : MonoBehaviour
         }
 
         // Pause the game.
-        if (Input.GetKeyDown(KeyCode.Escape) && !this.InMenu)
+        if (Input.GetButtonDown("Cancel") && !this.InMenu)
         {
             if (!this.Paused)
             {   
@@ -359,7 +359,7 @@ public class GameController : MonoBehaviour
         }
 
         // Open / close inventory menu.
-        if (Input.GetKeyDown(KeyCode.I) && !this.InMenu)
+        if (Input.GetButtonDown("Inventory") && !this.InMenu)
         {
             this.Pause();
             if (this.Paused)
