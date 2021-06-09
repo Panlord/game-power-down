@@ -73,6 +73,7 @@ public class GameController : MonoBehaviour
 
         this.SetWinningDoor();
         this.SetSpawn();
+        this.RespawnAll();
         this.Pause();
     }
 
@@ -109,11 +110,25 @@ public class GameController : MonoBehaviour
     // Make all Lore Pieces and the book spawn again.
     private void RespawnAll()
     {
+        var randIndex = Random.Range(0, 21);
+        var bookObjects = GameObject.FindGameObjectsWithTag("CollectibleItem");
+
         for (int i = 0; i < 20; i++)
         {
             this.InteractableObjects.transform.GetChild(i).gameObject.SetActive(true);
         }
         this.Book.SetActive(true);
+
+        if (randIndex < 20)
+        {
+            var randObject = bookObjects[randIndex];
+            Debug.Log(randObject.name);
+            var randPos = randObject.transform.position;
+            randObject.transform.position = this.Book.transform.position;
+            this.Book.transform.position = randPos;
+            Debug.Log(randObject.transform.position);
+            Debug.Log(this.Book.transform.position);
+        }
     }
 
     // Close all doors.
@@ -199,6 +214,7 @@ public class GameController : MonoBehaviour
         this.SetWinningDoor();
 
         // Misc:
+        this.PlayerMove.ResetStam();
         this.MonsterTriggered = false;
         this.GUI.EndPrompt();
     }

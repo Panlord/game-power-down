@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] 
     private float RunningSpeed = 11.5f;
     [SerializeField]
-    private float WalkingSpeed = 7.5f;
-    private float HalfSpeed = 3.25f;
+    private float WalkingSpeed = 3f;
+    private float HalfSpeed = 1.5f;
     private Vector3 Velocity;
     private float Gravity = 20.0f;
     Vector3 move = Vector3.zero;
@@ -23,10 +23,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-        // Lock cursor
-        // Cursor.lockState = CursorLockMode.Locked;
-        // Cursor.visible = false;
         Audio = GetComponent<AudioSource>();
+    }
+
+    public void ResetStam()
+    {
+        Exhausted = false;
+        timeRan = 0f;
     }
 
     void Update()

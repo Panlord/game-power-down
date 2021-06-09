@@ -69,7 +69,7 @@ public class MonsterMovement : MonoBehaviour
         if(Vector3.Distance(player.transform.position, monster.transform.position)<=range || this.Omniscient)
         {
             //Debug.Log("monster nearby");
-            enemy.SetDestination(target.position);
+            enemy.SetDestination(player.transform.position);
             this.gameObject.GetComponent<NavMeshAgent>().speed = 10f;
         }
         // If enough time has passed and the monster doesn't see the player, warp.
