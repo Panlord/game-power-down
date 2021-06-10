@@ -97,7 +97,7 @@ Programmers' Note:
 Initial ideas and inspirations, including mockups can be found [here](https://docs.google.com/document/d/1pAIKXTZQsqHK7YEbp9sYmZLlQsECcZxRHhmE0cFxLmA/edit?usp=sharing).
 
 ### Colors
-
+As our game was oriented more towards playing with visibility and darkness, I opted for only 3 main colors to use for the UI: black, white, and red. The black and white standard fits the game's macabre style, and allowed for easy reading and text and button visibility. Red was a choice I picked up after learning about Erik's cursed lore function. As it could look like blood splatters and acted as a highlight color for menus, I sparingly used this color for special elements.
 
 ### Minimal UI  
 As people who played the game are aware, there is barely any non-diagetic (not part of the game world) UI elements that show at all times on the screen, except for the timer. This choice was made to help immerse the player in the world, by reducing most if not all distracting content from the player's screen. There is no health bar (the player just loses if caught) and no stamina bar (the player instead hears a heavy breathing audio to denote exhaustion). Since this is a first person survival horror game, trying to keep player immersion is especially important to the player experience.
