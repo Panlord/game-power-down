@@ -94,6 +94,8 @@ Programmers' Note:
 
 ## User Interface (Peter Lin)
 
+Initial ideas and inspirations, including mockups can be found [here](https://docs.google.com/document/d/1pAIKXTZQsqHK7YEbp9sYmZLlQsECcZxRHhmE0cFxLmA/edit?usp=sharing).
+
 ### Minimal UI  
 As people who played the game are aware, there is barely any non-diagetic (not part of the game world) UI elements that show at all times on the screen, except for the timer. This choice was made to help immerse the player in the world, by reducing most if not all distracting content from the player's screen. There is no health bar (the player just loses if caught) and no stamina bar (the player instead hears a heavy breathing audio to denote exhaustion). Since this is a first person survival horror game, trying to keep player immersion is especially important to the player experience.
 
