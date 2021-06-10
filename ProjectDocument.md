@@ -118,7 +118,7 @@ The [GameController](https://github.com/Panlord/game-power-down/blob/master/Spoo
 
 2) Perform a series of checks on attached scripts. Scripts send 'signals' in the form of public bool methods called in `GameController`'s `Update` method. If `GameController` notices a change (a positive 'signal') in a script, it applies the appropriate action. This "call and response" also controls the menuing of the game.
 
-3) Participate in mass setup and [resets]() of other assets and scripts. For example, [closing]() all the doors, [picking]() which exit is not locked, and [shutting]() off all the lights. All of these interactions involve calling public methods of attached scripts.
+3) Participate in mass setup and [resets](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L162) of other assets and scripts. For example, [closing](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L121) all the doors, [picking](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L81) which exit is not locked, and [shutting](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L143) off all the lights. All of these interactions involve calling public methods of attached scripts.
 
 It draws heavy inspiration from the Observer design pattern in its real-time communication with other scripts. It also harkens back to command pattern very lightly in objects performing different duties depending on their "command," or in this case, the state of the game.
 
@@ -126,15 +126,15 @@ It draws heavy inspiration from the Observer design pattern in its real-time com
 
 The menus of this game are as follows:
 
-- `MainMenu`: The first menu of the game. Leads into the `IntroMenu`. Can be returned to from the `PauseMenu` or `EndMenu` by calling [ReturntoMenu](). [script]()
+- `MainMenu`: The first menu of the game. Leads into the `IntroMenu`. Can be returned to from the `PauseMenu` or `EndMenu` by calling [ReturntoMenu](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L212). [script](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/MainMenuController.cs)
 
-- `IntroMenu`: A menu that shows an initial story blurb and hints about some button functionality. The user enters the game from a button on this menu. [script]()
+- `IntroMenu`: A menu that shows an initial story blurb and hints about some button functionality. The user enters the game from a button on this menu. [script](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/IntroMenuController.cs)
 
-- `PauseMenu`: A menu that shows when the user pauses the game with `Esc`. [script]()
+- `PauseMenu`: A menu that shows when the user pauses the game with `Esc`. [script](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/PauseMenuController.cs)
 
-- `LoreNotification`: A menu that shows when the user collects a lore piece. [script]()
+- `LoreNotification`: A menu that shows when the user collects a lore piece. [script](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/LoreNotification.cs)
 
-- `InventoryMenu`: A menu accessible with `I`. Allows the user to read any lore pieces they have collected. [script]()
+- `InventoryMenu`: A menu accessible with `I`. Allows the user to read any lore pieces they have collected. [script](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/InventoryMenuController.cs)
 
 All menus share the `Activate`, `Deactivate`, `Show`, and `IsActivated` methods:
 
@@ -146,21 +146,21 @@ All menus share the `Activate`, `Deactivate`, `Show`, and `IsActivated` methods:
 
 - `Show()`: Called by `GameController` to make menus visible when performing menu/state transitions.
 
-The `Activate`/`Deactivate` and `IsActivated()` relationship between the menu controllers and the `GameController` is part of the "call and response" structure of this game's logic, and echoes back to the Observer pattern, to which `GameController` notices that the state of a connected menu controller has changed. In this case, it notices that a menu button has been [activated](), and makes the proper menu transition.
+The `Activate`/`Deactivate` and `IsActivated()` relationship between the menu controllers and the `GameController` is part of the "call and response" structure of this game's logic, and echoes back to the Observer pattern, to which `GameController` notices that the state of a connected menu controller has changed. In this case, it notices that a menu button has been [activated](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L296), and makes the proper menu transition.
 
 *Game States*: The state of the game is controlled using a series of booleansthat control what the GameController can and cannot do. The game states are as follows:
 
-- `Paused`: The game is paused. The user cannot perform any in-game functions. Called `true` alone when the user presses [Esc]() mid-game, and when `true` alone, the user can also exit the pause menu with `Esc`
+- `Paused`: The game is paused. The user cannot perform any in-game functions. Called `true` alone when the user presses [Esc](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L345) mid-game, and when `true` alone, the user can also exit the pause menu with `Esc`
 
-- `InMainMenu`: Prevents the player from manually using `Esc` to call [Pause()](). `Paused` + `InMainMenu` = Player is in `MainMenu`, `IntroMenu`, or `EndMenu`. Often `true` along with `Paused = true` in cases where we want to force pause the game with no option to use `Esc`. 
+- `InMainMenu`: Prevents the player from manually using `Esc` to call [Pause()](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L226). `Paused` + `InMainMenu` = Player is in `MainMenu`, `IntroMenu`, or `EndMenu`. Often `true` along with `Paused = true` in cases where we want to force pause the game with no option to use `Esc`. 
 
-- `CanScare`: `CanScare` + `Paused` + `InMainMenu` = Game Over State. Upon [touching the monster](), this bool and `Paused` and `InMainMenu` all hit `true`. `CanScare` stays [active for 5 seconds ]()to allow the player to take the jump scare in full effect, then it is rendered `false`, leaving `Paused + InMainMenu` as the player transitions to an ending menu.
+- `CanScare`: `CanScare` + `Paused` + `InMainMenu` = Game Over State. Upon [touching the monster](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L487), this bool and `Paused` and `InMainMenu` all hit `true`. `CanScare` stays [active for 5 seconds](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L464) to allow the player to take the jump scare in full effect, then it is rendered `false`, leaving `Paused + InMainMenu` as the player transitions to an ending menu.
 
 - `!Paused + !InMainMenu  + !CanScare`: All of the above state variables are `false`. The player is actively playing the game as `GameController` awaits a response.
 
-- `HasBook`: The player has picked up the objective book. Allows the player to use exits. Allows `GameController` to properly respond to [signals received]() by ExitDoors.
+- `HasBook`: The player has picked up the objective book. Allows the player to use exits. Allows `GameController` to properly respond to [signals received](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L411) by ExitDoors.
 
-- `MonsterTriggered`: The lights are off and the monster is active. Set `true` once per game instance in [TriggerMonster]() in one of three ways.
+- `MonsterTriggered`: The lights are off and the monster is active. Set `true` once per game instance in [TriggerMonster](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L277) in one of three ways.
 
     1) The player has picked up the book.
     2) The player reads a cursed lore piece.
@@ -178,16 +178,16 @@ Game states are somewhat of a callback to Command Pattern, albeit with a lack of
 
 - Menus: `GameController` recognizes button presses in menus by checking if a menu's `IsActivated` return true. If it does, it figures out which menu sent it, which button was pressed, and then applies the appropriate menu transitions.
 
-- Exit Doors: `ExitDoorController` returns [a value]() depending on if it was interacted with and the current state of the game. It usually returns `-1` if the player has not interacted with it. When `GameController` recognizes that an `ExitDoorController` returned a [different value](), it applies logic depending on:
+- Exit Doors: `ExitDoorController` returns [a value](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/ExitDoorController.cs#L55) depending on if it was interacted with and the current state of the game. It usually returns `-1` if the player has not interacted with it. When `GameController` recognizes that an `ExitDoorController` returned a [different value](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L411), it applies logic depending on:
     1) The returned value is 0, indicating the player doesn't have the sketchbook.
     2) The returned value is 1, indicating the player does have the book, but the exit is locked.
     3) The returned value is 2, indicating the player has the book and found the right exit. `GameController` declares victory and transitions the game state.
 
-- Lore Pieces: When the player interacts with a lore piece, the [player's inventory]() indicates that it has obtained either a lore item or the objective book using `GotLore` and `GotBook`, respectively. Upon the `GameController` recognizing this change, it makes the following [adjustments]():
+- Lore Pieces: When the player interacts with a lore piece, the [player's inventory](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/Inventory.cs#L36) indicates that it has obtained either a lore item or the objective book using `GotLore` and `GotBook`, respectively. Upon the `GameController` recognizing this change, it makes the following [adjustments](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L441):
     1) If `GotLore` triggered, show the lore notification.
     2) If `GotBook` triggered, set the `HasBook` state to `true` and `TriggerMonster` if it hasn't already.
 
-- FlashLight and Monster: The `FlashLightController` has an internal counter that counts up as long as its on. Higher flashlight settings makes the count go up faster. When that is over 15, the `FlashLightController`'s [OverTime()]() method starts returning true. The `GameController` recognizes this, and [signals]() to the monster to become `omniscient`. In `MonsterMovement`, if the monster is `omniscient`, it will [chase the player]() regardless of where the monster is and if it can see the player.
+- FlashLight and Monster: The `FlashLightController` has an [internal counter](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/FlashLightController.cs#L115) that counts up as long as its on. Higher flashlight settings makes the count go up faster. When that is over 15, the `FlashLightController`'s [OverTime()](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/FlashLightController.cs#L36) method starts returning true. The `GameController` recognizes this, and [signals](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L499) to the monster to become `omniscient`. In `MonsterMovement`, if the monster is `omniscient`, it will [chase the player](https://github.com/Panlord/game-power-down/blob/80630e44b867a99aa8c7cd5fb50d954198e58072/Spooked/Assets/Scripts/GameController.cs#L499) regardless of where the monster is and if it can see the player.
 
 This logic of real-time "call and response" is based on the Observer pattern, albeit using public methods of other scripts instead of delegates. Essentially, similar to how Pikmini recognize that their color has changed and alter their appearance accordingly, `GameController` recognizes that a boolean value of a connected script has changed, and alters the game state or state of other objects accordingly. 
 
