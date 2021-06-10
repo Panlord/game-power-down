@@ -188,6 +188,7 @@ For player movement, I used the old unity system and allowed for sprinting with 
 - I: Enter and exit inventory menu
 - Left Click: change flashlight intensity 
 - E: Interact with lore items and doors 
+- L Shift: Sprint
 
 ## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
@@ -289,6 +290,7 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 **Describe the implementation of your audio system.**
 
 **Document the sound style.** 
+The sound style is supposed to be like those of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
 
 ## Gameplay Testing
 
