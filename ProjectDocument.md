@@ -292,7 +292,7 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 - The main track being played, Alone at Twilight, is played by the AudioManager gameobject. It had a script to play another track but I disabled it because I felt the first track was more subtle. 
 - The monster has an Audio Source component attached to it and in one of the scripts I added two AudioClips. One is for his gutteral growl and another for a higher pitched demonic screech. 
 
-**Document the sound style.** 
+**Document the sound style.**  
 - The sound style is supposed to be like those of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
 
 ## Gameplay Testing
