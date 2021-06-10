@@ -167,7 +167,7 @@ The game is mainly based on keyboard and mouse inputs but it is also completely 
 **Mouse + Keyboard**
 - Player movement is done with WASD and camera look is done with the mouse. 
 - I wrote the MouseLook.cs script and allowed for both mouse and joystick inputs. 
-- I used the Unity's new Input System (https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html) to handle the the mouse look for gamepads. 
+- I used the Unity's new [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html) to handle the the mouse look for gamepads. 
 
 ```C#
     y =  Gamepad.current.rightStick.x.ReadValue() * JoystickSens * Time.deltaTime;
