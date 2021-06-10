@@ -303,6 +303,13 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 **Describe the implementation of your audio system.**
 - The main track being played, Alone at Twilight, is played by the AudioManager gameobject. It had a script to play another track but I disabled it because I felt the first track was more subtle. 
 - The monster has an Audio Source component attached to it and in one of the scripts I added two AudioClips. One is for his gutteral growl and another for a higher pitched demonic screech. 
+- I didn't want every screech from the monster to sound the same so I gave the pitch of the screech a range of randomized pitches and volume levels. A similar treatment was given to the monster's growl. 
+- The ```footsteps.cs``` script also uses randomized pitches and volumes in order for the footsteps to sound more natural. This script is a part of the player and it accesses the player's AudioSource component. 
+```C# 
+    Audio.volume = Random.Range(0.3f, 0.45f);
+    Audio.pitch = Random.Range(0.8f, 1.1f);
+    Audio.Play();
+```
 
 **Document the sound style.**  
 - The sound style is supposed to be like those of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
