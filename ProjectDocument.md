@@ -313,6 +313,8 @@ This logic of real-time "call and response" is based on the Observer pattern, al
     Audio.Play();
 ```
 
+The monster screech was given a cooldown period in order to prevent the monster spamming it. The growl doesn't have this but its a feature not a bug :)
+
 **Document the sound style.**  
 - The sound style is supposed to be like that of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
 
