@@ -104,7 +104,16 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## User Interface
 
-**Describe your user interface and how it relates to gameplay. This can be done via the template.**
+**Typeface Choice**  
+I decided to use one typeface ([YitziScript](https://yitzilitt.itch.io/yitziscript)) for the entire game. This style of font matched what we wanted: handwritten, slightly creepy text. As a lot of the lore was based on written (not digital) notes, I looked for something that could emulate physical script, and ended up with this one. The decision was made to not add other types of fonts, as consistency and continuity with the game feel was an important aspect that we wanted to address. Everything from the menus, notes, and buttons use the same typeface to keep the player immersed in the game.
+
+**Inventory**  
+This is actually one of the bigger parts of the UI that I'm proud of creating. Upon pressing `I`, the player opens up a list of their collected items, denoted by tabs on the left side, and a visual representation of the note and it's text on the right side.  
+
+
+**Diegetic Brightness Meter on Flashlight**  
+As the flashlight is an integral tool in helping the player progress through the game with the lights off, emphasis was added to make the flashlight a part of the world instead of just on the side. Since there are multiple brightness levels (including off), I decided to add brightness meters via `Canvas` `Image`s (circles) on the flashlight itself. This was done by adding a `Sphere` `GameObject` on the flashlight object and attaching [`ClampMeter.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ClampMeter.cs) that takes the "meters" as `SerializedField`s and projects them onto the screen space based on the `Sphere`'s world space.
+
 
 ## Movement/Physics (Sarah Almuqri and Aaron Pan)
 
@@ -325,7 +334,8 @@ As for the screenshots, I made sure to include many of the things I listed in th
 
 - We added a start menu then a bit of lore at the beginning of the game to get the player excited (or scared) to start. When the player reads the lore and hits "go" the game starts.
 - We also added a stopwatch that starts counting when the player hits "go", the player can see the stopwatch on the top left of the screen.
-- When the player comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continue playing. The stopwatch is paused when the player is on the lore screen.
-- The player can also pause the game at any time by hitting ESC, the stopwatch is paused when the game is.
+- When the player comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, they can close it and continue playing. The stopwatch is paused when the player is in any menu.
+- The player can also pause the game at any time by hitting ESC.
 - There are lore items scattered around the map so the player can attempt to understand the story while playing the game.
-- Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors we decided not to
+- Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors we decided not to.
+- A looped animated screen was added to the start menu to set the tone and mood for the rest of the game. This was done via switching to [`MainMenuCamera`](https://github.com/Panlord/game-power-down/blob/48e054be9381f1dbe74f3e914687beda097e2e53/Spooked/Assets/Scripts/MainMenuController.cs#L52) and slwoly moving it foward in a direction.
