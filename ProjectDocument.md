@@ -160,7 +160,7 @@ Animations for the zombie came with the asset, though Erik created the [jumpscar
 The game is mainly based on keyboard and mouse inputs but it is also completely playable on a a PS4 controller (and possibly other controllers). 
 **Mouse + Keyboard**
 - Player movement is done with WASD and camera look is done with the mouse. 
-
+- I wrote the MouseLook.cs script and allowed for both mouse and joystick inputs. 
 - I used the Unity's new Input System (https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html) to handle the the mouse look for gamepads. 
 
 ```C#
@@ -179,6 +179,8 @@ For player movement, I used the old unity system and allowed for sprinting with 
     float z = Input.GetAxis("Vertical") * (isRunning ? RunningSpeed : WalkingSpeed);
 ```
 
+The other input buttons were done through the old Input Manager. This allowed me to only write the input once instead of having to write a separate version for kb+m and gamepad. 
+
 ### PS4 Dualshock Controls
 - Left joystick: player movement
 - Right joystick: camera look
@@ -195,6 +197,7 @@ For player movement, I used the old unity system and allowed for sprinting with 
 - Left Click: change flashlight intensity 
 - E: Interact with lore items and doors 
 - L Shift: Sprint
+
 
 ## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
@@ -297,9 +300,11 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 
 **Describe the implementation of your audio system.**
 - The main track being played, Alone at Twilight, is played by the AudioManager gameobject. It had a script to play another track but I disabled it because I felt the first track was more subtle. 
-- The monster has an Audio Source component attached to it and in one of the scripts I added two AudioClips. One is for his gutteral growl and another for a higher pitched demonic screech. 
+- The monster has an Audio Source component attached to it and in one of the scripts (MonsterMovement.cs) I added two AudioClips. One is for his gutteral growl and another for a higher pitched demonic screech. 
 - I didn't want every screech from the monster to sound the same so I gave the pitch of the screech a range of randomized pitches and volume levels. A similar treatment was given to the monster's growl. 
 - The ```footsteps.cs``` script also uses randomized pitches and volumes in order for the footsteps to sound more natural. This script is a part of the player and it accesses the player's AudioSource component. 
+- Every door and double door prefab was given an opening and closing sound which was played when the animation was triggered. 
+
 ```C# 
     Audio.volume = Random.Range(0.3f, 0.45f);
     Audio.pitch = Random.Range(0.8f, 1.1f);
@@ -307,7 +312,7 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 ```
 
 **Document the sound style.**  
-- The sound style is supposed to be like those of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
+- The sound style is supposed to be like that of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
 
 ## Gameplay Testing
 
