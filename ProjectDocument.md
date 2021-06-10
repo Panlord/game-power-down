@@ -333,7 +333,7 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 
 ## Narrative Design (Erik Trinh)
 
-The original draft of the narrative is [here](https://docs.google.com/document/d/1R4GfQhAeZIhtjAVn3RB6_rSJpHV9qXOw5RC4De3xET0/edit?usp=sharing). Note that parts here and there might be different from the final product. It is a story of human perserverance and human nature at the brink of despair. The initial premise is that you are the friend of an assistant of a world-renowned professor. You are tasked with obtaining a particular sketchbook from his facility. They player gets this premise, their objective, and hints at controls in an [introduction screen](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/Intro.PNG) (Note, story text here is tenative).
+The original draft of the narrative is [here](https://docs.google.com/document/d/1R4GfQhAeZIhtjAVn3RB6_rSJpHV9qXOw5RC4De3xET0/edit?usp=sharing). Note that parts here and there might be different from the final product. It is a story of human perseverance and human nature at the brink of despair. The initial premise is that you are the friend of an assistant of a world-renowned professor. You are tasked with obtaining a particular sketchbook from his facility. They player gets this premise, their objective, and hints at controls in an [introduction screen](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/Intro.PNG) (Note, story text here is tentative).
 
 There are many ways in which the player experiences in this narrative in-game.
 
