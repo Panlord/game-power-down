@@ -112,8 +112,18 @@ As there are many interactable objects in the 3-D space (notes, doors, etc.) the
 
 The [special cases](https://github.com/Panlord/game-power-down/blob/d4a9319d83b802c3e79172a025307512d54c91dd/Spooked/Assets/Scripts/ExitDoorController.cs#L300) are if the player approaches an exit door without the objective item, or a locked door. In that case, then the on-screen prompt tells the player to either retrieve the book, or that the door is locked, omitting the `[E]` to show that the player cannot interact with the item.
 
+**Relevant Scripts:**
+- [`CollectibleItemController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/CollectibleItemController.cs)
+- [`DoorController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/DoorController.cs)
+- [`DoubleDoorController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/DoubleDoorController.cs)
+- [`ExitDoorController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ExitDoorController.cs)
+- [`ObjectiveItemController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ObjectiveItemController.cs)
+
 ### Typeface Choice
 I decided to use one typeface ([YitziScript](https://yitzilitt.itch.io/yitziscript)) for the entire game. This style of font matched what we wanted: handwritten, slightly creepy text. As a lot of the lore was based on written (not digital) notes, I looked for something that could emulate physical script, and ended up with this one. It also especially helped showcase the (monster) professor's descent into madness when tHe TeXt ShIFtEd To ThIs StYlE. The decision was made to not add other types of fonts, as consistency and continuity with the game feel was an important aspect that we wanted to address. Everything from the menus, notes, and buttons use the same typeface to keep the player immersed in the game.
+
+### Menus and Buttons  
+Many of the menus are 
 
 ### Inventory
 This is actually one of the bigger parts of the UI that I'm proud of creating. Upon pressing `I`, the player opens up a list of their collected items, denoted by tabs on the left side, and a visual representation of the note and its text on the right side. The player can swap between notes to view each lore piece and understand how the game world came to be. This is created via a combination of three scripts: [`Inventory.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/Inventory.cs] (which trakcs what notes the player has collected and generates a random note whenever an item is collected), [`InventoryMenuController.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/InventoryMenuController.cs] (which handles which note is currently shown), and [`ListCreator.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ListCreator.cs] (which manages the scroll offset of the notes tab on the left if there are more tabs than fits on the screen).
