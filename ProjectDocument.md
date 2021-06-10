@@ -128,10 +128,10 @@ As the flashlight is an integral tool in helping the player progress through the
 
 ## Movement/Physics (Sarah Almuqri and Aaron Pan)
 
-The player moves in the standard physics model, he can interact with doors and objects to pick them up but he cannot go through stuff.
+The player moves in the standard physics model, they can interact with doors and objects to pick them up but they cannot go through stuff.
 The camera is in first person so to move the player we use the mouse to rotate the camera and arrows to move it around.
 
-The monster spawns after the player picks a certain object and start following the player. The monster can go through walls and rotates his body to be looking at the player at all times. Monster changes his position randomly every few seconds to find the player, once he is within certain distance of the player, the monster can start following him. If the player gets out of range (the set distance the monster can follow the player in) the monster goes back to randomly spawning around the map.
+The monster spawns after the player picks a certain object and start following the player. The monster can go through walls and rotates his body to be looking at the player at all times. Monster changes his position randomly every few seconds to find the player, once he is within certain distance of the player, the monster can start following them. If the player gets out of range (the set distance the monster can follow the player in) the monster goes back to randomly spawning around the map.
 If the monster and the player's hitboxes collide, the game ends and the monster catches the player.
 
 
@@ -326,6 +326,14 @@ The monster screech was given a cooldown period in order to prevent the monster 
 Raw results and comments can be found collected [here](https://docs.google.com/document/d/1ymze7tGTy6_YqTQDKtMBUd_CJmUSApx4JNq94ljhRxw/edit?usp=sharing).
 
 ### Key Findings
+- Several people enjoyed the ambient music that played throughout the game. The somber audio created a suspenseful atmosphere that left the player wondering what would happen. The music also cued people in that they were about to play a horror game. (Victor did an amazing job with the audio)
+- The lore really added to the game's depth and player's understanding of the underlying story. However, players felt that the lore bits did little for the core gameplay besides add content. (Erik's worldbuilding was amazingly detailed and diverse)
+- Movement in the game was somewhat glitchy, with doors pushing the player when opened, and the monster being able to walk through walls sometimes. (Sarah did great with the physics scripts; it's certainly difficult with 3-D spaces but despite the difficulties, she was able to make a functional major game element. [also the monster's ability to wall hack is now counted a feature and not a bug])
+- Some players found the map to be too big with too many rooms, while others found the maze-like structure appealing to their sense of exploration. (Aaron did a phenomenal job with creating the entire map level from individual prefab assets)
+
+### Problems and Solutions
+1.  **Problem:** asdvcas
+    ** Solution:** asdcasdc
 
 ## Narrative Design (Erik Trinh)
 
