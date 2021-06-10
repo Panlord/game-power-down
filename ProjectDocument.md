@@ -89,6 +89,13 @@ For the mouse it was done with the older way
     XRotation += Input.GetAxis("Mouse Y") * MouseSensitivity;
 ```
 
+For player movement, I used the old unity system and allowed for sprinting
+
+```C#
+    float x = Input.GetAxis("Horizontal") * (isRunning ? RunningSpeed : WalkingSpeed);
+    float z = Input.GetAxis("Vertical") * (isRunning ? RunningSpeed : WalkingSpeed);
+```
+
 
 ## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
