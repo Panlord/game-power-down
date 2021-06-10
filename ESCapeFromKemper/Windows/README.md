@@ -3,6 +3,8 @@
 ## Controls  
 WASD - move  
 left shift - run  
+mouse - look  
 left mouse click - change flashlight brightness  
 i - open inventory  
+e - interact  
 escape - pasue  
