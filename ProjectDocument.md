@@ -308,6 +308,7 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 - The footstep sound comes from [John Leonard French](https://assetstore.unity.com/packages/audio/sound-fx/western-audio-music-67788). This audio is free from the unity store.
 - The main music playing throughout the game is from [DHSFX](https://assetstore.unity.com/packages/audio/ambient/unnerving-ambient-sounds-horror-game-sound-effect-pack-30-sounds-170590). This audio is free from the unity store.
 - The out of breath sound effect comes from [this site again](https://www.fesliyanstudios.com/royalty-free-sound-effects-download/breathing-150). It is royalty free. 
+- The flashlight toggle sound comes from [InspectorJ Sound Effects](https://assetstore.unity.com/packages/audio/sound-fx/96-general-library-free-sample-pack-185157). It is free from the unity store. I edited the track in order for it to sound less like a mouse click and more like a flashlight click. 
 - The CURSED sound effect that plays during the jump scare is a distorted, edited version of [this clip](https://soundbible.com/2085-Annoying-Speaker-Pulsing.html). The original sound effect is under public domain.
 
 **Describe the implementation of your audio system.**
