@@ -187,7 +187,6 @@ For player movement, I used the old unity system and allowed for sprinting with 
 
 The other input buttons were done through the old Input Manager. This allowed me to only write the input once instead of having to write a separate version for kb+m and gamepad. 
 
-
 ### PS4 Dualshock Controls
 - Left joystick: player movement
 - Right joystick: camera look
@@ -293,7 +292,7 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 
 # Sub-Roles
 
-## Audio
+## Audio (Victor Palencia)
 
 **List your assets including their sources and licenses.**
 ### Audio Assets
@@ -323,7 +322,7 @@ The monster screech was given a cooldown period in order to prevent the monster 
 **Document the sound style.**  
 - The sound style is supposed to be like that of psychological horror games like Silent Hill or Resident Evil 7. The player should not be distracted by the music, instead, the music should allow the player to be immersed in our world. 
 
-## Gameplay Testing
+## Gameplay Testing (Peter Lin)
 
 **Add a link to the full results of your gameplay tests.**
 
