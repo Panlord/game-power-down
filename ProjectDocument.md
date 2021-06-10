@@ -104,7 +104,15 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## User Interface
 
-**Diegetic Brightness Meter on Flashlight:** As the flashlight is an integral tool in helping the player progress through the game with the lights off, emphasis was added to make the flashlight a part of the world instead of just on the side. Since there are multiple brightness levels (including off), I decided to add brightness meters via `Canvas` `Image`s (circles) on the flashing itself. This was done by adding a `Sphere` `GameObject` on the flashlight object and attaching `ClampMeter.cs` that takes the "meters" as `SerializedField`s and [projects them](https://github.com/Panlord/game-power-down/blob/5e4d7ea27a8ac277cc7fbe44f4ffeeee40095067/Spooked/Assets/Scripts/ClampMeter.cs#L15) onto the screen space based on the `Sphere`'s world space.
+**Typeface Choice**
+I decided to use one typeface ([YitziScript](https://yitzilitt.itch.io/yitziscript)) for the entire game. This style of font matched what we wanted: handwritten, slightly creepy text. As a lot of the lore was based on written (not digital) notes, I looked for something that could emulate physical script, and ended up with this one. The decision was made to not add other types of fonts, as consistency and continuity with the game feel was an important aspect that we wanted to address. Everything from the menus, notes, and buttons use the same typeface to keep the player immersed in the game.
+
+**Inventory**
+This is actually one of the bigger parts of the UI that I'm proud of creating. Upon pressing `I`, the player opens up a list of their collected items, denoted by tabs on the left side, and a visual representation of the note and it's text on the right side.  
+
+
+**Diegetic Brightness Meter on Flashlight**
+As the flashlight is an integral tool in helping the player progress through the game with the lights off, emphasis was added to make the flashlight a part of the world instead of just on the side. Since there are multiple brightness levels (including off), I decided to add brightness meters via `Canvas` `Image`s (circles) on the flashlight itself. This was done by adding a `Sphere` `GameObject` on the flashlight object and attaching [`ClampMeter.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ClampMeter.cs) that takes the "meters" as `SerializedField`s and projects them onto the screen space based on the `Sphere`'s world space.
 
 
 ## Movement/Physics (Sarah Almuqri and Aaron Pan)
