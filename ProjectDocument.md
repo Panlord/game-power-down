@@ -335,21 +335,27 @@ Raw results and comments can be found collected [here](https://docs.google.com/d
 1.  
     *   **Problem:** The player movement and mouse sensitivity felt too fast, which caused slight motion sickness for one tester (and dev). Additionally, the fast speed detracked from the horror feeling and atmospheric exploration, as players could z o o m through rooms. 
     *   **Solution:** We heavily reduced the player speed and mouse sensitivity to make the game more slow paced.
+
 2.  
     *   **Problem:** The map was bright enough (even with ALL the lights off) to warrent never using the flashlight, making many testers confused on the flashlight's practical use.
     *   **Solution:** A black screen was added via `Canvas` `Image` to the player's screen when the monster was triggered and the flashlight was off. This essentially forces the player to use the flashlight as they literally cannot see anything when it is off. When the monster is triggered and the flashlight is on, the black screen becomes slightly transparent to emulate light coming out while still making the entire map darker.
+
 3.
     *   **Problem:** The gameplay felt too short, as the monster would spawn after 60 seconds (maximum) and find the player too quickly, with no successful way to run or hide from the monster. Additionally, players did not have a way to know if the monster was close or right behind them, prompting for what felt like out of nowhere jumpscares.
     *   **Solution:** We increased the monster's automatic spawn time to 2 minutes to allow for further safe exploration. We also added audio to the monster to cue when it teleports and has found the player. Additioanlly, the monster now despawns when the player's flashlight is off, giving the player a chance to run away at the cost of visibility. Adding this last part also gave a chance for the player to explore more and collect lore pieces instead of just scrambling for the exit, according to one tester.
+
 4.
     *   **Problem:** One tester felt it was weird that 'ESC' did not close any open menus.
     *   **Solution:** Support for this feature was added back after testing in the build. Initially this interaction was present, but pressing ESC in the Unity Editor causes the mouse to disconnect from the game, which doesn't happen in the actual application, so it was removed in earlier builds.
+
 5.
     *   **Problem:** Some testers believed that the objective wasn't super clear at all times.
     *   **Solution:** We edited the intro to try to emphasize the book-finding part. We also added prompts upon viewing exit doors to either find the book or that the door was locked, suggesting that the player find another exit.
+
 6.
     *   **Problem:** One ambitious tester memorized the layout and spedran the game in under 10 seconds.
     *   **Attmpted Solution**: We actually tried to combat this by making the player spawn in a random location and randomly set 1 of 3 potential exits as the winning exit. After learning about this, we tried to randomly swap objects around to force exploration, but due to bugs and unoptimal placements, we decided to scrap the idea.
+
 
 ## Narrative Design (Erik Trinh)
 
