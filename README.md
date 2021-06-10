@@ -20,3 +20,8 @@ If the monster catches you, game over, you lose.
 If you manage to leave Kemper with the book, that's a victory.
 
 P.S. feel free to check out [ProjectDocument.md](https://github.com/Panlord/game-power-down/blob/aa3f41c54b6c0f3c9a3aff1fea39c38ba7c8a5b2/ProjectDocument.md) for more information about the game.
+
+## Links: ##
+- [Game Trailer](https://www.youtube.com/watch?v=eUepg_Dtnwc) : get aquick feel of the game
+- [Game Presskit](https://panlord.github.io/game-power-down/EscapeFromKemper/index.html) : learn a bit more about the game with links to download
+- [Team Presskit](https://panlord.github.io/game-power-down/) : learn about the team, team VESPA
