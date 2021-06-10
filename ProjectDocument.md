@@ -333,7 +333,7 @@ Raw results and comments can be found collected [here](https://docs.google.com/d
 
 ### Problems and Solutions
 1.  
-    *   **Problem:**
+    *   **Problem:** The player movement and mouse sensitivity felt too fast, which caused slight motion sickness for one tester (and dev). Additionally, the fast speed did not allow for an atmospheric exploration as players could z o o m through rooms. 
     *   **Solution:**
 2.  **Problem:** asdvcas
     ** Solution:** asdcasdc
