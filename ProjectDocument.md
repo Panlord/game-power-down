@@ -2,23 +2,92 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+**"I am sorry to put this task onto you, but you are the only one who can do it.
+Within this facility is an extremely important sketchbook that you must procure. The lives of many hang in the balance."**
+
+There is an abandoned facility in town. You have been tasked with obtaining a particular red book from this facility under the claim that it will save lives. 
+
+Flashlight in hand, you enter the facility and find notes scattered around. Among them is the deep red book. As you pick it up, and read some of the notes as you go, the lights shut off, and you hear some odd noises in the distance. You power your flashlight off, and swear to yourself to only use it when necessary. 
+
+But, you can't see. You have to turn it back on at some point.
+
+It's all or nothing. **You must make your escape**.
+
+Walk, sprint, explore, open doors and pick up notes as you learn the story of what once transpired, or what is still going on, inside this supposedlty abandoned building.
+
+(Adapted from Erik's [Lore Synopsis](https://docs.google.com/document/d/1R4GfQhAeZIhtjAVn3RB6_rSJpHV9qXOw5RC4De3xET0/edit?usp=sharing))
 
 ## Gameplay Explanation ##
 
+### Erik's Ultimate Gameplay Manual and Strategy Guide ###
 
-The player can press "start" to start the game. When it's pressed, the player can read about the lore and key mappings then click "go" to start the actual gameplay.
+Controls (PC):
 
-The player is expected to walk around the map using the standard movement keys (arrows, WASD, ...) and use the mouse to rotate. Player will go from one room to another looking for the "red book". To enter rooms and pick up the book you press "E". While looking for the book, the player may come across other lore items which he can also pick and read about; those items are also picked by pressing "E".
-To access the inventory or pause the game, player can press ESC, which also pauses the timer (you are trying to beat the game as fast as possible so the timer is there to show you how long you spend each round)
-After the player picks the objective book, he can try to escabe by looking for the double door with the Exit sign. There are multiple exits but only one works.
-After picking up the book, all the lights turn off, but you can use the flashlight by clicking the left click to turn it on and adjust its brightness.
-Picking up the object tregers the monster to spawn, so you will try to leave the map as fast as possible before the monster catches you.
-If you are caught by the monster, the game ends and you lose. The only way to win is to pick up the book and leave without being caught.
+- WASD: Move, navigate inventory menu
 
-**If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
+- Left Click: Toggle Flashlight
 
-Everybody became exterminators with how many bugs we all killed.
+- Shift: Sprint
+
+- E: Interact with doors and items
+
+- I: Open the Inventory Menu
+
+- Esc: Pause the game or close a menu
+
+**Objective**: Search the facility and collect a particular red book. Then, exit the facility using one of the three exits that is unlocked.
+
+**Basic Mechanics**:
+
+- The flashlight has 3 light settings that you can cycle through. Higher levels provide more visibility. Do note the monster is sensitive to the flashlight: keeping it on for too long will cause the monster to chase you from anywhere. Higher flashlight levels lower the time needed for this to happen.
+    - The threshold for "too long" is 15. 
+    - Level 1 flashlight adds 1 per second.
+    - Level 2 flashlight adds 2 per second.
+    - Level 3 flashlight adds 3 per second.
+- Sprinting is very fast compared to walking. However, the amount of time you spend sprinting acculumates as you run and decreases as you walk. If this amount reaches 1.5, you will become exhausted and must wait 1.5 seconds before sprinting again.
+
+**Lore**: There are 20 lore pieces to collect. 7 of them are "cursed." They contain vital information about the game's story and are a side task.
+- Pressing `E` on a lore piece will pick it up and display its text.
+- Cursed entries are different in that the page is soaked in blood and are written in a very strange fashion.
+- Note that after finishing reading a cursed entry, if they have already not done so, the lights will shut off and the monster will spawn.
+- Press `I` to open up the inventory menu. Here you can press up and down (WS or the up and down arrows) to navigate through and read the lore pieces you have already read.
+
+**Danger State**: The danger state is a condition in which the lights turn pitch black and the monster is awakened. It is so dark that usage of the flashlight is almost always necessary.
+
+It is triggered only once per game instance when any of the three conditions are met
+
+1) The player picks up the red book.
+2) The player opens a cursed lore piece.
+3) Neither 1 nor 2 happened and 120 seconds have passed.
+
+It is possible for the danger state to be active when the player does not have the book. This situation is the most dangerous. Try to get to the exit as soon as possible.
+
+**The Monster**: The monster appears during the danger state.
+- It is only active while the flashlight is on. If you turn off the flashlight while the monster is active it will disappear.
+- It can walk through walls and doors. Beware of rooms.
+- If you are within the monster's vision range, it will chase you. If you hear a loud growl, the monster has noticed you and is currently chasing you.
+- If the player has the flashlight out for too long, it will chase the player regardless of where they are. This is known as the **omniscient** state.
+- If it is a considerable distance away, it will periodically teleport until it ends up in position such that it notices you. It makes a high pitched sound every time it teleports.
+- Touching the monster is a **game over**.
+
+**Escaping**: After picking up the book, you still need to escape the facility. There are three exits, each with large signs above them. Note that only one exit works and the other two will notify you that they are locked.
+
+**Helpful Tips**
+
+- Learn the map. All of the obtainable items have preset spawn positions. The player has 3 possible spawn points. Learn the position of the red book and the best path from any of the spawn positions. This part is key if you are a speedrunner.
+
+- Minimize usage of the flashlight as much as you can. The monster is only active while the flashlight is on. Try not to use it while inside rooms if you know the monster is nearby, since it can bypass walls.
+
+- Make sure that you understand the monster's audio cues. If you hear the monster growl but do not see them, always check behind you.
+
+- If the monster is headed straight in your direction, either 
+
+    a) turn off the flashlight and walk far enough away such that when you turn the flashlight back on, the monster no longer sees you.
+
+    b) make a sharp turn to the left or the right when it gets very close, as the monster is very poor at making turns.
+
+Programmers' Note:
+- Everybody became exterminators with how many bugs we all killed.
 
 # Main Roles #
 
@@ -232,7 +301,7 @@ There are many ways in which the player experiences in this narrative in-game.
 
 - `LoreNotification`: Handles displaying lore pieces upon picking them up. `Set()` takes a `LoreItem` and loads its text for display. The class contains menu logic that works in tandem with `GameController` to decide when it is appropriate to open and close this notification (*See: Game Logic*).
 
-I also created [dummy lore menu](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreInventoryBeta.PNG), [display](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreDisplayBeta.PNG), and lore item raycast [scripts](https://github.com/Panlord/game-power-down/commit/52ae93d80c9794557238fd68873f5b071d21e699) as proofs of concept. Peter later took these scripts and cosolidated and optimized them into the menus you see in the *Assets and Displays* section.
+I also created [dummy lore menu](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreInventoryBeta.PNG), [display](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/LoreDisplayBeta.PNG), and lore item raycast [scripts](https://github.com/Panlord/game-power-down/commit/52ae93d80c9794557238fd68873f5b071d21e699) as proofs of concept. Peter later took these scripts and consolidated and optimized them into the menus you see in the *Assets and Displays* section.
 
 *Gameplay and Atmosphere*: Aside from adding to the user experience, the lore system has little effect on the gameplay objective (getting the sketchbook). However, one touch is that "cursed" lore entries (cOnTaInS tExT fOrMaTtEd lIkE tHiS) will automatically shut off the lights and make the monster active. Along with the fact that [cursed entries have traces of blood on them](https://github.com/Panlord/game-power-down/blob/master/Pics%20and%20Diagrams/CursedLore.PNG), this is supposed to make the player feel that something is definitely amiss and that they should move fast, if able.
 

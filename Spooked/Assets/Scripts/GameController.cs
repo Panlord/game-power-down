@@ -268,7 +268,7 @@ public class GameController : MonoBehaviour
         var inventory = this.PlayerInventory.GetInventory();
         if (inventory[inventory.Count - 1].IsCursed() && !this.MonsterTriggered)
         {
-            Debug.Log("Trigger mosnter via curse");
+            Debug.Log("Trigger monster via curse");
             this.TriggerMonster();
         }
     }
@@ -280,6 +280,7 @@ public class GameController : MonoBehaviour
         this.CloseAllDoors();
         this.LightsOut();
         this.HallwayLights.SetActive(false);
+        this.FlashLight.TurnOff();
         
         this.Monster.SetActive(true);
         this.Monster.GetComponent<Animator>().enabled = true;

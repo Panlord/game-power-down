@@ -1,4 +1,4 @@
-// Author: Erik.
+// Author: Erik
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -34,7 +34,7 @@ public class LoreManager : MonoBehaviour
         this.BaseList.Add(new LoreItem("EhEhEhE\n\ntHe tEsTs aRe gOiNg vErY WeLl\n\nThOsE TeStS\n\ntEsTs tO RiD ThAt tHaT ThAt 'ThInG'\n\nThAnKs tO ThEsE NeW MiCe\n\nBuT I LeArN My lEsSoN\n\nnO DeCaY ThIs tImE\n\nsHe wIlL HaVe mIcE To aCcOmPaNy hEr\n\nInStEaD!!!!!!", "??? 03", true));
         this.BaseList.Add(new LoreItem("My hEaD HuRtS\n\niT HURTS\n\nwHeRe aM I\n\nwHaT Am i\n\nI Do nOt kNoW aNyThInG BuT ThIs PAIN\n\noH\n\nA NeW MoUsE HaS StEpPeD In\n\nThEy wAnT To jOiN ThE OtHeRs", "??? 04", true));
         this.BaseList.Add(new LoreItem("mY My mY\n\nwHaT An iNtErEsTiNg rEaD\n\ntHe pIcTuReS ArE So dEtAiLeD\n\ntHe fIrSt pAgE WaS Of a bEaUtIfUl wOmAn\n\nI WiSh i kNeW HeR\n\ntHe oThEr pIcTuReS\n\nmAnY FaCeS MaNy eXpReSsIoNs mAnY EmOtIoNs\n\nAhAhAhAhAhAhAhAhAhAhA\n\nsO VeRy iNtRiGuInG", "??? 05", true));
-        this.BaseList.Add(new LoreItem("I’m glad you made it inside my friend.\n\nThat book should be somewhere around here. \n\nI don’t quite remember where I left it, but I know a few things that can help you.\n\nI might have left it lying somewhere in the hallways. \n\nAnother thing. \n\nIt’s fine to keep your flashlight and map on at all times.\n\nThis building is abandoned. You’re not in any particular danger.", "??? 06", true));
+        this.BaseList.Add(new LoreItem("I’m glad you made it inside my friend.\n\nThat book should be somewhere around here. \n\nI don’t quite remember where I left it, but I know a few things that can help you.\n\nI might have left it lying somewhere in the hallways. \n\nAnother thing. \n\nIt’s fine to keep your flashlight on at all times.\n\nThis building is abandoned. You’re not in any particular danger.", "??? 06", true));
 
         this.PossibleEntries = new List<LoreItem>(this.BaseList);
     }

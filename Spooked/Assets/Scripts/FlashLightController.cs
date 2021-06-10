@@ -54,7 +54,6 @@ public class FlashLightController : MonoBehaviour
         switch (this.Intensity)
         {
             case 0:
-                this.Off = true;;
                 this.TurnOff();
                 break;
             case 1:
@@ -85,6 +84,7 @@ public class FlashLightController : MonoBehaviour
 
     public void TurnOff()
     {
+        this.Off = true;
         this.Enabled = false;
         this.FireLight.enabled = false;
         this.DurationOn = 0;
