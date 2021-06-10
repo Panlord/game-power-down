@@ -102,29 +102,24 @@ Here is an example:
 
 You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
 
-## User Interface
+## User Interface (Peter Lin)
 
 ### Minimal UI  
 As people who played the game are aware, there is barely any non-diagetic (not part of the game world) UI elements that show at all times on the screen, except for the timer. This choice was made to help immerse the player in the world, by reducing most if not all distracting content from the player's screen. There is no health bar (the player just loses if caught) and no stamina bar (the player instead hears a heavy breathing audio to denote exhaustion). Since this is a first person survival horror game, trying to keep player immersion is especially important to the player experience.
-
 
 ### On-screen Prompts
 As there are many interactable objects in the 3-D space (notes, doors, etc.) there needed to be a way to notify the player that something could be interacted with. Thus, similar to other horror and adventure games, I opted to go with an on-screen prompt that appears when the player looks at an object within a certain range. This was done by adding a `Raycast` to the `Main Camera` via `InteractiveItemManager.cs`. This script checks if the `Raycast` [hits any interactable item](https://github.com/Panlord/game-power-down/blob/d6a263b60904d37ae62292027fa421fc636c2f83/Spooked/Assets/Scripts/InteractiveItemManager.cs#L31) and, based on the item, shows a prompt to interact via [`InterfaceController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/InterfaceController.cs). If the player interacts (presses down `E`) with a valid item, then `InteractiveItemManager.cs` calls upon the corresponding `Interact()` method from the Controller script attached to the GameObject.  
 
 The [special cases](https://github.com/Panlord/game-power-down/blob/d4a9319d83b802c3e79172a025307512d54c91dd/Spooked/Assets/Scripts/ExitDoorController.cs#L300) are if the player approaches an exit door without the objective item, or a locked door. In that case, then the on-screen prompt tells the player to either retrieve the book, or that the door is locked, omitting the `[E]` to show that the player cannot interact with the item.
 
-
 ### Typeface Choice
 I decided to use one typeface ([YitziScript](https://yitzilitt.itch.io/yitziscript)) for the entire game. This style of font matched what we wanted: handwritten, slightly creepy text. As a lot of the lore was based on written (not digital) notes, I looked for something that could emulate physical script, and ended up with this one. It also especially helped showcase the (monster) professor's descent into madness when tHe TeXt ShIFtEd To ThIs StYlE. The decision was made to not add other types of fonts, as consistency and continuity with the game feel was an important aspect that we wanted to address. Everything from the menus, notes, and buttons use the same typeface to keep the player immersed in the game.
 
-
 ### Inventory
-This is actually one of the bigger parts of the UI that I'm proud of creating. Upon pressing `I`, the player opens up a list of their collected items, denoted by tabs on the left side, and a visual representation of the note and it's text on the right side.  
-
+This is actually one of the bigger parts of the UI that I'm proud of creating. Upon pressing `I`, the player opens up a list of their collected items, denoted by tabs on the left side, and a visual representation of the note and its text on the right side. The player can swap between notes to view each lore piece and understand how the game world came to be. This is created via a combination of three scripts: [`Inventory.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/Inventory.cs] (which trakcs what notes the player has collected and generates a random note whenever an item is collected), [`InventoryMenuController.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/InventoryMenuController.cs] (which handles which note is currently shown), and [`ListCreator.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ListCreator.cs] (which manages the scroll offset of the notes tab on the left if there are more tabs than fits on the screen).
 
 ### Diegetic Brightness Meter on Flashlight
 As the flashlight is an integral tool in helping the player progress through the game with the lights off, emphasis was added to make the flashlight a part of the world instead of just on the side. Since there are multiple brightness levels (including off), I decided to add brightness meters via `Canvas` `Image`s (circles) on the flashlight itself. This was done by adding a `Sphere` `GameObject` on the flashlight object and attaching [`ClampMeter.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ClampMeter.cs) that takes the "meters" as `SerializedField`s and projects them onto the screen space based on the `Sphere`'s world space.
-
 
 ## Movement/Physics (Sarah Almuqri and Aaron Pan)
 
