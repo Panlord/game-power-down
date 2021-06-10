@@ -323,9 +323,9 @@ The monster screech was given a cooldown period in order to prevent the monster 
 
 ## Gameplay Testing (Peter Lin)
 
-**Add a link to the full results of your gameplay tests.**
+Raw results and comments can be found collected [here](https://docs.google.com/document/d/1ymze7tGTy6_YqTQDKtMBUd_CJmUSApx4JNq94ljhRxw/edit?usp=sharing).
 
-**Summarize the key findings from your gameplay tests.**
+### Key Findings
 
 ## Narrative Design (Erik Trinh)
 
