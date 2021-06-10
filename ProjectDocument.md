@@ -337,7 +337,7 @@ Raw results and comments can be found collected [here](https://docs.google.com/d
     *   **Solution:** We heavily reduced the player speed and mouse sensitivity to make the game more slow paced.
 
 2.  
-    *   **Problem:** The map was bright enough (even with ALL the lights off) to warrent never using the flashlight, making many testers confused on the flashlight's practical use.
+    *   **Problem:** The map was bright enough (even with ALL the lights off) to warrant never using the flashlight, making many testers confused on the flashlight's practical use.
     *   **Solution:** A black screen was added via `Canvas` `Image` to the player's screen when the monster was triggered and the flashlight was off. This essentially forces the player to use the flashlight as they literally cannot see anything when it is off. When the monster is triggered and the flashlight is on, the black screen becomes slightly transparent to emulate light coming out while still making the entire map darker.
 
 3.
