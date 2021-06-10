@@ -325,7 +325,9 @@ As for the screenshots, I made sure to include many of the things I listed in th
 
 - We added a start menu then a bit of lore at the beginning of the game to get the player excited (or scared) to start. When the player reads the lore and hits "go" the game starts.
 - We also added a stopwatch that starts counting when the player hits "go", the player can see the stopwatch on the top left of the screen.
-- When the player comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continue playing. The stopwatch is paused when the player is on the lore screen.
-- The player can also pause the game at any time by hitting ESC, the stopwatch is paused when the game is.
+- When the player comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, they can close it and continue playing. The stopwatch is paused when the player is in any menu.
+- The player can also pause the game at any time by hitting ESC.
 - There are lore items scattered around the map so the player can attempt to understand the story while playing the game.
-- Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors we decided not to
+- Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors we decided not to.
+- A looped animated screen was added to the start menu to set the tone and mood for the rest of the game. This was done via switching to [`MainMenuCamera`](https://github.com/Panlord/game-power-down/blob/48e054be9381f1dbe74f3e914687beda097e2e53/Spooked/Assets/Scripts/MainMenuController.cs#L52) and slwoly moving it foward in a direction.
+- As the game screen did not get as dark as we wanted by turning off ALL the lights, when the monster is triggered, a pitch black screen is added via a `Canvas` iamge. The black screen then becomes semi-transparent when the user turns on the flashlight, allowing the player to actually see what's around them. Doing so actually incentivizes the player to use the flashlight.
