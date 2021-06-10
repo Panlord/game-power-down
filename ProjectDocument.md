@@ -376,4 +376,4 @@ As for the screenshots, I made sure to include many of the things I listed in th
 - The player can also pause the game at any time by hitting ESC.
 - There are lore items scattered around the map so the player can attempt to understand the story while playing the game.
 - Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors, we decided not to add it to the final build.
-- A looped animated screen was added to the start menu to set the tone and mood for the rest of the game. This was done via switching to [`MainMenuCamera`](https://github.com/Panlord/game-power-down/blob/48e054be9381f1dbe74f3e914687beda097e2e53/Spooked/Assets/Scripts/MainMenuController.cs#L52) and slowly moving it forward in a direction.
+- A looped animated screen was added to the start menu to set the tone and mood for the rest of the game. This was done via switching to `MainMenuCamera` and [slowly moving it forward](https://github.com/Panlord/game-power-down/blob/48e054be9381f1dbe74f3e914687beda097e2e53/Spooked/Assets/Scripts/MainMenuController.cs#L42) in a direction.
