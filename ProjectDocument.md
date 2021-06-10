@@ -88,6 +88,7 @@ It is possible for the danger state to be active when the player does not have t
 
 Programmers' Note:
 - Everybody became exterminators with how many bugs we all killed.
+- Some playtesters cried while playing the game. Some developers cried for different reasons.
 
 # Main Roles #
 
