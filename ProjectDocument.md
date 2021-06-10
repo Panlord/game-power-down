@@ -69,12 +69,28 @@ Animations for the zombie came with the asset, though Erik created the [jumpscar
 
 **World-building**: After reading Erik's work on the narrative and lore design, I threw in 20 collectable items and one objective item, all of which are either interactable books, notes, laptops, or cellphones. Each book I put down for the collectable item has a texture I thought would be fitting for the narrative.
 
-## Input
+## Input (Victor Palencia)
 
 **Describe the default input configuration.**
 
-**Add an entry for each platform or input style your project supports.**
+The game is mainly based on keyboard and mouse inputs but it is also completely playable on a a PS4 controller (and possibly other controllers). 
+**Mouse + Keyboard**
+- Player movement is done with WASD and camera look is done with the mouse. 
 
+- I used the Unity's new Input System (https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html) to handle the the mouse look for gamepads. 
+
+```C#
+    y =  Gamepad.current.rightStick.x.ReadValue() * JoystickSens * Time.deltaTime;
+    XRotation += Gamepad.current.rightStick.y.ReadValue() * JoystickSens * Time.deltaTime;
+```
+For the mouse it was done with the older way
+```C#
+    y = Input.GetAxis("Mouse X") * MouseSensitivity;
+    XRotation += Input.GetAxis("Mouse Y") * MouseSensitivity;
+```
+
+
+## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
 
 The [GameController](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/GameController.cs) is the big brains of *Escape From Kemper*. It is connected to almost every script in the project and several GameObjects in the scene. Among its many jobs include:
