@@ -95,6 +95,19 @@ For player movement, I used the old unity system and allowed for sprinting with 
     float z = Input.GetAxis("Vertical") * (isRunning ? RunningSpeed : WalkingSpeed);
 ```
 
+### PS4 Dualshock Controls
+- Left joystick: player movement
+- Right joystick: camera look
+- Square: flashlight toggle 
+- X: Interact/PickUp/ and close menus
+- Options: Brings up pause menu, press it again to exit the game or X to close it
+- Circle: Sprint (i'll probably change it)
+- Triangle: Inventory menu
+### Keyboard controls
+- WASD: player movement
+- ESC: bring up pause menu and exit pause menu
+- I: Enter and exit inventory menu
+
 
 ## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
