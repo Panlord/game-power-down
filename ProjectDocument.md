@@ -332,7 +332,10 @@ Raw results and comments can be found collected [here](https://docs.google.com/d
 - Some players found the map to be too big with too many rooms, while others found the maze-like structure appealing to their sense of exploration. (Aaron did a phenomenal job with creating the entire map level from individual prefab assets)
 
 ### Problems and Solutions
-1.  **Problem:** asdvcas
+1.  
+    *   **Problem:**
+    *   **Solution:**
+2.  **Problem:** asdvcas
     ** Solution:** asdcasdc
 
 ## Narrative Design (Erik Trinh)
