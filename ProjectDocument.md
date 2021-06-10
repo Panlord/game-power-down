@@ -69,12 +69,28 @@ Animations for the zombie came with the asset, though Erik created the [jumpscar
 
 **World-building**: After reading Erik's work on the narrative and lore design, I threw in 20 collectable items and one objective item, all of which are either interactable books, notes, laptops, or cellphones. Each book I put down for the collectable item has a texture I thought would be fitting for the narrative.
 
-## Input
+## Input (Victor Palencia)
 
 **Describe the default input configuration.**
 
-**Add an entry for each platform or input style your project supports.**
+The game is mainly based on keyboard and mouse inputs but it is also completely playable on a a PS4 controller (and possibly other controllers). 
+**Mouse + Keyboard**
+- Player movement is done with WASD and camera look is done with the mouse. 
 
+- I used the Unity's new Input System (https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/QuickStartGuide.html) to handle the the mouse look for gamepads. 
+
+```C#
+    y =  Gamepad.current.rightStick.x.ReadValue() * JoystickSens * Time.deltaTime;
+    XRotation += Gamepad.current.rightStick.y.ReadValue() * JoystickSens * Time.deltaTime;
+```
+For the mouse it was done with the older way
+```C#
+    y = Input.GetAxis("Mouse X") * MouseSensitivity;
+    XRotation += Input.GetAxis("Mouse Y") * MouseSensitivity;
+```
+
+
+## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
 
 The [GameController](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/GameController.cs) is the big brains of *Escape From Kemper*. It is connected to almost every script in the project and several GameObjects in the scene. Among its many jobs include:
@@ -211,13 +227,14 @@ The trailer for our game can be found [here](https://www.youtube.com/watch?v=eUe
 
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**  
 I browsed through a bunch of horror game trailers and took notes of what people did in them. Those notes can be found [here](https://docs.google.com/document/d/1pdPiYV6ynshz_D6uh5Mk_mkcWD4GaDzEIM1u53sjhTM/edit?usp=sharing). Then I just structured the trailer based off of what I liked from observing other horror game trailers (a lot of inspiration from the Outlast trailer because I really liked that one). I began with a little bit of the narrative (not too detailed though, so there aren’t any story spoilers) so the audience knows what they’re going to be doing in the game. Next the trailer transitions into footage of a whole gameplay loop from spawn -> finding any collectable item(s) -> obtaining the objective item -> attempting to escape -> encountering the monster -> losing. I wanted the audience to see what playing the game might be like. I feel that is one purpose of a trailer-- to inform the viewers of what they will be getting into upon downloading the game. Thus, I made sure to show most aspects of the game (map exploration, item collection, etc.) but not all (cursed notes, easter eggs, nuanced mechanics, etc.) so that players can be ~~pleasantly~~ surprised. I also only showed a small portion of the map so that players have places to explore.  
-As for the screenshots, I made sure to include many of the things I listed in the trailer. To reiterate, I chose them based on what I would imagine a prospective player would want to see before downloading the game-- the menu, several screenshots of various locations throughout the map, several collectable items, some lore pieces, the inventory, and a partially visible still of the monster in action (only partially visible with its face covered so the player is in for a surprise when they get attacked!).  
+As for the screenshots, I made sure to include many of the things I listed in the trailer. To reiterate, I chose them based on what I would imagine a prospective player would want to see before downloading the game-- the menu, several screenshots of various locations throughout the map, several collectible items, some lore pieces, the inventory, and a partially visible still of the monster in action (only partially visible with its face covered so the player is in for a surprise when they get attacked!).  
 
 
 ## Game Feel (Everyone)
 
-- We added a start menu then a bit of lore at the beggening of the game to get the player excited (or scared) to start. When the player reads the lore and hits "go" the game starts.
+- We added a start menu then a bit of lore at the beginning of the game to get the player excited (or scared) to start. When the player reads the lore and hits "go" the game starts.
 - We also added a stopwatch that starts counting when the player hits "go", the player can see the stopwatch on the top left of the screen.
-- When the players comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continues playin. The stopwatch is paused when the player is on the lore screen.
-- The player can also pause the game at anytime by hitting ESC, the stopwatch is paused when the game is.
+- When the player comes across a lore object, the screen displays "E to interact", when the player hits E, he can pick up the lore item, when the player is finished reading about the item, he can close it and continue playing. The stopwatch is paused when the player is on the lore screen.
+- The player can also pause the game at any time by hitting ESC, the stopwatch is paused when the game is.
 - There are lore items scattered around the map so the player can attempt to understand the story while playing the game.
+- Attempted to add a cameraLerp to have the camera face the monster before the jumpscare is played but due to many errors we decided not to
