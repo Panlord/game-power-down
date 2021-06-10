@@ -55426,7 +55426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1205421343
 RectTransform:
   m_ObjectHideFlags: 0
@@ -72368,7 +72368,6 @@ MonoBehaviour:
   TimerControl: {fileID: 1329810629}
   SafetyPeriod: 120
   CanScare: 0
-  HasBook: 0
   InMainMenu: 1
   MonsterTriggered: 0
   Paused: 0
