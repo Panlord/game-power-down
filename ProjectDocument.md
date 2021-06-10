@@ -112,7 +112,7 @@ As there are many interactable objects in the 3-D space (notes, doors, etc.) the
 
 The [special cases](https://github.com/Panlord/game-power-down/blob/d4a9319d83b802c3e79172a025307512d54c91dd/Spooked/Assets/Scripts/ExitDoorController.cs#L300) are if the player approaches an exit door without the objective item, or a locked door. In that case, then the on-screen prompt tells the player to either retrieve the book, or that the door is locked, omitting the `[E]` to show that the player cannot interact with the item.
 
-**Relevant Scripts:**
+**Relevant Controller Scripts:**
 - [`CollectibleItemController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/CollectibleItemController.cs)
 - [`DoorController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/DoorController.cs)
 - [`DoubleDoorController.cs`](https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/DoubleDoorController.cs)
