@@ -104,7 +104,8 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 ## User Interface
 
-**Describe your user interface and how it relates to gameplay. This can be done via the template.**
+**Diegetic Brightness Meter on Flashlight:** As the flashlight is an integral tool in helping the player progress through the game with the lights off, emphasis was added to make the flashlight a part of the world instead of just on the side. Since there are multiple brightness levels (including off), I decided to add brightness meters via `Canvas` `Image`s (circles) on the flashing itself. This was done by adding a `Sphere` `GameObject` on the flashlight object and attaching `ClampMeter.cs` that takes the "meters" as `SerializedField`s and [projects them](https://github.com/Panlord/game-power-down/blob/5e4d7ea27a8ac277cc7fbe44f4ffeeee40095067/Spooked/Assets/Scripts/ClampMeter.cs#L15) onto the screen space based on the `Sphere`'s world space.
+
 
 ## Movement/Physics (Sarah Almuqri and Aaron Pan)
 
