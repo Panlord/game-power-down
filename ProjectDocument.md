@@ -291,8 +291,8 @@ This logic of real-time "call and response" is based on the Observer pattern, al
 **List your assets including their sources and licenses.**
 ### Audio Assets
 - The screeching sound played when the zombie is looking for the player is from [InspectorJ Sound Effects](https://assetstore.unity.com/packages/audio/sound-fx/96-general-library-free-sample-pack-185157). I used an audio editor to reverse the sound and adjust its length and speed to give it a more inhuman and horror-like sound. This audio is free from the unity store. 
-- The footstep sounds come from [this site](https://www.fesliyanstudios.com/royalty-free-sound-effects-download/opening-closing-door-54). I edited the clip to match the length of the door opening and closing animations. This audio is royalty free. 
-- The footstep sounds come from [John Leonard French](https://assetstore.unity.com/packages/audio/sound-fx/western-audio-music-67788). This audio is free from the unity store.
+- The door opening and closing sounds [this site](https://www.fesliyanstudios.com/royalty-free-sound-effects-download/opening-closing-door-54). I edited the clip to match the length of the door opening and closing animations. This audio is royalty free. 
+- The footstep sound comes from [John Leonard French](https://assetstore.unity.com/packages/audio/sound-fx/western-audio-music-67788). This audio is free from the unity store.
 - The main music playing throughout the game is from [DHSFX](https://assetstore.unity.com/packages/audio/ambient/unnerving-ambient-sounds-horror-game-sound-effect-pack-30-sounds-170590). This audio is free from the unity store.
 - The CURSED sound effect that plays during the jump scare is a distorted, edited version of [this clip](https://soundbible.com/2085-Annoying-Speaker-Pulsing.html). The original sound effect is under public domain.
 
