@@ -92951,6 +92951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25dafab35b6ce3d4db50e09d69f3ca07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Darkness: {fileID: 1892999467}
   MaxBright: {fileID: 2030890646}
   MedBright: {fileID: 1311448904}
   LowBright: {fileID: 1535169127}
