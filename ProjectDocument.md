@@ -124,7 +124,7 @@ The [special cases](https://github.com/Panlord/game-power-down/blob/d4a9319d83b8
 I decided to use one typeface ([YitziScript](https://yitzilitt.itch.io/yitziscript)) for the entire game. This style of font matched what we wanted: handwritten, slightly creepy text. As a lot of the lore was based on written (not digital) notes, I looked for something that could emulate physical script, and ended up with this one. It also especially helped showcase the (monster) professor's descent into madness when tHe TeXt ShIFtEd To ThIs StYlE. The decision was made to not add other types of fonts, as consistency and continuity with the game feel was an important aspect that we wanted to address. Everything from the menus, notes, and buttons use the same typeface to keep the player immersed in the game.
 
 ### Menus and Buttons  
-Many of the menus are 
+Many of the menus and buttons are styled with a page image that I found and edited from [here](https://davidrichard.itch.io/2-simple-sheets-of-paper]. The vintage paper was integral to the game's aesthetic as it, like the typeface, allowed for a handwritten, creepy atmosphere while the player went around collecting items and viewing the menus. Most of the menus's functionality were initially created by Erik, then visually edited later by me.
 
 ### Inventory
 This is actually one of the bigger parts of the UI that I'm proud of creating. Upon pressing `I`, the player opens up a list of their collected items, denoted by tabs on the left side, and a visual representation of the note and its text on the right side. The player can swap between notes to view each lore piece and understand how the game world came to be. This is created via a combination of three scripts: [`Inventory.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/Inventory.cs] (which trakcs what notes the player has collected and generates a random note whenever an item is collected), [`InventoryMenuController.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/InventoryMenuController.cs] (which handles which note is currently shown), and [`ListCreator.cs`][https://github.com/Panlord/game-power-down/blob/master/Spooked/Assets/Scripts/ListCreator.cs] (which manages the scroll offset of the notes tab on the left if there are more tabs than fits on the screen).
@@ -168,7 +168,8 @@ Animations for the zombie came with the asset, though Erik created the [jumpscar
 
 **Describe the default input configuration.**
 
-The game is mainly based on keyboard and mouse inputs but it is also completely playable on a a PS4 controller (and possibly other controllers). 
+The game is mainly based on keyboard and mouse inputs but it is also completely playable on a PS4 controller (and possibly other controllers). 
+
 **Mouse + Keyboard**
 - Player movement is done with WASD and camera look is done with the mouse. 
 - I wrote the MouseLook.cs script and allowed for both mouse and joystick inputs. 
@@ -192,6 +193,7 @@ For player movement, I used the old unity system and allowed for sprinting with 
 
 The other input buttons were done through the old Input Manager. This allowed me to only write the input once instead of having to write a separate version for kb+m and gamepad. 
 
+
 ### PS4 Dualshock Controls
 - Left joystick: player movement
 - Right joystick: camera look
@@ -208,7 +210,6 @@ The other input buttons were done through the old Input Manager. This allowed me
 - Left Click: change flashlight intensity 
 - E: Interact with lore items and doors 
 - L Shift: Sprint
-
 
 ## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
