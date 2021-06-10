@@ -179,13 +179,15 @@ For player movement, I used the old unity system and allowed for sprinting with 
 - Square: flashlight toggle 
 - X: Interact/PickUp/ and close menus
 - Options: Brings up pause menu, press it again to exit the game or X to close it
-- Circle: Sprint (i'll probably change it)
+- Circle: Sprint
 - Triangle: Inventory menu
+
 ### Keyboard controls
 - WASD: player movement
 - ESC: bring up pause menu and exit pause menu
 - I: Enter and exit inventory menu
-
+- Left Click: change flashlight intensity 
+- E: Interact with lore items and doors 
 
 ## Game Logic (Erik Trinh)
 Ah yes... the most daunting main role of them all...
