@@ -29,7 +29,21 @@ public class ExitDoorController : MonoBehaviour
 
     public void Prompt()
     {
-        this.GUI.PromptExit();
+        if (this.GUI.IsExitOpen())
+        {
+            if (this.gameObject.transform.parent.tag == "ExitDoor")
+            {
+                this.GUI.PromptExit();
+            }
+            else
+            {
+                this.GUI.PromptLocked();
+            }
+        }
+        else
+        {
+            this.GUI.PromptBook();
+        }
     }
 
     public void Interact()
@@ -38,13 +52,13 @@ public class ExitDoorController : MonoBehaviour
         this.GUI.EndPrompt();
     }
 
-    public int ExitCheck(bool hasBook)
+    public int ExitCheck()
     {
         if (this.TriedExit)
         {
             this.TriedExit = false;
             {
-                if (!hasBook)
+                if (!this.GUI.IsExitOpen())
                 {
                     return 0;
                 }
