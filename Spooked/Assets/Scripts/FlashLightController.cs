@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class FlashLightController : MonoBehaviour 
 {
     private bool Enabled;
+    [SerializeField] private GameObject Darkness;
     [SerializeField] private GameObject MaxBright;
     [SerializeField] private GameObject MedBright;
     [SerializeField] private GameObject LowBright;
@@ -55,24 +56,28 @@ public class FlashLightController : MonoBehaviour
         {
             case 0:
                 this.TurnOff();
+                this.Darkness.GetComponent<Image>().color = Color.black;
                 break;
             case 1:
                 this.Off = false;
                 this.FireLight.range = 60;
                 this.FireLight.spotAngle = 40;
                 this.LowBright.GetComponent<Image>().color = Color.white;
+                this.Darkness.GetComponent<Image>().color = new Color(0, 0, 0, 200f/255f);
                 break;
             case 2:
                 this.Off = false;
                 this.FireLight.range = 80;
                 this.FireLight.spotAngle = 60;
                 this.MedBright.GetComponent<Image>().color = Color.white;
+                this.Darkness.GetComponent<Image>().color = new Color(0, 0, 0, 200f/255f);
                 break;
             case 3:
                 this.Off = false;
                 this.FireLight.range = 100;
                 this.FireLight.spotAngle = 80;
                 this.MaxBright.GetComponent<Image>().color = Color.white;
+                this.Darkness.GetComponent<Image>().color = new Color(0, 0, 0, 200f/255f);
                 break;
         }
         if (this.Intensity > 0)
