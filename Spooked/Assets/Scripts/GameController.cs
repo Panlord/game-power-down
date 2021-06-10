@@ -47,7 +47,6 @@ public class GameController : MonoBehaviour
 
     // Game state logic variables.
     [SerializeField] private bool CanScare;
-    [SerializeField] private bool HasBook;
     [SerializeField] private bool InMainMenu;
     [SerializeField] private bool MonsterTriggered;
     [SerializeField] private bool Paused;
@@ -59,7 +58,6 @@ public class GameController : MonoBehaviour
     public GameController() 
     {
         this.InMainMenu = true;
-        this.HasBook = false;
         this.Paused = false;
         this.MonsterTriggered = false;
 
@@ -186,7 +184,7 @@ public class GameController : MonoBehaviour
 
         // Hallway Lights and Book Possession:
         this.HallwayLights.SetActive(true);
-        this.HasBook = false;
+        this.GUI.LockDoor();
 
         // Close all the doors.
         CloseAllDoors();
@@ -360,7 +358,7 @@ public class GameController : MonoBehaviour
                 if (this.InventoryMenu.IsOpen())
                 {   
                     this.InventoryMenu.Deactivate();
-                    var bright = this.FlashLight.gameObject.transform.Find("Brightness Setting");
+                    var bright = this.FlashLight.gameObject.transform.Find("Brightness Meter");
                     bright.gameObject.SetActive(true);
                 }
                 if (this.ShowLore.IsOpen())
@@ -379,13 +377,13 @@ public class GameController : MonoBehaviour
             {
                 this.GUI.EndPrompt();
                 this.InventoryMenu.Show();
-                var bright = this.FlashLight.gameObject.transform.Find("Brightness Setting");
+                var bright = this.FlashLight.gameObject.transform.Find("Brightness Meter");
                 bright.gameObject.SetActive(false);
             }
             else
             {
                 this.InventoryMenu.Deactivate();
-                var bright = this.FlashLight.gameObject.transform.Find("Brightness Setting");
+                var bright = this.FlashLight.gameObject.transform.Find("Brightness Meter");
                 bright.gameObject.SetActive(true);
             }
         }
@@ -414,19 +412,19 @@ public class GameController : MonoBehaviour
         foreach (GameObject door in exitDoors)
         {
             var doorControl = door.GetComponent<ExitDoorController>();
-            var exitCheck = doorControl.ExitCheck(this.HasBook);
+            var exitCheck = doorControl.ExitCheck();
 
             switch (exitCheck)
             {
                 // If they don't have the book.
                 case 0:
                     Debug.Log("You haven't gotten the book yet!");
-                    // GUI prompt get book first.
+                    this.GUI.PromptBook();
                     break;
                 // If that's the wrong exit (it's locked).
                 case 1:
                     Debug.Log("This exit is locked.");
-                    // GUI prompt exit is locked.
+                    this.GUI.PromptLocked();
                     break;
                 // If the user has the book and found the right exit.
                 case 2:
@@ -458,7 +456,7 @@ public class GameController : MonoBehaviour
             {
                 this.TriggerMonster();
             }
-            this.HasBook = true;
+            this.GUI.UnlockDoor();
             this.PlayerInventory.ResetBook();
         }
 

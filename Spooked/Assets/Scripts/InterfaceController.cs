@@ -12,11 +12,13 @@ public class InterfaceController : MonoBehaviour
     [SerializeField] private InventoryMenuController InventoryMenu;
     [SerializeField] private GameObject Prompt;
     private bool PromptOpen;
+    private bool CanExit;
 
     private void Awake()
     {
         this.PromptOpen = true;
         this.EndPrompt(); 
+        this.CanExit = false;
     }
 
     private void BeginPrompt()
@@ -57,9 +59,36 @@ public class InterfaceController : MonoBehaviour
         this.Prompt.GetComponent<TextMeshProUGUI>().text = "[E] COLLECT";
     }
 
+    public void PromptBook()
+    {
+        this.BeginPrompt();
+        this.Prompt.GetComponent<TextMeshProUGUI>().text = "FIND THE RED BOOK FIRST";
+    }
+
+    public void PromptLocked()
+    {
+        this.BeginPrompt();
+        this.Prompt.GetComponent<TextMeshProUGUI>().text = "THIS DOOR IS LOCKED";
+    }
+
     public void PromptExit()
     {
         this.BeginPrompt();
         this.Prompt.GetComponent<TextMeshProUGUI>().text = "[E] EXIT";
+    }
+
+    public void UnlockDoor()
+    {
+        this.CanExit = true;
+    }
+
+    public void LockDoor()
+    {
+        this.CanExit = false;
+    }
+
+    public bool IsExitOpen()
+    {
+        return this.CanExit;
     }
 }
